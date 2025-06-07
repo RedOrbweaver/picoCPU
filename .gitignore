@@ -1,0 +1,7 @@
+build
+!.vscode/*
+picoSYS/picoSYS/picoSYS-bakcups
+picoSYS/picoSYS/picoSYS-backups/*
+picoSYS/picoSYS/#auto_saved_files#
+picoSYS/picoSYS/_autosave-picoSYS.kicad_sch
+picoSYS/picoSYS/~picoSYS.kicad_sch.lck

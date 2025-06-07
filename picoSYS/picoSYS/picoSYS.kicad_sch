@@ -1,0 +1,61 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "c5b94243-0015-46aa-9508-ff5973f88339")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 21.59 21.59)
+		(size 25.4 24.13)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "d2b00318-2e60-4c8a-9afb-1b2401ad5490")
+		(property "Sheetname" "inverting_supply"
+			(at 21.59 20.8784 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "inverting_supply.kicad_sch"
+			(at 21.59 46.3046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "-2V" output
+			(at 46.99 24.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "00879734-d763-4371-8650-c743ed8c6975")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)
