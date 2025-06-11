@@ -2750,7 +2750,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10R"
+		(property "Value" "0R"
 			(at 29.718 25.3421 0)
 			(effects
 				(font

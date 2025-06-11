@@ -11,8 +11,38 @@ void I2CWrite(SOURCE source, uint8_t address0, uint8_t address1, uint8_t len, ui
     buffer[3] = address1;
     buffer[4] = len;
     memcpy(buffer + 5, data, len);
-    i2c_write_blocking(i2c0, I2C_ADDR, buffer, len + 5, false);
-    
+    i2c_write_blocking(i2c0, I2C_ADDR, buffer, len + 5, false);   
+}
+
+Info ReadInfo()
+{
+    uint8_t buffer[5];
+    buffer[0] = 0xEF; // READ
+    buffer[1] = (uint8_t)SOURCE::INFO;
+    buffer[2] = 5;
+    buffer[3] = 7;
+    buffer[4] = sizeof(Info);
+    i2c_write_blocking(i2c0, I2C_ADDR, buffer, sizeof(buffer), true);
+    Info info = {0};
+    int res = i2c_read_blocking(i2c0, I2C_ADDR, (uint8_t*)&info, sizeof(Info), false);
+    printf("res: %i\n", res);
+    //i2c_read_raw_blocking(i2c0, (uint8_t*)&info, sizeof(Info));
+    return info;
+}
+
+uint8_t ReadTest()
+{
+    uint8_t buffer[5];
+    buffer[0] = 0xEF; // READ
+    buffer[1] = (uint8_t)SOURCE::TEST;
+    buffer[2] = 5;
+    buffer[3] = 7;
+    buffer[4] = 1;
+    i2c_write_blocking(i2c0, I2C_ADDR, buffer, sizeof(buffer), true);
+    uint8_t test = {0};
+    int res = i2c_read_blocking(i2c0, I2C_ADDR, &test, 1, false);
+    //printf("res: %i\n", res);
+    return test;
 }
 
 int main()
@@ -24,7 +54,7 @@ int main()
     uart_set_baudrate(uart0, 115200);
     printf("clock set successfully\n");
 
-    i2c_init(i2c0, 2 * 1000 * 1000);
+    i2c_init(i2c0, i2cspeed);
     gpio_set_function(PIN::I2C_SCL, GPIO_FUNC_I2C);
     gpio_set_pulls(PIN::I2C_SCL, true, false);
     gpio_set_function(PIN::I2C_SDA, GPIO_FUNC_I2C);
@@ -69,6 +99,11 @@ int main()
 
         ball.pos = vec2<uint16_t>{(uint16_t)px, (uint16_t)py};
         ball.rotation += 1;
-        I2CWrite(SOURCE::ENTITY_BUFFER, 0, 0, sizeof(Entity), (uint8_t*)&ball);
+        //I2CWrite(SOURCE::ENTITY_BUFFER, 0, 0, sizeof(Entity), (uint8_t*)&ball);
+        Info info = ReadInfo();
+        printf("%llu\n", info.last_render_time_us);
+        //getchar();
+        //int test = ReadTest();
+        //printf("%i\n", test);
     }
 }
