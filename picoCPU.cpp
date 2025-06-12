@@ -99,9 +99,13 @@ int main()
 
         ball.pos = vec2<uint16_t>{(uint16_t)px, (uint16_t)py};
         ball.rotation += 1;
-        //I2CWrite(SOURCE::ENTITY_BUFFER, 0, 0, sizeof(Entity), (uint8_t*)&ball);
+        I2CWrite(SOURCE::ENTITY_BUFFER, 0, 0, sizeof(Entity), (uint8_t*)&ball);
         Info info = ReadInfo();
-        printf("%llu\n", info.last_render_time_us);
+        clear_console();
+        printf("render time: %lluus\n", info.last_render_time_us);
+        printf("GPU memory: %u/%u\n", info.free_memory, info.total_memory);
+        printf("CPU memory: %u/%u\n", GetFreeHeap(), GetTotalHeap());
+        sleep_ms(1);
         //getchar();
         //int test = ReadTest();
         //printf("%i\n", test);
