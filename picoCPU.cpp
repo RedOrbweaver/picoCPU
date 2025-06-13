@@ -1,6 +1,5 @@
 #include "hmain.hpp"
 
-
 void I2CWrite(SOURCE source, uint8_t address0, uint8_t address1, uint8_t len, uint8_t* data)
 {
     
@@ -103,6 +102,7 @@ int main()
         Info info = ReadInfo();
         clear_console();
         printf("render time: %lluus\n", info.last_render_time_us);
+        printf("GPU temperature: %.3f\n", info.temperature);
         printf("GPU memory: %u/%u\n", info.free_memory, info.total_memory);
         printf("CPU memory: %u/%u\n", GetFreeHeap(), GetTotalHeap());
         sleep_ms(1);
