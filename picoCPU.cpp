@@ -53,6 +53,8 @@ int main()
     uart_set_baudrate(uart0, 115200);
     printf("clock set successfully\n");
 
+    multicore_launch_core1(AudioLoop);
+
     i2c_init(i2c0, i2cspeed);
     gpio_set_function(PIN::I2C_SCL, GPIO_FUNC_I2C);
     gpio_set_pulls(PIN::I2C_SCL, true, false);

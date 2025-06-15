@@ -2,7 +2,7 @@
 
 cmake_minimum_required(VERSION 3.13)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD 23)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -39,13 +39,13 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(picoCPU picoCPU.cpp )
+add_executable(picoCPU picoCPU.cpp Audio.cpp )
 
 pico_set_program_name(picoCPU "picoCPU")
 pico_set_program_version(picoCPU "0.1")
 
 # Generate PIO header
-pico_generate_pio_header(picoCPU ${CMAKE_CURRENT_LIST_DIR}/blink.pio)
+pico_generate_pio_header(picoCPU ${CMAKE_CURRENT_LIST_DIR}/dac_out.pio)
 
 # Modify the below lines to enable/disable output over UART/USB
 pico_enable_stdio_uart(picoCPU 1)
@@ -70,6 +70,7 @@ target_link_libraries(picoCPU
         hardware_timer
         hardware_watchdog
         hardware_clocks
+        pico_multicore
         )
 
 pico_add_extra_outputs(picoCPU)

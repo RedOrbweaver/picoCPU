@@ -3290,10 +3290,10 @@
 		(uuid "17ee1ca2-fbe6-412a-a6e3-882cabf95d97")
 	)
 	(junction
-		(at 110.49 52.07)
+		(at 110.49 36.83)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "1c2b74a3-4a18-4343-9fdc-0bcd17cd212a")
+		(uuid "1aa0e50e-5027-4335-bab5-422632cb18ce")
 	)
 	(junction
 		(at 91.44 82.55)
@@ -3308,34 +3308,22 @@
 		(uuid "29867630-3877-4d8f-8943-e39c018f7896")
 	)
 	(junction
-		(at 110.49 36.83)
+		(at 110.49 44.45)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "4246f5bb-d581-4e0e-931f-6ba1851f7a81")
+		(uuid "341e737f-4a3b-4cf9-9354-6386f9f7efed")
 	)
 	(junction
 		(at 110.49 67.31)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "51a6a467-30b0-493f-be93-99799ddd983e")
-	)
-	(junction
-		(at 52.07 100.33)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "58fb8b55-db9c-488e-aa1b-d4eddbcc0226")
-	)
-	(junction
-		(at 110.49 59.69)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "617f52f7-cb27-40e0-bf4e-4e054990ff6e")
+		(uuid "3f59f57c-15ad-4761-bd54-49b847b53eb2")
 	)
 	(junction
 		(at 110.49 82.55)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "618138b4-bf3e-4f45-b1e1-0cb0b3526e2b")
+		(uuid "64f1477e-9e90-4364-99d2-88b3aeeccf4b")
 	)
 	(junction
 		(at 60.96 54.61)
@@ -3344,16 +3332,16 @@
 		(uuid "7a41b4b6-b94d-445f-9fe1-c83ed9f6fd16")
 	)
 	(junction
-		(at 110.49 44.45)
+		(at 110.49 59.69)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "8286c4a5-9f7b-4767-a764-67c8ce2d2a09")
+		(uuid "7b398163-3854-46c0-9729-02c73ad41965")
 	)
 	(junction
-		(at 110.49 29.21)
+		(at 52.07 100.33)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "914d1069-847b-4454-b0f9-2c3d407ae5a6")
+		(uuid "7b3f4c0b-62c8-4215-8d02-28517d0b3cda")
 	)
 	(junction
 		(at 261.62 146.05)
@@ -3374,16 +3362,28 @@
 		(uuid "a50bb024-8f7f-48ae-9a48-cf9c335c8ba7")
 	)
 	(junction
-		(at 110.49 74.93)
+		(at 110.49 29.21)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "a67703a6-3708-4bb1-82b9-799ec5b507d8")
+		(uuid "a5eb249f-7e49-48e3-b30a-289cd2d9be9d")
+	)
+	(junction
+		(at 110.49 52.07)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "b668b157-118d-4f29-9d10-6ca918239914")
 	)
 	(junction
 		(at 229.87 124.46)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "bd482c93-70b3-4e34-96bb-5e6eba992ba6")
+	)
+	(junction
+		(at 110.49 74.93)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "c4eb809f-5a58-41b6-93b3-6117f2d6d64f")
 	)
 	(junction
 		(at 201.93 44.45)
@@ -3675,16 +3675,6 @@
 	)
 	(wire
 		(pts
-			(xy 105.41 82.55) (xy 110.49 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "479dd263-5c7f-4993-91a1-142d17781198")
-	)
-	(wire
-		(pts
 			(xy 120.65 44.45) (xy 130.81 44.45)
 		)
 		(stroke
@@ -3845,16 +3835,6 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 107.95) (xy 52.07 109.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8df7b891-a979-41a2-830c-b99df3624a44")
-	)
-	(wire
-		(pts
 			(xy 110.49 74.93) (xy 113.03 74.93)
 		)
 		(stroke
@@ -3952,6 +3932,16 @@
 			(type default)
 		)
 		(uuid "9affd5b5-3360-4f27-9798-6b713466a55c")
+	)
+	(wire
+		(pts
+			(xy 52.07 100.33) (xy 52.07 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9c6b7fd2-9163-4168-a9e6-8e195dcd9c34")
 	)
 	(wire
 		(pts
@@ -4082,6 +4072,16 @@
 			(type default)
 		)
 		(uuid "b4b57bb0-6888-4a57-8633-2c463a835e72")
+	)
+	(wire
+		(pts
+			(xy 110.49 82.55) (xy 113.03 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b4e99a8a-1b69-465b-af0b-575006171c99")
 	)
 	(wire
 		(pts
@@ -4225,7 +4225,7 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 82.55) (xy 113.03 82.55)
+			(xy 105.41 82.55) (xy 110.49 82.55)
 		)
 		(stroke
 			(width 0)
@@ -4792,6 +4792,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 110.49 33.02 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "1558f8ce-c276-46b5-b3a9-6957760e05b9")
+		(property "Reference" "R30"
+			(at 108.712 31.8078 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "330R"
+			(at 108.712 34.2321 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 108.712 33.02 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 110.49 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 110.49 33.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "2ff74852-b6c2-45fd-b2d5-86c9ed899867")
+		)
+		(pin "1"
+			(uuid "c4aed859-17b9-4b99-9e20-c926dfa4f046")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "R30")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 153.67 100.33 0)
 		(unit 1)
@@ -4929,6 +4999,76 @@
 	)
 	(symbol
 		(lib_id "Device:R")
+		(at 110.49 63.5 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "181304c0-5819-441f-82ea-aba3cab13990")
+		(property "Reference" "R34"
+			(at 108.712 62.2878 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "330R"
+			(at 108.712 64.7121 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 108.712 63.5 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 110.49 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 110.49 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "6ddb6119-6d56-4227-94a2-9d1832a0080b")
+		)
+		(pin "1"
+			(uuid "6c337549-20cb-4923-91ca-2263d6df4e1e")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "R34")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
 		(at 101.6 82.55 270)
 		(mirror x)
 		(unit 1)
@@ -4946,7 +5086,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "100kR"
+		(property "Value" "10kR"
 			(at 102.8121 84.328 0)
 			(effects
 				(font
@@ -5426,76 +5566,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 110.49 63.5 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "34ab5873-c08b-4590-9c50-997b943f894e")
-		(property "Reference" "R34"
-			(at 108.712 62.2878 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "1k"
-			(at 108.712 64.7121 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 108.712 63.5 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 110.49 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 110.49 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "5d2debd9-e0b8-4ebf-97bf-cc9cc81147ca")
-		)
-		(pin "1"
-			(uuid "b2cfcab3-9eb2-4ba1-bc7d-9fbe8a5c41aa")
-		)
-		(instances
-			(project "picoSYS"
-				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R34")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Amplifier_Operational:NE5532")
 		(at 88.9 31.75 0)
 		(unit 3)
@@ -5551,16 +5621,16 @@
 			)
 		)
 		(pin "4"
-			(uuid "14f0f2c3-72e9-4568-b181-b13e1c4d4bb6")
+			(uuid "14f0f2c3-72e9-4568-b181-b13e1c4d4bb7")
 		)
 		(pin "8"
-			(uuid "eb226d59-450d-4d84-b2a2-b917151054a7")
+			(uuid "eb226d59-450d-4d84-b2a2-b917151054a8")
 		)
 		(pin "5"
-			(uuid "98385841-d06d-4204-b0da-2424e40b12c7")
+			(uuid "98385841-d06d-4204-b0da-2424e40b12c8")
 		)
 		(pin "7"
-			(uuid "32fbd7d0-bed9-4e26-bd57-ce8ff1f96859")
+			(uuid "32fbd7d0-bed9-4e26-bd57-ce8ff1f9685a")
 		)
 		(pin "2"
 			(uuid "8ab2d72d-ce1a-4892-ab0a-af51242b25a6")
@@ -5569,7 +5639,7 @@
 			(uuid "bd44a021-4086-4d6a-9f6e-01946553def1")
 		)
 		(pin "6"
-			(uuid "6b8fac94-a992-40c7-96b9-76cb08ee67fc")
+			(uuid "6b8fac94-a992-40c7-96b9-76cb08ee67fd")
 		)
 		(pin "1"
 			(uuid "10c6c0bf-fff6-4c15-a165-bb73fb859ffd")
@@ -5579,6 +5649,74 @@
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "U2")
 					(unit 3)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 116.84 36.83 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "3e28c1ce-9cbe-4b17-9c5b-a4ea512fb05d")
+		(property "Reference" "R38"
+			(at 116.84 31.6695 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "680R"
+			(at 116.84 34.0938 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 116.84 38.608 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 116.84 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 116.84 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7108efc8-ff2f-4f5e-b6a3-dd87659b3612")
+		)
+		(pin "1"
+			(uuid "27b4aa79-20a8-4349-bd63-6109a684fe5e")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "R38")
+					(unit 1)
 				)
 			)
 		)
@@ -5713,96 +5851,28 @@
 			(uuid "67e7e410-78ff-4021-bf39-4e652746419d")
 		)
 		(pin "5"
-			(uuid "98385841-d06d-4204-b0da-2424e40b12c7")
+			(uuid "98385841-d06d-4204-b0da-2424e40b12c9")
 		)
 		(pin "7"
-			(uuid "32fbd7d0-bed9-4e26-bd57-ce8ff1f96859")
+			(uuid "32fbd7d0-bed9-4e26-bd57-ce8ff1f9685b")
 		)
 		(pin "2"
-			(uuid "8ab2d72d-ce1a-4892-ab0a-af51242b25a6")
+			(uuid "8ab2d72d-ce1a-4892-ab0a-af51242b25a7")
 		)
 		(pin "3"
-			(uuid "bd44a021-4086-4d6a-9f6e-01946553def1")
+			(uuid "bd44a021-4086-4d6a-9f6e-01946553def2")
 		)
 		(pin "6"
-			(uuid "6b8fac94-a992-40c7-96b9-76cb08ee67fc")
+			(uuid "6b8fac94-a992-40c7-96b9-76cb08ee67fe")
 		)
 		(pin "1"
-			(uuid "10c6c0bf-fff6-4c15-a165-bb73fb859ffd")
+			(uuid "10c6c0bf-fff6-4c15-a165-bb73fb859ffe")
 		)
 		(instances
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "U3")
 					(unit 3)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 116.84 44.45 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4609fdfc-a737-4fa4-8fc2-3a9718970b37")
-		(property "Reference" "R39"
-			(at 116.84 39.2895 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "2.2k"
-			(at 116.84 41.7138 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 116.84 46.228 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 116.84 44.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 116.84 44.45 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "ae2bdc69-02fc-4146-8b01-ed716caaa585")
-		)
-		(pin "1"
-			(uuid "d9e6361c-edcb-4ef5-ba12-e5ceedef7f6e")
-		)
-		(instances
-			(project "picoSYS"
-				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R39")
-					(unit 1)
 				)
 			)
 		)
@@ -5997,28 +6067,28 @@
 			)
 		)
 		(pin "4"
-			(uuid "14f0f2c3-72e9-4568-b181-b13e1c4d4bb6")
+			(uuid "14f0f2c3-72e9-4568-b181-b13e1c4d4bb8")
 		)
 		(pin "8"
-			(uuid "eb226d59-450d-4d84-b2a2-b917151054a7")
+			(uuid "eb226d59-450d-4d84-b2a2-b917151054a9")
 		)
 		(pin "5"
-			(uuid "98385841-d06d-4204-b0da-2424e40b12c7")
+			(uuid "98385841-d06d-4204-b0da-2424e40b12ca")
 		)
 		(pin "7"
-			(uuid "32fbd7d0-bed9-4e26-bd57-ce8ff1f96859")
+			(uuid "32fbd7d0-bed9-4e26-bd57-ce8ff1f9685c")
 		)
 		(pin "2"
-			(uuid "8ab2d72d-ce1a-4892-ab0a-af51242b25a6")
+			(uuid "8ab2d72d-ce1a-4892-ab0a-af51242b25a8")
 		)
 		(pin "3"
-			(uuid "bd44a021-4086-4d6a-9f6e-01946553def1")
+			(uuid "bd44a021-4086-4d6a-9f6e-01946553def3")
 		)
 		(pin "6"
-			(uuid "6b8fac94-a992-40c7-96b9-76cb08ee67fc")
+			(uuid "6b8fac94-a992-40c7-96b9-76cb08ee67ff")
 		)
 		(pin "1"
-			(uuid "10c6c0bf-fff6-4c15-a165-bb73fb859ffd")
+			(uuid "10c6c0bf-fff6-4c15-a165-bb73fb859fff")
 		)
 		(instances
 			(project ""
@@ -6153,10 +6223,10 @@
 			)
 		)
 		(pin "4"
-			(uuid "14f0f2c3-72e9-4568-b181-b13e1c4d4bb6")
+			(uuid "14f0f2c3-72e9-4568-b181-b13e1c4d4bb9")
 		)
 		(pin "8"
-			(uuid "eb226d59-450d-4d84-b2a2-b917151054a7")
+			(uuid "eb226d59-450d-4d84-b2a2-b917151054aa")
 		)
 		(pin "5"
 			(uuid "b7f52972-4b12-478a-bb22-a588c6fa9d1d")
@@ -6165,16 +6235,16 @@
 			(uuid "c9c161f5-df28-4862-8c92-61beaddaf863")
 		)
 		(pin "2"
-			(uuid "8ab2d72d-ce1a-4892-ab0a-af51242b25a6")
+			(uuid "8ab2d72d-ce1a-4892-ab0a-af51242b25a9")
 		)
 		(pin "3"
-			(uuid "bd44a021-4086-4d6a-9f6e-01946553def1")
+			(uuid "bd44a021-4086-4d6a-9f6e-01946553def4")
 		)
 		(pin "6"
 			(uuid "56925396-c8ab-40d4-a5c6-89f85d023e2e")
 		)
 		(pin "1"
-			(uuid "10c6c0bf-fff6-4c15-a165-bb73fb859ffd")
+			(uuid "10c6c0bf-fff6-4c15-a165-bb73fb85a000")
 		)
 		(instances
 			(project "picoSYS"
@@ -6725,84 +6795,16 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 116.84 59.69 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6ca82eb9-4067-4dab-b69d-2d6fc6852aeb")
-		(property "Reference" "R41"
-			(at 116.84 54.5295 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "2.2k"
-			(at 116.84 56.9538 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 116.84 61.468 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 116.84 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 116.84 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "4743cce7-e3c6-498e-b713-66c1b086d5e7")
-		)
-		(pin "1"
-			(uuid "7a71563d-1cef-4009-83d4-dc99cfa684ce")
-		)
-		(instances
-			(project "picoSYS"
-				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R41")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 110.49 48.26 0)
+		(at 110.49 40.64 0)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6f9d6de4-8778-4895-bb55-3f08b2d387af")
-		(property "Reference" "R32"
-			(at 108.712 47.0478 0)
+		(uuid "6ebe2d99-bce0-42ee-a3c9-3b91a1cd6964")
+		(property "Reference" "R31"
+			(at 108.712 39.4278 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6810,8 +6812,8 @@
 				(justify right)
 			)
 		)
-		(property "Value" "1k"
-			(at 108.712 49.4721 0)
+		(property "Value" "330R"
+			(at 108.712 41.8521 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6820,7 +6822,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 108.712 48.26 90)
+			(at 108.712 40.64 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6829,7 +6831,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 110.49 48.26 0)
+			(at 110.49 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6838,7 +6840,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 110.49 48.26 0)
+			(at 110.49 40.64 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6847,15 +6849,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "d5a93d56-07ab-42c3-b893-c534e85ecb61")
+			(uuid "c5851b05-2814-4165-ad77-57185c645387")
 		)
 		(pin "1"
-			(uuid "ae494ab5-d408-4959-bca7-76bc9c2df592")
+			(uuid "52e37f17-e90b-43be-aefd-2203ba130ada")
 		)
 		(instances
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R32")
+					(reference "R31")
 					(unit 1)
 				)
 			)
@@ -6924,6 +6926,76 @@
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "R9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 110.49 78.74 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "75b2d7c0-e560-499b-b568-731a32956f3f")
+		(property "Reference" "R36"
+			(at 108.712 77.5278 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "330R"
+			(at 108.712 79.9521 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 108.712 78.74 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 110.49 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 110.49 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "108caaee-7fba-47e9-aa0e-c359e447d7f4")
+		)
+		(pin "1"
+			(uuid "4a71b92b-100f-4c76-8203-547e45a06a55")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "R36")
 					(unit 1)
 				)
 			)
@@ -7340,7 +7412,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "1k"
+		(property "Value" "330R"
 			(at 108.712 26.6121 0)
 			(effects
 				(font
@@ -7459,24 +7531,24 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 116.84 52.07 90)
+		(at 116.84 44.45 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "84a23d2a-4d87-406d-972e-9ea967c48f72")
-		(property "Reference" "R40"
-			(at 116.84 46.9095 90)
+		(uuid "8844a588-76d1-4984-bf28-9fcdc68fc6be")
+		(property "Reference" "R39"
+			(at 116.84 39.2895 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "2.2k"
-			(at 116.84 49.3338 90)
+		(property "Value" "680R"
+			(at 116.84 41.7138 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7484,7 +7556,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 116.84 53.848 90)
+			(at 116.84 46.228 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7493,7 +7565,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 116.84 52.07 0)
+			(at 116.84 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7502,7 +7574,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 116.84 52.07 0)
+			(at 116.84 44.45 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7511,15 +7583,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "92ef6bae-3ee5-405c-893c-cb75cf0907f3")
+			(uuid "b31b1921-c55d-4e14-8fdc-3f0675730a50")
 		)
 		(pin "1"
-			(uuid "8978f111-b4cf-4187-9cc1-6ae890b4e041")
+			(uuid "dbeaf018-09d0-4629-986d-98070b07a318")
 		)
 		(instances
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R40")
+					(reference "R39")
 					(unit 1)
 				)
 			)
@@ -7664,144 +7736,6 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 116.84 67.31 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8d6d27ed-abdc-47a6-a93e-39a211c90335")
-		(property "Reference" "R42"
-			(at 116.84 62.1495 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "2.2k"
-			(at 116.84 64.5738 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 116.84 69.088 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 116.84 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 116.84 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "f3ebabfb-1047-4f46-93c5-66ad749e5521")
-		)
-		(pin "1"
-			(uuid "8345e19d-2590-425f-be49-399a546f9d82")
-		)
-		(instances
-			(project "picoSYS"
-				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R42")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 52.07 104.14 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "9404fb37-ec49-4a84-a13e-5cee637f6f65")
-		(property "Reference" "R46"
-			(at 53.848 105.3522 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "10R"
-			(at 53.848 102.9279 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 53.848 104.14 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 52.07 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 52.07 104.14 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "97b54964-5052-443a-9c5c-9c55e692bd82")
-		)
-		(pin "1"
-			(uuid "7e85cb05-f83f-4054-93d9-fd6b12ae8079")
-		)
-		(instances
-			(project "picoSYS"
-				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R46")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
 		(at 116.84 29.21 90)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7818,7 +7752,7 @@
 				)
 			)
 		)
-		(property "Value" "2.2k"
+		(property "Value" "680R"
 			(at 116.84 26.4738 90)
 			(effects
 				(font
@@ -8008,94 +7942,24 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 110.49 55.88 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "9b43f124-2793-4c25-a220-5a73b4eb13d8")
-		(property "Reference" "R33"
-			(at 108.712 54.6678 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "1k"
-			(at 108.712 57.0921 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 108.712 55.88 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 110.49 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 110.49 55.88 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "77119aae-d66b-4445-bc05-89f7b5bfa0f8")
-		)
-		(pin "1"
-			(uuid "d41fb4c1-52e0-4537-8ea0-6a1afe6da9f4")
-		)
-		(instances
-			(project "picoSYS"
-				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R33")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 116.84 74.93 90)
+		(at 116.84 59.69 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "9c6ab3bd-26db-4b07-bde1-53f15ae0ddca")
-		(property "Reference" "R43"
-			(at 116.84 69.7695 90)
+		(uuid "9c286139-9fa3-4d0f-a508-e9cd1883213d")
+		(property "Reference" "R41"
+			(at 116.84 54.5295 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "2.2k"
-			(at 116.84 72.1938 90)
+		(property "Value" "680R"
+			(at 116.84 56.9538 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8103,7 +7967,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 116.84 76.708 90)
+			(at 116.84 61.468 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8112,7 +7976,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 116.84 74.93 0)
+			(at 116.84 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8121,7 +7985,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 116.84 74.93 0)
+			(at 116.84 59.69 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8130,15 +7994,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "c340d86c-b2c3-4db5-a55e-187af06e3b14")
+			(uuid "4f15008d-4a8d-4c67-9d04-14d923e80695")
 		)
 		(pin "1"
-			(uuid "1a048577-1fe5-416d-b9f1-f16fd16fa0f0")
+			(uuid "cdbe5da0-6386-4b5b-8fc7-2c2f6c374d65")
 		)
 		(instances
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R43")
+					(reference "R41")
 					(unit 1)
 				)
 			)
@@ -8146,34 +8010,32 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 110.49 78.74 0)
-		(mirror x)
+		(at 116.84 82.55 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "a1049427-5220-423a-bfe7-2c59e2ed988b")
-		(property "Reference" "R36"
-			(at 108.712 77.5278 0)
+		(fields_autoplaced yes)
+		(uuid "a1a35bd0-a641-46c6-a70a-7a14de2987ed")
+		(property "Reference" "R44"
+			(at 116.84 77.3895 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
-		(property "Value" "1k"
-			(at 108.712 79.9521 0)
+		(property "Value" "680R"
+			(at 116.84 79.8138 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 108.712 78.74 90)
+			(at 116.84 84.328 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8182,7 +8044,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 110.49 78.74 0)
+			(at 116.84 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8191,7 +8053,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 110.49 78.74 0)
+			(at 116.84 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8200,15 +8062,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "7b46985d-7a79-42a5-8869-fd80494a73bf")
+			(uuid "fbc3d15f-72d7-41c0-b5ae-0ebb7af9b6fe")
 		)
 		(pin "1"
-			(uuid "36810edd-f35b-4021-b5e2-fd3f55075e42")
+			(uuid "c72b1769-5384-4079-b115-2e510c215ceb")
 		)
 		(instances
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R36")
+					(reference "R44")
 					(unit 1)
 				)
 			)
@@ -8432,34 +8294,32 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 110.49 40.64 0)
-		(mirror x)
+		(at 116.84 67.31 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "c1a4342d-5d51-46d6-953e-973a0fac15a6")
-		(property "Reference" "R31"
-			(at 108.712 39.4278 0)
+		(fields_autoplaced yes)
+		(uuid "b207d560-4437-4ebc-abff-7ac3327ce117")
+		(property "Reference" "R42"
+			(at 116.84 62.1495 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
-		(property "Value" "1k"
-			(at 108.712 41.8521 0)
+		(property "Value" "680R"
+			(at 116.84 64.5738 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 108.712 40.64 90)
+			(at 116.84 69.088 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8468,7 +8328,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 110.49 40.64 0)
+			(at 116.84 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8477,7 +8337,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 110.49 40.64 0)
+			(at 116.84 67.31 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8486,15 +8346,83 @@
 			)
 		)
 		(pin "2"
-			(uuid "c8d8029c-4067-4b7b-b5dd-80a080169bfa")
+			(uuid "25537846-0525-4d12-b724-b7c62684cd89")
 		)
 		(pin "1"
-			(uuid "b7a444b0-4c6b-4c4a-abdc-babb17a316a9")
+			(uuid "fc96f91a-9982-4d68-8501-5060f4585c03")
 		)
 		(instances
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R31")
+					(reference "R42")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 116.84 74.93 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "bbf1fb87-2e37-40b4-a17a-2ea20fcba9a6")
+		(property "Reference" "R43"
+			(at 116.84 69.7695 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "680R"
+			(at 116.84 72.1938 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 116.84 76.708 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 116.84 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 116.84 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "a3454a7f-d33a-48e3-b384-01d18f1b9a69")
+		)
+		(pin "1"
+			(uuid "791366f1-06e0-4e0e-b4ac-66b3d33df31c")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "R43")
 					(unit 1)
 				)
 			)
@@ -8571,6 +8499,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 110.49 71.12 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "d24044e3-b816-49c9-a741-a183f14e2137")
+		(property "Reference" "R35"
+			(at 108.712 69.9078 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "330R"
+			(at 108.712 72.3321 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 108.712 71.12 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 110.49 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 110.49 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "693aa001-1f6f-4b94-857d-688b7b7c090b")
+		)
+		(pin "1"
+			(uuid "7e00839d-b449-401f-b12b-448f0eaabd57")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "R35")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Amplifier_Operational:NE5532")
 		(at 222.25 124.46 0)
 		(unit 1)
@@ -8624,103 +8622,33 @@
 			)
 		)
 		(pin "4"
-			(uuid "14f0f2c3-72e9-4568-b181-b13e1c4d4bb6")
+			(uuid "14f0f2c3-72e9-4568-b181-b13e1c4d4bba")
 		)
 		(pin "8"
-			(uuid "eb226d59-450d-4d84-b2a2-b917151054a7")
+			(uuid "eb226d59-450d-4d84-b2a2-b917151054ab")
 		)
 		(pin "5"
-			(uuid "98385841-d06d-4204-b0da-2424e40b12c7")
+			(uuid "98385841-d06d-4204-b0da-2424e40b12cb")
 		)
 		(pin "7"
-			(uuid "32fbd7d0-bed9-4e26-bd57-ce8ff1f96859")
+			(uuid "32fbd7d0-bed9-4e26-bd57-ce8ff1f9685d")
 		)
 		(pin "2"
-			(uuid "8ab2d72d-ce1a-4892-ab0a-af51242b25a6")
+			(uuid "8ab2d72d-ce1a-4892-ab0a-af51242b25aa")
 		)
 		(pin "3"
-			(uuid "bd44a021-4086-4d6a-9f6e-01946553def1")
+			(uuid "bd44a021-4086-4d6a-9f6e-01946553def5")
 		)
 		(pin "6"
-			(uuid "6b8fac94-a992-40c7-96b9-76cb08ee67fc")
+			(uuid "6b8fac94-a992-40c7-96b9-76cb08ee6800")
 		)
 		(pin "1"
-			(uuid "10c6c0bf-fff6-4c15-a165-bb73fb859ffd")
+			(uuid "10c6c0bf-fff6-4c15-a165-bb73fb85a001")
 		)
 		(instances
 			(project ""
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "U2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 110.49 33.02 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "da79997c-7216-4cea-81d9-352bae8433c5")
-		(property "Reference" "R30"
-			(at 108.712 31.8078 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "1k"
-			(at 108.712 34.2321 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 108.712 33.02 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 110.49 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 110.49 33.02 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "95a972de-b5f4-4a37-b33c-2f9ceec3c7db")
-		)
-		(pin "1"
-			(uuid "96389e71-4b40-4e8d-91ff-989efa79e789")
-		)
-		(instances
-			(project "picoSYS"
-				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R30")
 					(unit 1)
 				)
 			)
@@ -8794,76 +8722,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 110.49 71.12 0)
-		(mirror x)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "dc88f055-4310-47ad-a81d-b0d9e0d8d3fe")
-		(property "Reference" "R35"
-			(at 108.712 69.9078 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "1k"
-			(at 108.712 72.3321 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 108.712 71.12 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 110.49 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 110.49 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "12a383d1-97b9-4d04-83ab-1fb2398906ea")
-		)
-		(pin "1"
-			(uuid "a4344c86-6cb4-492e-91f0-c75cce572043")
-		)
-		(instances
-			(project "picoSYS"
-				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R35")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "power:GND")
 		(at 201.93 29.21 180)
 		(unit 1)
@@ -8931,32 +8789,34 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 116.84 82.55 90)
+		(at 110.49 48.26 0)
+		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e039b3d9-092f-406b-9245-803ab8e8cada")
-		(property "Reference" "R44"
-			(at 116.84 77.3895 90)
+		(uuid "e12e140f-1153-4870-bc80-5f7f76927276")
+		(property "Reference" "R32"
+			(at 108.712 47.0478 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Value" "2.2k"
-			(at 116.84 79.8138 90)
+		(property "Value" "330R"
+			(at 108.712 49.4721 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
 		(property "Footprint" ""
-			(at 116.84 84.328 90)
+			(at 108.712 48.26 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8965,7 +8825,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 116.84 82.55 0)
+			(at 110.49 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8974,7 +8834,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 116.84 82.55 0)
+			(at 110.49 48.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8983,15 +8843,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "a3253685-47c7-4964-82e9-6bc3232cadb5")
+			(uuid "aa23e238-7871-47e0-abf4-708ca10ae73b")
 		)
 		(pin "1"
-			(uuid "b5eee4c6-0011-4172-bcaa-4f44b4c89014")
+			(uuid "921b8ac6-c29a-4c4f-a61a-e79bee3b3def")
 		)
 		(instances
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R44")
+					(reference "R32")
 					(unit 1)
 				)
 			)
@@ -9062,6 +8922,74 @@
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "R16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 116.84 52.07 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e46fbe5b-f782-4721-9572-e98b5add104c")
+		(property "Reference" "R40"
+			(at 116.84 46.9095 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "680R"
+			(at 116.84 49.3338 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 116.84 53.848 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 116.84 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 116.84 52.07 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "8b22816d-9cd4-467c-85b2-6713a07e07ec")
+		)
+		(pin "1"
+			(uuid "818d0f5c-3c5d-479e-9493-f734883c3c42")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "R40")
 					(unit 1)
 				)
 			)
@@ -9203,74 +9131,6 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 116.84 36.83 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e7aaff06-cfde-4b50-af9c-dbda16b72b4d")
-		(property "Reference" "R38"
-			(at 116.84 31.6695 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "2.2k"
-			(at 116.84 34.0938 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 116.84 38.608 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 116.84 36.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 116.84 36.83 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "da6a0386-abee-4693-bdaa-dac62949cd00")
-		)
-		(pin "1"
-			(uuid "8431b20f-0de3-4e66-8699-7486ca81c778")
-		)
-		(instances
-			(project "picoSYS"
-				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R38")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
 		(at 91.44 86.36 0)
 		(mirror y)
 		(unit 1)
@@ -9288,7 +9148,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "47kR"
+		(property "Value" "6.8kR"
 			(at 93.218 85.1479 0)
 			(effects
 				(font
@@ -9334,6 +9194,76 @@
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "R48")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 110.49 55.88 0)
+		(mirror x)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "efeadf5c-b7df-4e74-8792-b6a2c2efbfd6")
+		(property "Reference" "R33"
+			(at 108.712 54.6678 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "330R"
+			(at 108.712 57.0921 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 108.712 55.88 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 110.49 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 110.49 55.88 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "a1da58bc-e114-4597-b44e-ad7ed6737825")
+		)
+		(pin "1"
+			(uuid "c36f1df9-c839-413e-aaf3-f9be0245195d")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "R33")
 					(unit 1)
 				)
 			)

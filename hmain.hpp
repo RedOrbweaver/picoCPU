@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <cstring>
 #include <string>
+#include <cmath>
 
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
@@ -14,9 +15,17 @@
 #include "hardware/clocks.h"
 #include "hardware/uart.h"
 
+#include "pico/multicore.h"
+#include "pico/platform.h"
+#include "pico/mutex.h"
+
 #include "redpicolib/RedPicoLib.hpp"
 
 #include "../picoGPU/shared.hpp"
+
+#include "dac_out.pio.h"
+
+//constexpr double M_PI = 3.14159265358979323846;
 
 namespace PIN
 {
@@ -26,3 +35,7 @@ namespace PIN
 }
 
 constexpr uint8_t I2C_ADDR = 0x11;
+
+#include "Audio.hpp"
+
+#
