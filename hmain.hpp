@@ -3,6 +3,7 @@
 #include <cstring>
 #include <string>
 #include <cmath>
+#include <vector>
 
 #include "pico/stdlib.h"
 #include "hardware/spi.h"

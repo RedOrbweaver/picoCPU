@@ -103,7 +103,8 @@ int main()
         I2CWrite(SOURCE::ENTITY_BUFFER, 0, 0, sizeof(Entity), (uint8_t*)&ball);
         Info info = ReadInfo();
         clear_console();
-        printf("render time: %lluus\n", info.last_render_time_us);
+        printf("Audio time: %lluus\n", LastAudioProcessingTime);
+        printf("Render time: %lluus\n", info.last_render_time_us);
         printf("GPU temperature: %.3f\n", info.temperature);
         printf("GPU memory: %u/%u\n", info.free_memory, info.total_memory);
         printf("CPU memory: %u/%u\n", GetFreeHeap(), GetTotalHeap());
