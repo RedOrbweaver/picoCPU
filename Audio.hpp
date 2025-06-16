@@ -1,7 +1,7 @@
 #pragma once
 #include "hmain.hpp"
 
-constexpr int AUDIO_SAMPLE_RATE = 22050;
+constexpr int AUDIO_SAMPLE_RATE = 44100;
 constexpr int N_AUDIO_CHANNELS = 8;
 
 class AudioChannel

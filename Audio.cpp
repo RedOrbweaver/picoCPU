@@ -77,13 +77,21 @@ void AudioLoop()
     auto ch03 = new VariableToneChannel(2000.0f, 500.0f, 0.5f, true);
 
     auto ch0 = new MultiChannel({ch00, ch01, ch02, ch03}, true);
-    ch0->SetEnabled(true);
-    ch0->SetVolume(1.0f);
+    ch0->SetEnabled(false);
+    ch0->SetVolume(0.5f);
     AudioChannels[0] = ch0;
 
     auto ch1 = new StreamChannel((uint8_t*)__returnof_wav + 44, 11025, ArraySize(__returnof_wav) - 44, 1.0f, true);
     ch1->SetEnabled(true);
     AudioChannels[1] = ch1;
+
+    // for(int i = 2; i < N_AUDIO_CHANNELS; i++)
+    // {
+    //     auto ch = new VariableToneChannel(100.0f*i, 500.0f, 0.5f, true);
+    //     ch->SetEnabled(true);
+    //     ch->SetVolume(0.25f);
+    //     AudioChannels[i] = ch;
+    // }
 
 
     while(true)
