@@ -181,7 +181,7 @@ class VariableToneChannel : public ToneChannel
 class MultiChannel : public AudioChannel
 {
     protected:
-    std::vector<ToneChannel*> channels;
+    std::vector<AudioChannel*> channels;
     int current_channel;
     public:
     virtual void Reset() override
@@ -212,9 +212,9 @@ class MultiChannel : public AudioChannel
         }
         return ret;
     }
-    MultiChannel(std::initializer_list<ToneChannel*> channels, bool looping)
+    MultiChannel(std::initializer_list<AudioChannel*> channels, bool looping)
     {
-        this->channels = std::vector<ToneChannel*>(channels);
+        this->channels = std::vector<AudioChannel*>(channels);
         assert(this->channels.size() > 0);
         this->current_channel = 0;
         for(auto it : channels)

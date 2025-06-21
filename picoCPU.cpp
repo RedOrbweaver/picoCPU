@@ -3,7 +3,7 @@
 void I2CWrite(SOURCE source, uint8_t address0, uint8_t address1, uint8_t len, uint8_t* data)
 {
     
-    uint8_t buffer[255+5];
+    static uint8_t buffer[255+5];
     buffer[0] = 0xFF; // WRITE
     buffer[1] = (uint8_t)source;
     buffer[2] = address0;
@@ -85,13 +85,13 @@ int main()
         uint64_t ttm = get_time_us();
         float nx = px + sx;
         float ny = py + sy;
-        if(nx < r || nx > float(lines_x)-2*r)
+        if(nx < r || nx > float(lines_x)-r)
         {
             sx = -sx;
         }
         else
             px = nx;
-        if(ny < 2*r || ny > float(lines_y)-r)
+        if(ny < r || ny > float(lines_y)-r)
         {
             sy = -sy;
         }
@@ -105,10 +105,11 @@ int main()
         clear_console();
         printf("Audio time: %lluus\n", LastAudioProcessingTime);
         printf("Render time: %lluus\n", info.last_render_time_us);
+        printf("Entities drawn: %u\n", info.entities_drawn);
         printf("GPU temperature: %.3f\n", info.temperature);
         printf("GPU memory: %u/%u\n", info.free_memory, info.total_memory);
         printf("CPU memory: %u/%u\n", GetFreeHeap(), GetTotalHeap());
-        sleep_ms(1);
+        sleep_ms(100);
         //getchar();
         //int test = ReadTest();
         //printf("%i\n", test);

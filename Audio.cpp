@@ -82,7 +82,7 @@ void AudioLoop()
     AudioChannels[0] = ch0;
 
     auto ch1 = new StreamChannel((uint8_t*)__returnof_wav + 44, 11025, ArraySize(__returnof_wav) - 44, 1.0f, true);
-    ch1->SetEnabled(true);
+    ch1->SetEnabled(false);
     AudioChannels[1] = ch1;
 
     // for(int i = 2; i < N_AUDIO_CHANNELS; i++)
