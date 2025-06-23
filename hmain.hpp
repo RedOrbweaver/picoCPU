@@ -4,6 +4,15 @@
 #include <string>
 #include <cmath>
 #include <vector>
+#include <memory>
+#include <optional>
+#include <deque>
+#include <random>
+
+using std::vector;
+using std::deque;
+using std::shared_ptr;
+using std::optional;
 
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
@@ -26,17 +35,24 @@
 
 #include "dac_out.pio.h"
 
-//constexpr double M_PI = 3.14159265358979323846;
+#include "globals.hpp"
 
-namespace PIN
-{
-    constexpr uint8_t DAC_OUT[8] = {2, 3, 4, 5, 6, 7, 8, 9};
-    constexpr uint8_t I2C_SCL = 17;
-    constexpr uint8_t I2C_SDA = 16;
-}
-
-constexpr uint8_t I2C_ADDR = 0x11;
+#include "exceptions.hpp"
 
 #include "Audio.hpp"
 
-#
+#include "EntityManager.hpp"
+#include "MemoryManager.hpp"
+#include "TextManager.hpp"
+#include "TextureManager.hpp"
+#include "GeometryManager.hpp"
+
+#include "Objects/Object.hpp"
+
+#include "GPU.hpp"
+
+#include "Programs/Program.hpp"
+#include "Programs/MainMenu.hpp"
+
+#include "tests.hpp"
+

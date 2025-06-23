@@ -51,7 +51,7 @@
             ],
             "openOCDLaunchCommands": [
                 "adapter speed 5000"
-            ]
+            ],
         },
         {
             "name": "Pico Debug (Cortex-Debug with external OpenOCD)",

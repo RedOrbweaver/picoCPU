@@ -61,6 +61,8 @@ int main()
     gpio_set_function(PIN::I2C_SDA, GPIO_FUNC_I2C);
     gpio_set_pulls(PIN::I2C_SDA, true, false);
 
+    TestMemoryManager();
+
 
     int lines_x = 408;
     int lines_y = 304;
