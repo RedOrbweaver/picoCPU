@@ -12,6 +12,7 @@
 using std::vector;
 using std::deque;
 using std::shared_ptr;
+using std::unique_ptr;
 using std::optional;
 
 #include "pico/stdlib.h"
@@ -41,6 +42,8 @@ using std::optional;
 
 #include "Audio.hpp"
 
+#include "GPU.hpp"
+
 #include "EntityManager.hpp"
 #include "MemoryManager.hpp"
 #include "TextManager.hpp"
@@ -48,8 +51,13 @@ using std::optional;
 #include "GeometryManager.hpp"
 
 #include "Objects/Object.hpp"
-
-#include "GPU.hpp"
+#include "Objects/Shape.hpp"
+#include "Objects/Circle.hpp"
+#include "Objects/Rectangle.hpp"
+#include "Objects/Triangle.hpp"
+#include "Objects/MultiTriangle.hpp"
+#include "Objects/EmptyCircle.hpp"
+#include "Objects/EmptyRectangle.hpp"
 
 #include "Programs/Program.hpp"
 #include "Programs/MainMenu.hpp"
