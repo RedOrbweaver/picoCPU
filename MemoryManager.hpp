@@ -13,6 +13,8 @@ class MemoryManager
         int length;
         bool ignore = false; // whether the segment should be ignored during a memory rearrangment
         public:
+        void* data=nullptr;
+        int datalen=0;
         int GetPosition()
         {
             return position;
@@ -201,7 +203,7 @@ class MemoryManager
                 break;
             }
         }
-        assert(i < segments.size(), "Segment not in segment list!");
+        assert(i <= segments.size(), "Segment not in segment list!");
         free_elements += segment->length;
     }
     
@@ -285,7 +287,7 @@ class MemoryManager
             throw OutOfMemoryException("Attempted to allocate " + std::to_string(elements) + " but only " + std::to_string(GetFreeElements()) + " are free!");
         return Allocate(elements);
     }
-    void DeAllocateSegment(shared_ptr<Segment> segment)
+    virtual void DeAllocateSegment(shared_ptr<Segment> segment)
     {
         DeAllocate(segment);
     }

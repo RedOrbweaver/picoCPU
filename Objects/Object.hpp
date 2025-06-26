@@ -111,14 +111,14 @@ class Object
         ent.rotation = rotation;
         ent.layer = layer;
         ent.pos = position.convert<uint16_t>();
-        ent.size = position.convert<uint16_t>();
+        ent.size = size.convert<uint16_t>();
         if(datalen > 0)
         {
             memcpy(ent.data, data, datalen);
         }
         index = manager->AddEntity(ent);
     }
-    ~Object()
+    virtual ~Object()
     {
         manager->FreeEntity(index);
     }

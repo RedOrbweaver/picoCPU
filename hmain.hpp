@@ -51,6 +51,7 @@ using std::optional;
 #include "GeometryManager.hpp"
 
 #include "Objects/Object.hpp"
+#include "Objects/Geometric.hpp"
 #include "Objects/Shape.hpp"
 #include "Objects/Circle.hpp"
 #include "Objects/Rectangle.hpp"
@@ -58,6 +59,11 @@ using std::optional;
 #include "Objects/MultiTriangle.hpp"
 #include "Objects/EmptyCircle.hpp"
 #include "Objects/EmptyRectangle.hpp"
+#include "Objects/Line.hpp"
+#include "Objects/Text.hpp"
+#include "Objects/MultiLine.hpp"
+#include "Objects/MultiPoint.hpp"
+#include "Objects/Bezier.hpp"
 
 #include "Programs/Program.hpp"
 #include "Programs/MainMenu.hpp"
