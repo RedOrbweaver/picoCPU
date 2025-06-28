@@ -21,6 +21,7 @@ int main()
     unique_ptr<EntityManager> entity_manager = std::make_unique<EntityManager>(gpu.get(), N_ENTITIES);
     unique_ptr<TextManager> text_manager = std::make_unique<TextManager>(gpu.get(), TEXT_BUFFER_SIZE);
     unique_ptr<GeometryManager> geometry_manager = std::make_unique<GeometryManager>(gpu.get(), GEOMETRY_BUFFER_SIZE);
+    unique_ptr<TextureManager> texture_manager = std::make_unique<TextureManager>(gpu.get(), 1000);
 
 
     int lines_x = 408;
@@ -43,7 +44,7 @@ int main()
 
     EmptyRectangle* empty_rectangle = new EmptyRectangle(entity_manager.get(), 255, true, true, 0, 0, {100, 250}, {100, 20});
 
-    EmptyCircle* empty_circle = new EmptyCircle(entity_manager.get(), 255, EMPTY_CIRCLE_MODE::FULL, true, true, 0, {0,0}, {50, 50});
+    EmptyCircle* empty_circle = new EmptyCircle(entity_manager.get(), 255, EMPTY_CIRCLE_MODE::FULL, true, true, 0, {0,0}, {15, 15});
 
     Text* text0 = new Text(entity_manager.get(), text_manager.get(), "test0", FONT::FIXED_10_20, TEXT_ALIGNMENT::CENTER, true, true, 0, {lines_x/2, lines_y/2});
     Text* text1 = new Text(entity_manager.get(), text_manager.get(), "test1", FONT::FIXED_7_14, TEXT_ALIGNMENT::CENTER, true, true, 0, {lines_x/2, lines_y/2 + 17});
@@ -64,6 +65,9 @@ int main()
 
     Bezier* bezier = new Bezier(entity_manager.get(), geometry_manager.get(), 255, bp, true, 0, 0, {200, 200});
 
+    shared_ptr<Texture> texture = texture_manager->CreateTextureFromTGA(__test_tga, __test_tga_len);
+    Sprite* sprite = new Sprite(entity_manager.get(), texture, true, {0, 0}, true, 0);
+
     while(true)
     {
         uint64_t ttm = get_time_us();
@@ -83,7 +87,10 @@ int main()
             py = ny;
 
         ball->SetPosition({(int)nx, (int)ny});
-        empty_circle->SetPosition({lines_x-(int)nx, lines_y-(int)ny});
+        //empty_circle->SetPosition({lines_x-(int)nx, lines_y-(int)ny});
+        empty_circle->SetPosition(ball->GetPosition());
+
+        sprite->SetPosition({lines_x-(int)nx, lines_y-(int)ny});
 
         triangle->SetRotation(triangle->GetRotation()+1);
 

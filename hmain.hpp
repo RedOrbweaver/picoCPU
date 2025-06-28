@@ -47,7 +47,9 @@ using std::optional;
 #include "EntityManager.hpp"
 #include "MemoryManager.hpp"
 #include "TextManager.hpp"
+#include "Textures/Textures.hpp"
 #include "TextureManager.hpp"
+#include "Texture.hpp"
 #include "GeometryManager.hpp"
 
 #include "Objects/Object.hpp"
@@ -64,6 +66,7 @@ using std::optional;
 #include "Objects/MultiLine.hpp"
 #include "Objects/MultiPoint.hpp"
 #include "Objects/Bezier.hpp"
+#include "Objects/Sprite.hpp"
 
 #include "Programs/Program.hpp"
 #include "Programs/MainMenu.hpp"
