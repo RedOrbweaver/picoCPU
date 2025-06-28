@@ -66,7 +66,7 @@ int main()
     Bezier* bezier = new Bezier(entity_manager.get(), geometry_manager.get(), 255, bp, true, 0, 0, {200, 200});
 
     shared_ptr<Texture> texture = texture_manager->CreateTextureFromTGA(__test_tga, __test_tga_len);
-    Sprite* sprite = new Sprite(entity_manager.get(), texture, true, {0, 0}, true, 0);
+    Sprite* sprite = new Sprite(entity_manager.get(), texture, true, true, 0, {0, 0}, true, 0);
 
     while(true)
     {

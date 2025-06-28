@@ -22,6 +22,24 @@ class Sprite : public Object
         data[8] = center;
         manager->WriteEntityData(index, data+8, 8, 1);
     }
+    bool GetUseTransparency()
+    {
+        return data[9];
+    }
+    void SetUseTransparency(bool value)
+    {
+        data[9] = value;
+        manager->WriteEntityData(index, data+9, 9, 1);
+    }
+    uint8_t GetTransparencyValue()
+    {
+        return data[10];
+    }
+    void SetTransparencyValue(uint8_t value)
+    {
+        data[10] = value;
+        manager->WriteEntityData(index, data+10, 10, 1);
+    }
     shared_ptr<Texture> GetTexture()
     {
         return texture;
@@ -31,9 +49,13 @@ class Sprite : public Object
         auto seg = texture->GetSegment();
         SetTexturePosition(seg->GetPosition(), seg->GetPosition() + seg->GetLength()-1);
     }
-    Sprite(EntityManager* manager, shared_ptr<Texture> texture, bool center, vec2<int> pos, bool visible, uint8_t layer)
+    Sprite(EntityManager* manager, shared_ptr<Texture> texture, bool center, bool usetransparency, 
+        uint8_t transparency_value, vec2<int> pos, bool visible, uint8_t layer)
         : Object(manager, ENTITY_TYPE::SPRITE, visible, layer, 0, pos, texture->GetSize())
     {
         SetTexture(texture);
+        SetCentered(center);
+        SetUseTransparency(usetransparency);
+        SetTransparencyValue(transparency_value);
     }
 };
