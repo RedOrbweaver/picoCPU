@@ -125,6 +125,8 @@ int main()
         printf("CPU memory: %u/%u\n", GetFreeHeap(), GetTotalHeap());
         text0->SetText(std::to_string(info.frame_number));
         text1->SetText(std::to_string(info.last_render_time_us) + "us");
+        printf("I2CTime: %u\n", gpu->i2ctime);
+        gpu->i2ctime = 0;
         sleep_ms(25);
         //getchar();
         //int test = ReadTest();

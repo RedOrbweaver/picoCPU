@@ -11,8 +11,10 @@ class GPU
     uint8_t address;
     uint8_t write_buffer[255+5];
     public:
+    uint32_t i2ctime = 0;
     void I2CWrite(SOURCE source, uint8_t address0, uint8_t address1, uint8_t len, uint8_t* data)
     {
+        uint64_t start = get_time_us();
         assert(len > 0);
         write_buffer[0] = 0xFF; // WRITE
         write_buffer[1] = (uint8_t)source;
@@ -23,6 +25,7 @@ class GPU
         int err = i2c_write_blocking(i2c, address, write_buffer, len + 5, false);   
         if(err == PICO_ERROR_GENERIC)
             throw I2CWriteFailureException("Failed to write to I2C");
+        i2ctime += get_time_us()-start;
     }
     void I2CWrite(SOURCE source, uint16_t address, uint8_t len, uint8_t* data)
     {
@@ -42,6 +45,7 @@ class GPU
 
     void I2CRead(SOURCE source, uint8_t address0, uint8_t address1, uint8_t len, uint8_t* data)
     {
+        uint64_t start = get_time_us();
         uint8_t buffer[5];
         buffer[0] = 0xEF; // READ
         buffer[1] = (uint8_t)source;
@@ -54,6 +58,7 @@ class GPU
         err = i2c_read_blocking(i2c, address, data, len, false);
         if (err == PICO_ERROR_GENERIC)
             throw I2CReadFailureException("Failed to read from I2C");
+        i2ctime += get_time_us()-start;
     }
 
     Info ReadInfo()
