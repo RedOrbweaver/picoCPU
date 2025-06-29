@@ -22,7 +22,7 @@ class MultiLine : public Object, public Geometric
         memcpy(data+3, &e, 2);
         manager->WriteEntityData(index, data+1, 1, 4);
     }
-    MultiLine(EntityManager* manager, GeometryManager* geometry_manager, uint8_t color, vector<vec2<int>> geometry, bool visible=false, uint8_t layer=0, uint8_t rotation=0, vec2<int> position = {0,0})
+    MultiLine(EntityManager* manager, GeometryManager* geometry_manager, uint8_t color, shared_ptr<GeometryManager::Geometry> geometry, bool visible=false, uint8_t layer=0, uint8_t rotation=0, vec2<int> position = {0,0})
         : Object(manager, ENTITY_TYPE::MULTI_LINE, visible, layer, rotation, position, {1,1})
         , Geometric(geometry_manager, 2)
     {

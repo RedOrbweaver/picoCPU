@@ -13,7 +13,7 @@ void TextureManager::WriteToSegment(shared_ptr<Segment> segment, uint8_t* data, 
 }
 void TextureManager::AddTexture(shared_ptr<Texture> texture)
 {
-    auto seg = Allocate(texture->GetSize().area());
+    auto seg = AllocateSegment(texture->GetSize().area());
     seg->data = texture.get();
     texture->segment = seg;
     WriteToSegment(seg, texture->data, seg->GetPosition(), seg->GetLength());

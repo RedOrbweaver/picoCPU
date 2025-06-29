@@ -39,7 +39,7 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(picoCPU picoCPU.cpp Audio.cpp TextureManager.cpp)
+add_executable(picoCPU picoCPU.cpp Audio.cpp TextureManager.cpp GeometryManager.cpp)
 
 pico_set_program_name(picoCPU "picoCPU")
 pico_set_program_version(picoCPU "0.1")

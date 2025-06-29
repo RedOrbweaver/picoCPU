@@ -23,9 +23,9 @@ int main()
     unique_ptr<GeometryManager> geometry_manager = std::make_unique<GeometryManager>(gpu.get(), GEOMETRY_BUFFER_SIZE);
     unique_ptr<TextureManager> texture_manager = std::make_unique<TextureManager>(gpu.get(), 15000);
 
-
-    int lines_x = 408;
-    int lines_y = 304;
+    Info info = gpu->ReadInfo();
+    int lines_x = info.lines_x;
+    int lines_y = info.lines_y;
 
     float sx = 10.0f;
     float sy = 10.0f;
@@ -41,6 +41,8 @@ int main()
     Triangle* triangle = new Triangle(entity_manager.get(), 100, {0, 0}, {0, 40}, {40, 40}, true, true, 2, 0, {lines_x/2, lines_y/2}, {1, 1});
 
     Rectangle* rectangle = new Rectangle(entity_manager.get(), 255, 50, true, true, 0, 0, {50, 50}, {50, 50});
+    Rectangle* rectangle0 = new Rectangle(entity_manager.get(), 255, 50, true, true, 0, 0, {200, 250}, {75, 75});
+    Rectangle* rectangle1 = new Rectangle(entity_manager.get(), 255, 50, true, true, 0, 0, {300, 250}, {75, 50});
 
     EmptyRectangle* empty_rectangle = new EmptyRectangle(entity_manager.get(), 255, true, true, 0, 0, {100, 250}, {100, 20});
 
@@ -49,7 +51,9 @@ int main()
     Text* text0 = new Text(entity_manager.get(), text_manager.get(), "test0", FONT::FIXED_10_20, TEXT_ALIGNMENT::CENTER, true, true, 0, {lines_x/2, lines_y/2});
     Text* text1 = new Text(entity_manager.get(), text_manager.get(), "test1", FONT::FIXED_7_14, TEXT_ALIGNMENT::CENTER, true, true, 0, {lines_x/2, lines_y/2 + 17});
 
-    MultiLine* multiline = new MultiLine(entity_manager.get(), geometry_manager.get(), 255, {{0, 0}, {50, 0}, {40, 30}, {20, 30}, {0, 0}}, true, 0, 0, {50, 150});
+    vector<vec2<int>> ml = {{0, 0}, {50, 0}, {40, 30}, {20, 30}, {0, 0}};
+    auto mlg = geometry_manager->AllocateGeomentry(ml);
+    MultiLine* multiline = new MultiLine(entity_manager.get(), geometry_manager.get(), 255, mlg, true, 0, 0, {50, 150});
     
     vec2<int> points[128];
     for(int i = 0; i < 128; i++)
@@ -58,12 +62,12 @@ int main()
     }
 
     vector<vec2<int>> vp (points, points+128);
-
-    MultiPoint* multipoint = new MultiPoint(entity_manager.get(), geometry_manager.get(), 255, vp, true);
+    auto vpg = geometry_manager->AllocateGeomentry(vp);
+    MultiPoint* multipoint = new MultiPoint(entity_manager.get(), geometry_manager.get(), 255, vpg, true);
 
     vector<vec2<int>> bp = {{0, 0}, {70, -50}, {50, 0}};
-
-    Bezier* bezier = new Bezier(entity_manager.get(), geometry_manager.get(), 255, bp, true, 0, 0, {200, 200});
+    auto bpg = geometry_manager->AllocateGeomentry(bp);
+    Bezier* bezier = new Bezier(entity_manager.get(), geometry_manager.get(), 255, bpg, true, 0, 0, {200, 200});
 
     shared_ptr<Texture> texture = texture_manager->CreateTextureFromTGA(__test_tga, __test_tga_len);
     Sprite* sprite = new Sprite(entity_manager.get(), texture, true, true, 0, {0, 0}, true, 0);
@@ -99,11 +103,10 @@ int main()
         empty_rectangle->SetRotation(empty_rectangle->GetRotation()+1);
 
         rectangle->SetRotation(rectangle->GetRotation()-1);
+        rectangle0->SetRotation(rectangle0->GetRotation()-1);
+        rectangle1->SetRotation(rectangle1->GetRotation()-1);
 
         multiline->SetRotation(multiline->GetRotation()-1);
-
-        multipoint->SetStartEnd(5, 128+5);
-        multipoint->SetGeometry(vp);
 
         vec2<int> pmp = multipoint->GetPosition();
         if(pmp.y > lines_y)

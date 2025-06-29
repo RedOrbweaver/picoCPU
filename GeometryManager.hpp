@@ -1,11 +1,22 @@
 #pragma once
 
 #include "hmain.hpp"
-
-class GeometryManager : public MemoryManager
+class Geometric;
+class GeometryManager : protected MemoryManager
 {
     public:
-    typedef std::function<void(int newpos)> OnMoveSegmentFunction;
+    struct Geometry
+    {
+        GeometryManager* manager;
+        vector<vec2<int>> points;
+        shared_ptr<Segment> segment;
+        vector<Geometric*> attached = {};
+        ~Geometry()
+        {
+            manager->DeAllocateSegment(segment);
+        }
+    };
+    friend struct Geometry;
     protected:
     GPU* gpu;
     void SendData(vec2<int>* data, int pos, int len)
@@ -15,16 +26,24 @@ class GeometryManager : public MemoryManager
     }
     public:
     
-    virtual void MoveSegment(shared_ptr<Segment> segment, int newpos, int oldpos) override
-    {
-        assert(segment->data != nullptr);
-        OnMoveSegmentFunction* func = (OnMoveSegmentFunction*)segment->data;
-        (*func)(newpos);
-    }
+    virtual void MoveSegment(shared_ptr<Segment> segment, int newpos, int oldpos) override;
     virtual void WriteToSegment(shared_ptr<Segment> segment, uint8_t* data, int pos, int len) override
     {
         assert(pos+len <= segment->GetLength());
         SendData((vec2<int>*)data, segment->GetPosition() + pos, len);
+    }
+    void AttachToGeometry(shared_ptr<Geometry> geometry, Geometric* geometric);
+    void DetachFromGeometry(shared_ptr<Geometry> geometry, Geometric* geometric);
+    shared_ptr<Geometry> AllocateGeomentry(vector<vec2<int>> points)
+    {
+        auto seg = AllocateSegment(points.size());
+        WriteToSegment(seg, (uint8_t*)&points[0], 0, points.size());
+        shared_ptr<Geometry> geometry = std::make_shared<Geometry>();
+        geometry->points = points;
+        geometry->segment = seg;
+        geometry->manager = this;
+        seg->data = geometry.get();
+        return geometry;
     }
     GeometryManager(TextManager&)=delete;
     GeometryManager(GPU* gpu, int length) : MemoryManager(length)

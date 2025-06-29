@@ -40,6 +40,7 @@ using std::optional;
 
 #include "exceptions.hpp"
 
+#include "Music/Music.hpp"
 #include "Audio.hpp"
 
 #include "GPU.hpp"

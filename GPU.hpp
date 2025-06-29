@@ -82,5 +82,6 @@ class GPU
         gpio_set_pulls(SCL, true, false);
         gpio_set_function(SDA, GPIO_FUNC_I2C);
         gpio_set_pulls(SDA, true, false);
+        sleep_ms(1);
     }
 };

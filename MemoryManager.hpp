@@ -41,8 +41,7 @@ class MemoryManager
             this->length = length;
         }
     };
-    virtual void MoveSegment(shared_ptr<Segment> segment, int newpos, int oldpos)=0;
-    protected:
+    private:
 
     deque<shared_ptr<Segment>> segments;
     deque<Gap> gaps;
@@ -206,13 +205,15 @@ class MemoryManager
         assert(i <= segments.size(), "Segment not in segment list!");
         free_elements += segment->length;
     }
+    protected:
+    virtual void MoveSegment(shared_ptr<Segment> segment, int newpos, int oldpos)=0;
+    virtual void WriteToSegment(shared_ptr<Segment> segment, uint8_t* data, int pos, int len)=0;
     
     public:
     int GetFreeElements()
     {
         return free_elements;
     }
-    virtual void WriteToSegment(shared_ptr<Segment> segment, uint8_t* data, int pos, int len)=0;
     void ResizeSegment(shared_ptr<Segment> segment, int new_size)
     {
         if(new_size == segment->GetLength())
