@@ -21,7 +21,7 @@ int main()
     unique_ptr<EntityManager> entity_manager = std::make_unique<EntityManager>(gpu.get(), N_ENTITIES);
     unique_ptr<TextManager> text_manager = std::make_unique<TextManager>(gpu.get(), TEXT_BUFFER_SIZE);
     unique_ptr<GeometryManager> geometry_manager = std::make_unique<GeometryManager>(gpu.get(), GEOMETRY_BUFFER_SIZE);
-    unique_ptr<TextureManager> texture_manager = std::make_unique<TextureManager>(gpu.get(), 1000);
+    unique_ptr<TextureManager> texture_manager = std::make_unique<TextureManager>(gpu.get(), 15000);
 
 
     int lines_x = 408;
@@ -93,6 +93,8 @@ int main()
         sprite->SetPosition({lines_x-(int)nx, lines_y-(int)ny});
 
         triangle->SetRotation(triangle->GetRotation()+1);
+
+        sprite->SetRotation(sprite->GetRotation()+1);
 
         empty_rectangle->SetRotation(empty_rectangle->GetRotation()+1);
 
