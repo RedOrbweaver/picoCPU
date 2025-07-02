@@ -65,6 +65,7 @@ using std::optional;
 #include "Objects/Line.hpp"
 #include "Objects/Text.hpp"
 #include "Objects/MultiLine.hpp"
+#include "Objects/MultiLines.hpp"
 #include "Objects/MultiPoint.hpp"
 #include "Objects/Bezier.hpp"
 #include "Objects/Sprite.hpp"
