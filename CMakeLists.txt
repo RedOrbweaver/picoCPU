@@ -15,9 +15,9 @@ if(WIN32)
 else()
     set(USERHOME $ENV{HOME})
 endif()
-set(sdkVersion 2.1.1)
+set(sdkVersion 2.2.0)
 set(toolchainVersion 14_2_Rel1)
-set(picotoolVersion 2.1.1)
+set(picotoolVersion 2.2.0)
 set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
 if (EXISTS ${picoVscode})
     include(${picoVscode})
@@ -39,7 +39,16 @@ pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(picoCPU picoCPU.cpp Audio.cpp TextureManager.cpp GeometryManager.cpp)
+add_executable(picoCPU picoCPU.cpp Audio.cpp TextureManager.cpp GeometryManager.cpp Bluetooth.cpp)
+
+
+target_compile_definitions(picoCPU PRIVATE
+    CYW43_PIO_CLOCK_DIV_DYNAMIC=1
+)
+target_compile_definitions(picoCPU PRIVATE
+    CYW43_PIO_CLOCK_DIV_INT=4
+    CYW43_PIO_CLOCK_DIV_FRAC8=0
+)
 
 pico_set_program_name(picoCPU "picoCPU")
 pico_set_program_version(picoCPU "0.1")
@@ -59,7 +68,6 @@ target_link_libraries(picoCPU
 target_include_directories(picoCPU PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
-
 # Add any user requested libraries
 target_link_libraries(picoCPU 
         hardware_spi
@@ -71,7 +79,13 @@ target_link_libraries(picoCPU
         hardware_watchdog
         hardware_clocks
         pico_multicore
+        pico_btstack_ble
+        pico_btstack_cyw43
+        pico_cyw43_arch_none
         )
 
+target_compile_definitions(picoCPU PRIVATE
+    RUNNING_AS_CLIENT=1
+)
 pico_add_extra_outputs(picoCPU)
 

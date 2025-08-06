@@ -1,4 +1,7 @@
 #pragma once
+
+#define CYW43_PIO_CLOCK_DIV_DYNAMIC 1
+
 #include <stdio.h>
 #include <cstring>
 #include <string>
@@ -29,6 +32,7 @@ using std::optional;
 #include "pico/multicore.h"
 #include "pico/platform.h"
 #include "pico/mutex.h"
+#include "pico/flash.h"
 
 #include "redpicolib/RedPicoLib.hpp"
 
@@ -73,5 +77,8 @@ using std::optional;
 #include "Programs/Program.hpp"
 #include "Programs/MainMenu.hpp"
 
-#include "tests.hpp"
+#include "Bluetooth.hpp"
+#include "Gamepad.hpp"
+#include "GamepadManager.hpp"
 
+#include "tests.hpp"

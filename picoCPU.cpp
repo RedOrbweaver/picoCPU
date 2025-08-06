@@ -1,7 +1,5 @@
 #include "hmain.hpp"
 
-
-
 int main()
 {
     stdio_init_all();
@@ -9,11 +7,18 @@ int main()
     printf("Setting sysclock to %i khz\n", sysclockkhz);
     set_sys_clock_khz(sysclockkhz, true);
     uart_set_baudrate(uart0, 115200);
+    //cyw43_set_pio_clkdiv_int_frac8(2, 0);
     printf("clock set successfully\n");
+
 
     multicore_launch_core1(AudioLoop);
 
+    sleep_ms(1); // wait for flash_safe_execute_core_init() to be called on the other core
+
+    bt_init();
+
     TestMemoryManager();
+
 
     sleep_ms(100); // wait for the GPU to start
 
@@ -72,6 +77,17 @@ int main()
     shared_ptr<Texture> texture = texture_manager->CreateTextureFromTGA(__test_tga, __test_tga_len);
     Sprite* sprite = new Sprite(entity_manager.get(), texture, true, true, 0, {0, 0}, true, 0);
 
+    shared_ptr<Gamepad> current_gamepad = nullptr;
+
+    gamepad_manager.AddOnGamepadAddedHandler([&](shared_ptr<Gamepad> gamepad)
+    {
+        current_gamepad = gamepad;
+    });
+    gamepad_manager.AddOnGamepadRemovedHandler([&](shared_ptr<Gamepad> gamepad)
+    {
+        if(current_gamepad == gamepad)
+            current_gamepad = nullptr;
+    });
     while(true)
     {
         uint64_t ttm = get_time_us();
@@ -115,17 +131,29 @@ int main()
             pmp.y += 1;
         multipoint->SetPosition(pmp);
 
+        if(current_gamepad != nullptr)
+        {
+            if(current_gamepad->IsButtonDown(Gamepad::LEFT_DOWN))
+                triangle->SetPosition(triangle->GetPosition() + int2{0, 1});
+            if(current_gamepad->IsButtonDown(Gamepad::LEFT_UP))
+                triangle->SetPosition(triangle->GetPosition() + int2{0, -1});
+            if(current_gamepad->IsButtonDown(Gamepad::LEFT_LEFT))
+                triangle->SetPosition(triangle->GetPosition() + int2{-1, 0});
+            if(current_gamepad->IsButtonDown(Gamepad::LEFT_RIGHT))
+                triangle->SetPosition(triangle->GetPosition() + int2{1, 0});
+        }
+
         Info info = gpu->ReadInfo();
-        clear_console();
-        printf("Audio time: %lluus\n", LastAudioProcessingTime);
-        printf("Render time: %lluus\n", info.last_render_time_us);
-        printf("Entities drawn: %u\n", info.entities_drawn);
-        printf("GPU temperature: %.3f\n", info.temperature);
-        printf("GPU memory: %u/%u\n", info.free_memory, info.total_memory);
-        printf("CPU memory: %u/%u\n", GetFreeHeap(), GetTotalHeap());
+        //clear_console();
+        // printf("Audio time: %lluus\n", LastAudioProcessingTime);
+        // printf("Render time: %lluus\n", info.last_render_time_us);
+        // printf("Entities drawn: %u\n", info.entities_drawn);
+        // printf("GPU temperature: %.3f\n", info.temperature);
+        // printf("GPU memory: %u/%u\n", info.free_memory, info.total_memory);
+        // printf("CPU memory: %u/%u\n", GetFreeHeap(), GetTotalHeap());
         text0->SetText(std::to_string(info.frame_number));
         text1->SetText(std::to_string(info.last_render_time_us) + "us");
-        printf("I2CTime: %u\n", gpu->i2ctime);
+        //printf("I2CTime: %u\n", gpu->i2ctime);
         gpu->i2ctime = 0;
         sleep_ms(25);
         //getchar();

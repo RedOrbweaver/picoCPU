@@ -1,7 +1,7 @@
 #include "hmain.hpp"
 
 static int sm;
-static auto pio = pio0;
+static auto pio = pio1;
 
 static mutex_t audiomx;
 void LockAudio()
@@ -62,6 +62,7 @@ static void dac_program_init(PIO pio, uint sm, uint offset, uint pin_base, float
 }
 void AudioLoop()
 {
+    flash_safe_execute_core_init();
     mutex_init(&audiomx);
 
     sm = pio_claim_unused_sm(pio, true);
