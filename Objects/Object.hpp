@@ -120,6 +120,7 @@ class Object
     }
     virtual ~Object()
     {
+        manager->WriteEntityVisible(index, false);
         manager->FreeEntity(index);
     }
 };

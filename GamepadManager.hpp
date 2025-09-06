@@ -16,6 +16,10 @@ class GamepadManager
     {
         OnGamepadAddedHandlers.push_back(f);
     }
+    std::map<std::string, shared_ptr<Gamepad>> GetGamepads()
+    {
+        return gamepads;
+    }
     shared_ptr<Gamepad> CreateGamepad(std::string id)
     {
         auto gamepad = std::make_shared<Gamepad>(id);

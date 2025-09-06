@@ -57,6 +57,8 @@ using std::optional;
 #include "Texture.hpp"
 #include "GeometryManager.hpp"
 
+#include "Context.hpp"
+
 #include "Objects/Object.hpp"
 #include "Objects/Geometric.hpp"
 #include "Objects/Shape.hpp"
@@ -74,11 +76,14 @@ using std::optional;
 #include "Objects/Bezier.hpp"
 #include "Objects/Sprite.hpp"
 
-#include "Programs/Program.hpp"
-#include "Programs/MainMenu.hpp"
-
 #include "Bluetooth.hpp"
 #include "Gamepad.hpp"
 #include "GamepadManager.hpp"
+
+#include "Programs/Program.hpp"
+#include "Programs/BasicTest.hpp"
+#include "Programs/Programs.hpp"
+#include "Programs/MainMenu.hpp"
+
 
 #include "tests.hpp"

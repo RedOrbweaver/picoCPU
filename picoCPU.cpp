@@ -22,142 +22,35 @@ int main()
 
     sleep_ms(100); // wait for the GPU to start
 
-    unique_ptr<GPU> gpu = std::make_unique<GPU>(i2c0, I2C_ADDR, PIN::I2C_SCL, PIN::I2C_SDA);
-    unique_ptr<EntityManager> entity_manager = std::make_unique<EntityManager>(gpu.get(), N_ENTITIES);
-    unique_ptr<TextManager> text_manager = std::make_unique<TextManager>(gpu.get(), TEXT_BUFFER_SIZE);
-    unique_ptr<GeometryManager> geometry_manager = std::make_unique<GeometryManager>(gpu.get(), GEOMETRY_BUFFER_SIZE);
-    unique_ptr<TextureManager> texture_manager = std::make_unique<TextureManager>(gpu.get(), 15000);
+    unique_ptr<Context> context = std::make_unique<Context>();
+    context->gpu = std::make_unique<GPU>(i2c0, I2C_ADDR, PIN::I2C_SCL, PIN::I2C_SDA);
+    context->entity_manager = std::make_unique<EntityManager>(context->gpu.get(), N_ENTITIES);
+    context->text_manager = std::make_unique<TextManager>(context->gpu.get(), TEXT_BUFFER_SIZE);
+    context->geometry_manager = std::make_unique<GeometryManager>(context->gpu.get(), GEOMETRY_BUFFER_SIZE);
+    context->texture_manager = std::make_unique<TextureManager>(context->gpu.get(), 15000);
 
-    Info info = gpu->ReadInfo();
-    int lines_x = info.lines_x;
-    int lines_y = info.lines_y;
-
-    float sx = 10.0f;
-    float sy = 10.0f;
-    float px = 50.00f;
-    float py = 50.0f;
-    float r = 15;
-
-    unique_ptr<Circle> ball = std::make_unique<Circle>(entity_manager.get(), 255, 100, true, true);
-    ball->SetSize({(int)r, (int)r});
-
-    Line* line = new Line(entity_manager.get(), 255, {50, 50}, {250, 150}, true);
-
-    Triangle* triangle = new Triangle(entity_manager.get(), 100, {0, 0}, {0, 40}, {40, 40}, true, true, 2, 0, {lines_x/2, lines_y/2}, {1, 1});
-
-    Rectangle* rectangle = new Rectangle(entity_manager.get(), 255, 50, true, true, 0, 0, {50, 50}, {50, 50});
-    Rectangle* rectangle0 = new Rectangle(entity_manager.get(), 255, 50, true, true, 0, 0, {200, 250}, {75, 75});
-    Rectangle* rectangle1 = new Rectangle(entity_manager.get(), 255, 50, true, true, 0, 0, {300, 250}, {75, 50});
-
-    EmptyRectangle* empty_rectangle = new EmptyRectangle(entity_manager.get(), 255, true, true, 0, 0, {100, 250}, {100, 20});
-
-    EmptyCircle* empty_circle = new EmptyCircle(entity_manager.get(), 255, EMPTY_CIRCLE_MODE::FULL, true, true, 0, {0,0}, {15, 15});
-
-    Text* text0 = new Text(entity_manager.get(), text_manager.get(), "test0", FONT::FIXED_10_20, TEXT_ALIGNMENT::CENTER, true, true, 0, {lines_x/2, lines_y/2});
-    Text* text1 = new Text(entity_manager.get(), text_manager.get(), "test1", FONT::FIXED_7_14, TEXT_ALIGNMENT::CENTER, true, true, 0, {lines_x/2, lines_y/2 + 17});
-
-    vector<vec2<int>> ml = {{0, 0}, {50, 0}, {40, 30}, {20, 30}, {0, 0}};
-    auto mlg = geometry_manager->AllocateGeomentry(ml);
-    MultiLine* multiline = new MultiLine(entity_manager.get(), geometry_manager.get(), 255, mlg, true, 0, 0, {50, 150});
-    
-    vec2<int> points[128];
-    for(int i = 0; i < 128; i++)
-    {
-        points[i] = {rand() % lines_x, (rand() % (2*lines_y)) - lines_y};
-    }
-
-    vector<vec2<int>> vp (points, points+128);
-    auto vpg = geometry_manager->AllocateGeomentry(vp);
-    MultiPoint* multipoint = new MultiPoint(entity_manager.get(), geometry_manager.get(), 255, vpg, true);
-
-    vector<vec2<int>> bp = {{0, 0}, {70, -50}, {50, 0}};
-    auto bpg = geometry_manager->AllocateGeomentry(bp);
-    Bezier* bezier = new Bezier(entity_manager.get(), geometry_manager.get(), 255, bpg, true, 0, 0, {200, 200});
-
-    shared_ptr<Texture> texture = texture_manager->CreateTextureFromTGA(__test_tga, __test_tga_len);
-    Sprite* sprite = new Sprite(entity_manager.get(), texture, true, true, 0, {0, 0}, true, 0);
-
-    shared_ptr<Gamepad> current_gamepad = nullptr;
-
-    gamepad_manager.AddOnGamepadAddedHandler([&](shared_ptr<Gamepad> gamepad)
-    {
-        current_gamepad = gamepad;
-    });
-    gamepad_manager.AddOnGamepadRemovedHandler([&](shared_ptr<Gamepad> gamepad)
-    {
-        if(current_gamepad == gamepad)
-            current_gamepad = nullptr;
-    });
+    Program* current_program = new MainMenuProgram();
+    current_program->SetContext(context.get());
+    current_program->Initialize();
+    uint64_t tmstart = get_time_us();
     while(true)
     {
-        uint64_t ttm = get_time_us();
-        float nx = px + sx;
-        float ny = py + sy;
-        if(nx < r || nx > float(lines_x)-r)
+        uint64_t tmdif = get_time_us() - tmstart;
+        float tm = float(tmdif)/1000.0f/1000.0f;
+        tmstart = get_time_us();
+        bool ret = current_program->Tick(tm);
+        if(!ret)
         {
-            sx = -sx;
+            Program* next_program = current_program->NextProgram;
+            delete current_program;
+            if(next_program == nullptr)
+            {
+                next_program = new MainMenuProgram();
+            }
+            current_program = next_program;
+            current_program->SetContext(context.get());
+            current_program->Initialize();
+            tmstart = get_time_us();
         }
-        else
-            px = nx;
-        if(ny < r || ny > float(lines_y)-r)
-        {
-            sy = -sy;
-        }
-        else
-            py = ny;
-
-        ball->SetPosition({(int)nx, (int)ny});
-        //empty_circle->SetPosition({lines_x-(int)nx, lines_y-(int)ny});
-        empty_circle->SetPosition(ball->GetPosition());
-
-        sprite->SetPosition({lines_x-(int)nx, lines_y-(int)ny});
-
-        triangle->SetRotation(triangle->GetRotation()+1);
-
-        sprite->SetRotation(sprite->GetRotation()+1);
-
-        empty_rectangle->SetRotation(empty_rectangle->GetRotation()+1);
-
-        rectangle->SetRotation(rectangle->GetRotation()-1);
-        rectangle0->SetRotation(rectangle0->GetRotation()-1);
-        rectangle1->SetRotation(rectangle1->GetRotation()-1);
-
-        multiline->SetRotation(multiline->GetRotation()-1);
-
-        vec2<int> pmp = multipoint->GetPosition();
-        if(pmp.y > lines_y)
-            pmp.y = 0;
-        else
-            pmp.y += 1;
-        multipoint->SetPosition(pmp);
-
-        if(current_gamepad != nullptr)
-        {
-            if(current_gamepad->IsButtonDown(Gamepad::LEFT_DOWN))
-                triangle->SetPosition(triangle->GetPosition() + int2{0, 1});
-            if(current_gamepad->IsButtonDown(Gamepad::LEFT_UP))
-                triangle->SetPosition(triangle->GetPosition() + int2{0, -1});
-            if(current_gamepad->IsButtonDown(Gamepad::LEFT_LEFT))
-                triangle->SetPosition(triangle->GetPosition() + int2{-1, 0});
-            if(current_gamepad->IsButtonDown(Gamepad::LEFT_RIGHT))
-                triangle->SetPosition(triangle->GetPosition() + int2{1, 0});
-        }
-
-        Info info = gpu->ReadInfo();
-        //clear_console();
-        // printf("Audio time: %lluus\n", LastAudioProcessingTime);
-        // printf("Render time: %lluus\n", info.last_render_time_us);
-        // printf("Entities drawn: %u\n", info.entities_drawn);
-        // printf("GPU temperature: %.3f\n", info.temperature);
-        // printf("GPU memory: %u/%u\n", info.free_memory, info.total_memory);
-        // printf("CPU memory: %u/%u\n", GetFreeHeap(), GetTotalHeap());
-        text0->SetText(std::to_string(info.frame_number));
-        text1->SetText(std::to_string(info.last_render_time_us) + "us");
-        //printf("I2CTime: %u\n", gpu->i2ctime);
-        gpu->i2ctime = 0;
-        sleep_ms(25);
-        //getchar();
-        //int test = ReadTest();
-        //printf("%i\n", test);
     }
 }

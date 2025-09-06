@@ -29,6 +29,7 @@ class Geometric
     }
     void SetGeometry(shared_ptr<GeometryManager::Geometry> geometry)
     {
+        assert(geometry->points.size() >= minimum_points);
         if(this->geometry != nullptr)
             geometry_manager->DetachFromGeometry(this->geometry, this);
         this->geometry = geometry;

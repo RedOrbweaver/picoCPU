@@ -18,7 +18,7 @@ void GeometryManager::DetachFromGeometry(shared_ptr<Geometry> geometry, Geometri
         }
         i++;
     }
-    assert(i != geometry->attached.size());
+    assert(i != geometry->attached.size()); // not found
 }
 void GeometryManager::MoveSegment(shared_ptr<Segment> segment, int newpos, int oldpos)
 {

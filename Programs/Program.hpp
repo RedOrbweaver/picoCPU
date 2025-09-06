@@ -5,25 +5,30 @@
 class Program
 {
     protected:
-    shared_ptr<vector<shared_ptr<Object>>> objects;
-    shared_ptr<vector<shared_ptr<AudioChannel>>> audio_channels;
-
+    Context* context;
+    GPU* gpu;
+    EntityManager* entity_manager;
+    TextManager* text_manager;
+    GeometryManager* geometry_manager;
+    TextureManager* texture_manager;
+    vec2<int> lines;
     public:
-    shared_ptr<vector<shared_ptr<Object>>> GetObjects()
+    Program* NextProgram = nullptr;
+    virtual bool Tick(float delta)=0;
+    virtual void Initialize()=0;
+    void SetContext(Context* context)
     {
-        return objects;
+        this->context = context;
+        this->gpu = context->gpu.get();
+        this->entity_manager = context->entity_manager.get();
+        this->text_manager = context->text_manager.get();
+        this->geometry_manager = context->geometry_manager.get();
+        this->texture_manager = context->texture_manager.get();
+        auto info = gpu->ReadInfo();
+        this->lines = {info.lines_x, info.lines_y};
     }
-    shared_ptr<vector<shared_ptr<AudioChannel>>> GetAudioChannels()
+    virtual ~Program()
     {
-        return audio_channels;
-    }
-    virtual void Enter()=0;
-    virtual void Pause()=0;
-    virtual void Exit()=0;
-    virtual void Tick()=0;
-    Program()
-    {
-        objects = std::make_shared<vector<shared_ptr<Object>>>();
-        audio_channels = std::make_shared<vector<shared_ptr<AudioChannel>>>();
+
     }
 };

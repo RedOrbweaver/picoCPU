@@ -96,7 +96,17 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp",
-        "dma.h": "c"
+        "dma.h": "c",
+        "any": "cpp",
+        "bitset": "cpp",
+        "codecvt": "cpp",
+        "csignal": "cpp",
+        "cuchar": "cpp",
+        "forward_list": "cpp",
+        "ratio": "cpp",
+        "regex": "cpp",
+        "ranges": "cpp",
+        "valarray": "cpp"
     },
     "cortex-debug.variableUseNaturalFormat": true,
     "python.languageServer": "Pylance",
