@@ -19,5 +19,10 @@ inline ProgramDescription programs[] =
         "Basic Test",
         "A basic rendering test",
         CreateProgram<BasicTestProgram>
-    }
+    },
+    {
+        "PONG",
+        "A game of PONG",
+        CreateProgram<PongProgram>
+    },
 };

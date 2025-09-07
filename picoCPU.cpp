@@ -38,6 +38,7 @@ int main()
         uint64_t tmdif = get_time_us() - tmstart;
         float tm = float(tmdif)/1000.0f/1000.0f;
         tmstart = get_time_us();
+        gamepad_manager.ProcessInputs();
         bool ret = current_program->Tick(tm);
         if(!ret)
         {
@@ -47,6 +48,7 @@ int main()
             {
                 next_program = new MainMenuProgram();
             }
+            gamepad_manager.ClearHandlers();
             current_program = next_program;
             current_program->SetContext(context.get());
             current_program->Initialize();

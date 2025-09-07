@@ -25,9 +25,13 @@ class BasicTestProgram : public Program
     float py = 50.0f;
     float r = 15;
 
+    bool exit = false;
+
     public:
     virtual bool Tick(float delta) override
     {
+        if(exit)
+            return false;
         uint64_t ttm = get_time_us();
         float nx = px + sx;
         float ny = py + sy;
@@ -145,6 +149,7 @@ class BasicTestProgram : public Program
         gamepad_manager.AddOnGamepadAddedHandler([&](shared_ptr<Gamepad> gamepad)
         {
             current_gamepad = gamepad;
+            current_gamepad->SetOnButtonDownHandle(Gamepad::CENTER, [&](){exit=true;});
         });
         gamepad_manager.AddOnGamepadRemovedHandler([&](shared_ptr<Gamepad> gamepad)
         {
@@ -155,6 +160,7 @@ class BasicTestProgram : public Program
         if(gamepads.size() > 0)
         {
             current_gamepad = gamepads.begin()->second;
+            current_gamepad->SetOnButtonDownHandle(Gamepad::CENTER, [&](){exit=true;});
         }
     }
 };

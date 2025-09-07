@@ -60,10 +60,10 @@ class EntityManager
             {
                 WriteEntityVisible(i, false);
                 allocations[i] = false;
-                free_entities--;
+                free_entities++;
             }
         }
-        assert(free_entities == 0);
+        assert(free_entities == total_entities);
     }
     int ClaimEntity()
     {
@@ -103,5 +103,10 @@ class EntityManager
         allocations = std::vector<bool>(total_entities);
         for(int i = 0; i < allocations.size(); i++)
             allocations[i] = false;
+        uint8_t buf[sizeof(Entity)] = {0};
+        for(int i = 0; i < total_entities; i++)
+        {
+            gpu->I2CWrite(SOURCE::ENTITY_BUFFER, i, 0, sizeof(Entity), buf);
+        }
     }
 };

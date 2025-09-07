@@ -40,26 +40,27 @@ class MainMenuProgram : public Program
             return;
         if(caret_pos == PROG_LIST_LEN-1)
         {
-            SetProgListScroll(scroll+1);
+            if(scroll + caret_pos < ArraySize(programs))
+                SetProgListScroll(scroll+1);
         }
         else
             SetCaretPos(caret_pos+1);
     }
     void InitGamepad(shared_ptr<Gamepad> gamepad)
     {
-        gamepad->SetOnButtonDownHandle(Gamepad::RIGHT_UP, [this]()
+        gamepad->SetOnButtonDownHandle(Gamepad::LEFT_UP, [this]()
         {
             OnUp();
         });
-        gamepad->SetOnButtonDownHandle(Gamepad::RIGHT_DOWN, [this]()
+        gamepad->SetOnButtonDownHandle(Gamepad::LEFT_DOWN, [this]()
         {
             OnDown();
         });
-        gamepad->SetOnButtonDownHandle(Gamepad::RIGHT_LEFT, [this]()
+        gamepad->SetOnButtonDownHandle(Gamepad::LEFT_LEFT, [this]()
         {
             OnBack();
         });
-        gamepad->SetOnButtonDownHandle(Gamepad::RIGHT_RIGHT, [this]()
+        gamepad->SetOnButtonDownHandle(Gamepad::LEFT_RIGHT, [this]()
         {
             OnSelect();
         });
@@ -67,9 +68,11 @@ class MainMenuProgram : public Program
     void SetCaretPos(int pos)
     {
         assert(pos >= 0 && pos < PROG_LIST_LEN);
+
         std::string text = prog_list[caret_pos]->GetText();
         text[0] = ' ';
         prog_list[caret_pos]->SetText(text);
+
         text = prog_list[pos]->GetText();
         text[0] = '>';
         prog_list[pos]->SetText(text);
@@ -109,13 +112,13 @@ class MainMenuProgram : public Program
     virtual void Initialize() override
     {
         gamepad_state_text = std::make_shared<Text>(entity_manager, text_manager, "Gamepad State", 
-        FONT::FIXED_10_20, TEXT_ALIGNMENT::LEFT, true, true, 0, int2{20, 20});
+        FONT::FIXED_10_20, TEXT_ALIGNMENT::LEFT, true, true, 0, int2{25, 35});
         desc_text = std::make_shared<Text>(entity_manager, text_manager, "(0/0) Description", 
-        FONT::FIXED_7_14, TEXT_ALIGNMENT::LEFT, true, true, 0, int2{20, 44});
-        int h = 64;
+        FONT::FIXED_7_14, TEXT_ALIGNMENT::LEFT, true, true, 0, int2{25, 55});
+        int h = 67;
         for(int i = 0; i < PROG_LIST_LEN; i++)
         {
-            prog_list[i] = std::make_shared<Text>(entity_manager, text_manager, "PROG " + std::to_string(i+1), 
+            prog_list[i] = std::make_shared<Text>(entity_manager, text_manager, " PROG " + std::to_string(i+1), 
                 FONT::FIXED_7_14, TEXT_ALIGNMENT::LEFT, true, true, 0, int2{30, h});
             h += 17;
         }

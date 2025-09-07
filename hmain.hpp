@@ -33,6 +33,7 @@ using std::optional;
 #include "pico/platform.h"
 #include "pico/mutex.h"
 #include "pico/flash.h"
+#include "pico/sync.h"
 
 #include "redpicolib/RedPicoLib.hpp"
 
@@ -82,6 +83,7 @@ using std::optional;
 
 #include "Programs/Program.hpp"
 #include "Programs/BasicTest.hpp"
+#include "Programs/Pong.hpp"
 #include "Programs/Programs.hpp"
 #include "Programs/MainMenu.hpp"
 

@@ -14,11 +14,11 @@ void GeometryManager::DetachFromGeometry(shared_ptr<Geometry> geometry, Geometri
         if(geometry->attached[i] == geometric)
         {
             geometry->attached.erase(geometry->attached.begin() + i);
-            break;
+            return;
         }
         i++;
     }
-    assert(i != geometry->attached.size()); // not found
+    assert(false); // not found
 }
 void GeometryManager::MoveSegment(shared_ptr<Segment> segment, int newpos, int oldpos)
 {

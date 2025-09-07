@@ -170,9 +170,10 @@ static void handle_gatt_client_event(uint8_t packet_type, uint16_t channel, uint
                         uint16_t v = little_endian_read_16(value, 0);
                         uint8_t state = v >> 8;
                         uint8_t btn = v & 0x00FF;
-                        printf("%i %i\n", (int)state, (int)btn);
-                        auto gamepad = gamepad_manager.GetGamepad(bd_addr_to_str(server_addr));
-                        gamepad->HandleButtonUpdate(v);
+                        std::string gamepadid = bd_addr_to_str(server_addr);
+                        assert(gamepad_manager.HasGamepad(gamepadid));
+                        auto gamepad = gamepad_manager.GetGamepad(gamepadid);
+                        gamepad->QueueButtonUpdate(v);
                     } 
                     else
                     {

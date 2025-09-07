@@ -16,6 +16,15 @@ class GamepadManager
     {
         OnGamepadAddedHandlers.push_back(f);
     }
+    void ClearHandlers()
+    {
+        OnGamepadRemovedHandlers = {};
+        OnGamepadAddedHandlers = {};
+        for(auto it : gamepads)
+        {
+            it.second->ClearHandlers();
+        }
+    }
     std::map<std::string, shared_ptr<Gamepad>> GetGamepads()
     {
         return gamepads;
@@ -48,6 +57,13 @@ class GamepadManager
     bool HasGamepad(std::string id)
     {
         return gamepads.find(id) != gamepads.end();
+    }
+    void ProcessInputs()
+    {
+        for(auto it : gamepads)
+        {
+            it.second->ProcessButtonUpdates();
+        }
     }
 };
 
