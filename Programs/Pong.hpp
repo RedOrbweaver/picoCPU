@@ -2,16 +2,26 @@
 
 class PongProgram : public Program
 {
+    static const int BALL_RADIUS = 3;
+    float BALL_SPEED_INITIAL = 80.0f;
+    float BALL_SPEED_INCREASE_PER_SEC = 1;
+    float PLAYER_SPEED_PER_SEC = 125.0f;
+
+    float time = 0;
+
     vec4<int> play_area;
     vec2<int> play_area_size;
     vec2<int> play_area_center;
 
-    vec2<int> player_rect_size = {10, 50};
+    vec2<int> player_rect_size = {6, 20};
 
     vec2<float> ball_position;
     vec2<float> ball_speed;
-    vec2<float> ball_size = {6, 6};
+    vec2<float> ball_size = {BALL_RADIUS, BALL_RADIUS};
+
+    int player0_score;
     vec2<float> player0_position;
+    int player1_score;
     vec2<float> player1_position;
 
     bool exit=false;
@@ -39,7 +49,8 @@ class PongProgram : public Program
         ball_position = play_area_center.convert<float>();
         ball_circle = std::make_shared<Circle>(entity_manager, 255, 255, true, true, 0, 0, 
             ball_position.convert<int>(), ball_size.convert<int>());
-        ball_speed = vec2<float>{10.0f, 10.0f} * ((rand() % 1) ? -1.0f : 1.0f); 
+        ball_speed = {BALL_SPEED_INITIAL, 0.0f};
+        ResetBall();
         
         player0_position = {play_area.x + 2.0f + player_rect_size.x/2.0f, (float)play_area_center.y};
         player0_rect = std::make_shared<Rectangle>(entity_manager, 255, 255, true, true, 0, 0, 
@@ -51,9 +62,9 @@ class PongProgram : public Program
 
         playtime_text = std::make_shared<Text>(entity_manager, text_manager, "00:00", FONT::FIXED_10_20, 
             TEXT_ALIGNMENT::CENTER, true, true, 0, vec2<int>{play_area.x+(play_area.z-play_area.x)/2, (play_area.y - 20)});
-        player0_score_text = std::make_shared<Text>(entity_manager, text_manager, "000000", FONT::FIXED_10_20, 
+        player0_score_text = std::make_shared<Text>(entity_manager, text_manager, "0", FONT::FIXED_10_20, 
             TEXT_ALIGNMENT::CENTER, true, true, 0, vec2<int>{int(play_area.x+(play_area.z-play_area.x)*0.75f), (play_area.y - 20)});
-        player1_score_text = std::make_shared<Text>(entity_manager, text_manager, "000000", FONT::FIXED_10_20, 
+        player1_score_text = std::make_shared<Text>(entity_manager, text_manager, "0", FONT::FIXED_10_20, 
             TEXT_ALIGNMENT::CENTER, true, true, 0, vec2<int>{int(play_area.x+(play_area.z-play_area.x)*0.25f), (play_area.y - 20)});
         
         auto gamepads = gamepad_manager.GetGamepads();
@@ -81,6 +92,21 @@ class PongProgram : public Program
             }
         });
     }
+    void ResetBall()
+    {
+        ball_position = play_area_center.convert<float>();
+        float d = float(rand() % 2000)/1000.0f - 1.0f;
+        ball_speed = vec2<float>{cos(d), sin(d)} * ball_speed.length();
+        ball_speed.y *= (rand() % 2) ? 1.0f : -1.0f;
+    }
+    void WinCondition(int player)
+    {
+
+    }
+    void DrawCondition()
+    {
+
+    }
     virtual bool Tick(float delta) override
     {
         if(exit)
@@ -90,6 +116,103 @@ class PongProgram : public Program
             playtime_text->SetText("NO GAMEPAD");
             return true;
         }
+
+        ball_speed += BALL_SPEED_INCREASE_PER_SEC * delta;
+
+        ball_position += ball_speed * delta;
+
+        if(ball_position.x < play_area.x + BALL_RADIUS)
+        {
+            ResetBall();
+            player1_score++;
+            if(player1_score == 10)
+            {
+                WinCondition(1);
+                return true;
+            }
+            else
+                player1_score_text->SetText(std::to_string(player1_score));
+        }
+        if(ball_position.x > play_area.z - BALL_RADIUS)
+        {
+            ResetBall();
+            player0_score++;
+            if(player0_score == 10)
+            {
+                WinCondition(0);
+                return true;
+            }
+            else
+                player0_score_text->SetText(std::to_string(player0_score));
+        }
+        if(ball_position.y <= play_area.y + BALL_RADIUS)
+        {
+            ball_speed.y = -ball_speed.y;
+        }
+        if(ball_position.y >= play_area.w-BALL_RADIUS)
+        {
+            ball_speed.y = -ball_speed.y;
+        }
+
+        float p0ydist = ball_position.y-player0_position.y;
+        if(ball_position.x < player0_position.x + player_rect_size.x/2 + BALL_RADIUS && abs(p0ydist) < player_rect_size.y/2)
+        {
+            float d = p0ydist / player_rect_size.y/2;
+            vec2<float> direction = {cos(d), sin(d)};
+            ball_speed = direction * ball_speed.length();
+        }
+
+        float p1ydist = ball_position.y-player1_position.y;
+        if(ball_position.x > player1_position.x - player_rect_size.x/2 - BALL_RADIUS && abs(p1ydist) < player_rect_size.y/2)
+        {
+            float d = p1ydist / player_rect_size.y/2;
+            vec2<float> direction = {cos(d), -sin(d)};
+            ball_speed = direction * -ball_speed.length();
+        }
+
+        ball_circle->SetPosition(ball_position.convert<int>());
+
+        float tlim = play_area.y + player_rect_size.y/2 + 1;
+        float blim = play_area.w - player_rect_size.y/2 -1;
+        if(gamepad->IsButtonDown(Gamepad::LEFT_UP))
+        {
+            player0_position.y -= PLAYER_SPEED_PER_SEC*delta;
+            if(player0_position.y < tlim)
+                player0_position.y = tlim;
+        }
+        if(gamepad->IsButtonDown(Gamepad::LEFT_DOWN))
+        {
+            player0_position.y += PLAYER_SPEED_PER_SEC*delta;
+            if(player0_position.y > blim)
+                player0_position.y = blim;
+        }
+        player0_rect->SetPosition(player0_position.convert<int>());
+        if(gamepad->IsButtonDown(Gamepad::RIGHT_UP))
+        {
+            player1_position.y -= PLAYER_SPEED_PER_SEC*delta;
+            if(player1_position.y < tlim)
+                player1_position.y = tlim;
+        }
+        if(gamepad->IsButtonDown(Gamepad::RIGHT_DOWN))
+        {
+            player1_position.y += PLAYER_SPEED_PER_SEC*delta;
+            if(player1_position.y > blim)
+                player1_position.y = blim;
+        }
+        player1_rect->SetPosition(player1_position.convert<int>());
+
+        time += delta;
+
+        int minutes = time / 60;
+        if(minutes == 60)
+        {
+            DrawCondition();
+            return true;
+        }
+        int seconds = int(time) % 60;
+        std::string tmstr = ((minutes < 10) ? "0" : "") + std::to_string(minutes) + ":" 
+            + ((seconds < 10) ? "0" : "") + std::to_string(seconds);
+        playtime_text->SetText(tmstr);
 
         return true;
     }
