@@ -4,7 +4,7 @@ class PongProgram : public Program
 {
     static const int BALL_RADIUS = 3;
     float BALL_SPEED_INITIAL = 80.0f;
-    float BALL_SPEED_INCREASE_PER_SEC = 2;
+    float BALL_SPEED_INCREASE_PER_SEC = 0.5f;
     float BOUNCE_FACTOR = 3.0f;
     float PLAYER_SPEED_PER_SEC = 125.0f;
 
