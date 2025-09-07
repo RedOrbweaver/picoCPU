@@ -2,11 +2,13 @@
 
 class PongProgram : public Program
 {
+    static const int VICTORY_SCORE = 10;
     static const int BALL_RADIUS = 3;
     float BALL_SPEED_INITIAL = 80.0f;
     float BALL_SPEED_INCREASE_PER_SEC = 0.5f;
     float BOUNCE_FACTOR = 3.0f;
     float PLAYER_SPEED_PER_SEC = 125.0f;
+
 
     float time = 0;
 
@@ -40,6 +42,10 @@ class PongProgram : public Program
     shared_ptr<EmptyRectangle> play_area_rect;
 
     shared_ptr<Gamepad> gamepad;
+
+    shared_ptr<StreamChannel> goal_channel;
+    shared_ptr<StreamChannel> bounce_channel;
+    shared_ptr<StreamChannel> gameover_channel;
 
     virtual void Initialize() override
     {
@@ -98,6 +104,39 @@ class PongProgram : public Program
                 }
             }
         });
+
+        LockAudio();
+        goal_channel = std::make_shared<StreamChannel>((uint8_t*)__goal_wav + 44, 11025, ArraySize(__goal_wav) - 44, 1.0f, false);
+        goal_channel->SetVolume(2.0f);
+        bounce_channel = std::make_shared<StreamChannel>((uint8_t*)__sharp_pop_wav + 44, 11025, ArraySize(__sharp_pop_wav) - 44, 1.0f, false);
+        gameover_channel = std::make_shared<StreamChannel>((uint8_t*)__gameover_wav + 44, 11025, ArraySize(__gameover_wav) - 44, 1.0f, false);
+        gameover_channel->SetVolume(1.5f);
+
+        AudioChannels[1] = goal_channel;
+        AudioChannels[2] = bounce_channel;
+        AudioChannels[3] = gameover_channel;
+        UnLockAudio();
+    }
+    void PlayGoal()
+    {
+        goal_channel->Lock();
+        goal_channel->Reset();
+        goal_channel->SetEnabled(true);
+        goal_channel->UnLock();
+    }
+    void PlayBounce(float volume)
+    {
+        bounce_channel->Lock();
+        bounce_channel->Reset();
+        bounce_channel->SetVolume(volume);
+        bounce_channel->SetEnabled(true);
+        bounce_channel->UnLock();
+    }
+    void PlayGameover()
+    {
+        gameover_channel->Lock();
+        gameover_channel->SetEnabled(true);
+        gameover_channel->UnLock();
     }
     void ResetBall()
     {
@@ -129,6 +168,7 @@ class PongProgram : public Program
         playtime_text->SetText(std::string((player == 0) ? "LEFT" : "RIGHT") + " PLAYER WON!");
         ball_circle->SetVisible(false);
         message_time = 5.0f;
+        PlayGameover();
     }
     void DrawCondition()
     {
@@ -189,11 +229,13 @@ class PongProgram : public Program
             player1_score++;
             player1_score_highlight_time = 1.0f;
             player1_score_text->SetText(std::to_string(player1_score));
-            if(player1_score == 10)
+            if(player1_score == VICTORY_SCORE)
             {
                 WinCondition(1);
                 return true;
             }
+            else
+                PlayGoal();
         }
         if(ball_position.x > play_area.z - BALL_RADIUS)
         {
@@ -201,21 +243,25 @@ class PongProgram : public Program
             player0_score++;
             player0_score_highlight_time = 1.0f;
                 player0_score_text->SetText(std::to_string(player0_score));
-            if(player0_score == 10)
+            if(player0_score == VICTORY_SCORE)
             {
                 WinCondition(0);
                 return true;
             }
+            else
+                PlayGoal();
         }
         if(ball_position.y <= play_area.y + BALL_RADIUS + 2)
         {
             ball_speed.y = abs(ball_speed.y);
             ball_position.y += 2;
+            PlayBounce(0.5f);
         }
         if(ball_position.y >= play_area.w-BALL_RADIUS - 2)
         {
             ball_speed.y = -abs(ball_speed.y);
             ball_position.y -= 2;
+            PlayBounce(0.5f);
         }
 
         float p0ydist = ball_position.y-player0_position.y;
@@ -224,6 +270,7 @@ class PongProgram : public Program
             float d = p0ydist / player_rect_size.y/2 * BOUNCE_FACTOR;
             vec2<float> direction = {cos(d), sin(d)};
             ball_speed = direction * ball_speed.length();
+            PlayBounce(0.8f);
         }
 
         float p1ydist = ball_position.y-player1_position.y;
@@ -232,6 +279,7 @@ class PongProgram : public Program
             float d = p1ydist / player_rect_size.y/2 * BOUNCE_FACTOR;
             vec2<float> direction = {cos(d), -sin(d)};
             ball_speed = direction * -ball_speed.length();
+            PlayBounce(0.8f);
         }
 
         ball_circle->SetPosition(ball_position.convert<int>());

@@ -181,7 +181,7 @@ class VariableToneChannel : public ToneChannel
 class MultiChannel : public AudioChannel
 {
     protected:
-    vector<AudioChannel*> channels;
+    vector<shared_ptr<AudioChannel>> channels;
     int current_channel;
     public:
     virtual void Reset() override
@@ -212,9 +212,9 @@ class MultiChannel : public AudioChannel
         }
         return ret;
     }
-    MultiChannel(std::initializer_list<AudioChannel*> channels, bool looping)
+    MultiChannel(std::initializer_list<shared_ptr<AudioChannel>> channels, bool looping)
     {
-        this->channels = vector<AudioChannel*>(channels);
+        this->channels = vector<shared_ptr<AudioChannel>>(channels);
         assert(this->channels.size() > 0);
         this->current_channel = 0;
         for(auto it : channels)
@@ -226,7 +226,7 @@ class MultiChannel : public AudioChannel
     }
 };
 
-inline AudioChannel* AudioChannels[N_AUDIO_CHANNELS];
+inline shared_ptr<AudioChannel> AudioChannels[N_AUDIO_CHANNELS];
 inline uint64_t LastAudioProcessingTime;
 
 
@@ -234,3 +234,4 @@ void LockAudio();
 void UnLockAudio();
 
 void AudioLoop();
+void ClearAudio();

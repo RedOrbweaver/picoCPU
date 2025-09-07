@@ -48,6 +48,7 @@ int main()
             {
                 next_program = new MainMenuProgram();
             }
+            ClearAudio();
             gamepad_manager.ClearHandlers();
             current_program = next_program;
             current_program->SetContext(context.get());
