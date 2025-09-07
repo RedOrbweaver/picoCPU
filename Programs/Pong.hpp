@@ -4,7 +4,8 @@ class PongProgram : public Program
 {
     static const int BALL_RADIUS = 3;
     float BALL_SPEED_INITIAL = 80.0f;
-    float BALL_SPEED_INCREASE_PER_SEC = 1;
+    float BALL_SPEED_INCREASE_PER_SEC = 2;
+    float BOUNCE_FACTOR = 3.0f;
     float PLAYER_SPEED_PER_SEC = 125.0f;
 
     float time = 0;
@@ -26,7 +27,11 @@ class PongProgram : public Program
 
     bool exit=false;
 
-    shared_ptr<Circle> ball_circle;
+    float message_time = 0.0f;
+    float player0_score_highlight_time = 1.0f;
+    float player1_score_highlight_time = 1.0f;
+
+    shared_ptr<Rectangle> ball_circle;
     shared_ptr<Rectangle> player0_rect;
     shared_ptr<Rectangle> player1_rect;
     shared_ptr<Text> player0_score_text;
@@ -47,8 +52,10 @@ class PongProgram : public Program
             play_area.xy(), play_area.zw()-play_area.xy());
 
         ball_position = play_area_center.convert<float>();
-        ball_circle = std::make_shared<Circle>(entity_manager, 255, 255, true, true, 0, 0, 
-            ball_position.convert<int>(), ball_size.convert<int>());
+        // ball_circle = std::make_shared<Circle>(entity_manager, 255, 255, true, true, 0, 0, 
+        //     ball_position.convert<int>(), ball_size.convert<int>());
+        ball_circle = std::make_shared<Rectangle>(entity_manager, 255, 255, true, true, 0, 0, 
+            ball_position.convert<int>(), (ball_size*2).convert<int>());
         ball_speed = {BALL_SPEED_INITIAL, 0.0f};
         ResetBall();
         
@@ -63,9 +70,9 @@ class PongProgram : public Program
         playtime_text = std::make_shared<Text>(entity_manager, text_manager, "00:00", FONT::FIXED_10_20, 
             TEXT_ALIGNMENT::CENTER, true, true, 0, vec2<int>{play_area.x+(play_area.z-play_area.x)/2, (play_area.y - 20)});
         player0_score_text = std::make_shared<Text>(entity_manager, text_manager, "0", FONT::FIXED_10_20, 
-            TEXT_ALIGNMENT::CENTER, true, true, 0, vec2<int>{int(play_area.x+(play_area.z-play_area.x)*0.75f), (play_area.y - 20)});
+            TEXT_ALIGNMENT::CENTER, true, true, 0, vec2<int>{int(play_area.x+(play_area.z-play_area.x)*0.15f), (play_area.y - 20)});
         player1_score_text = std::make_shared<Text>(entity_manager, text_manager, "0", FONT::FIXED_10_20, 
-            TEXT_ALIGNMENT::CENTER, true, true, 0, vec2<int>{int(play_area.x+(play_area.z-play_area.x)*0.25f), (play_area.y - 20)});
+            TEXT_ALIGNMENT::CENTER, true, true, 0, vec2<int>{int(play_area.x+(play_area.z-play_area.x)*0.85f), (play_area.y - 20)});
         
         auto gamepads = gamepad_manager.GetGamepads();
         if(gamepads.size() > 0)
@@ -76,12 +83,12 @@ class PongProgram : public Program
         }
         gamepad_manager.AddOnGamepadAddedHandler([&](shared_ptr<Gamepad> gamepad)
         {
-            gamepad = gamepad;
+            this->gamepad = gamepad;
             gamepad->SetOnButtonDownHandle(Gamepad::CENTER, [&](){exit=true;});
         });
         gamepad_manager.AddOnGamepadRemovedHandler([&](shared_ptr<Gamepad> gamepad)
         {
-            if(gamepad == gamepad)
+            if(this->gamepad == gamepad)
             {
                 gamepad = nullptr;
                 auto gamepads = gamepad_manager.GetGamepads();
@@ -97,15 +104,37 @@ class PongProgram : public Program
         ball_position = play_area_center.convert<float>();
         float d = float(rand() % 2000)/1000.0f - 1.0f;
         ball_speed = vec2<float>{cos(d), sin(d)} * ball_speed.length();
-        ball_speed.y *= (rand() % 2) ? 1.0f : -1.0f;
+        ball_speed.x *= (rand() % 2) ? 1.0f : -1.0f;
+    }
+    void ResetGame()
+    {
+        ball_circle->SetVisible(true);
+        ball_speed = {BALL_SPEED_INITIAL, 0.0f};
+        ResetBall();
+        player0_score = 0;
+        player0_score_text->SetText("0");
+        player0_position = {play_area.x + 2.0f + player_rect_size.x/2.0f, (float)play_area_center.y};
+        player0_rect->SetPosition(player0_position.convert<int>());
+        player1_score = 0;
+        player1_score_text->SetText("0");
+        player1_position = {play_area.z - 2.0f - player_rect_size.x/2.0f, (float)play_area_center.y};
+        player1_rect->SetPosition(player1_position.convert<int>());
+        playtime_text->SetText("00:00");
+        time = 0.0f;
+        player0_score_highlight_time = 1.0f;
+        player1_score_highlight_time = 1.0f;
     }
     void WinCondition(int player)
     {
-
+        playtime_text->SetText(std::string((player == 0) ? "LEFT" : "RIGHT") + " PLAYER WON!");
+        ball_circle->SetVisible(false);
+        message_time = 5.0f;
     }
     void DrawCondition()
     {
-
+        playtime_text->SetText("DRAW!");
+        ball_circle->SetVisible(false);
+        message_time = 5.0f;
     }
     virtual bool Tick(float delta) override
     {
@@ -117,7 +146,40 @@ class PongProgram : public Program
             return true;
         }
 
-        ball_speed += BALL_SPEED_INCREASE_PER_SEC * delta;
+        if(player0_score_highlight_time > 0.0f)
+        {
+            player0_score_highlight_time -= delta;
+            if(player0_score_highlight_time <= 0.0f)
+                player0_score_text->SetVisible(true);
+            else
+                player0_score_text->SetVisible((get_time_ms()/200) % 2);
+        }
+
+        if(player1_score_highlight_time > 0.0f)
+        {
+            player1_score_highlight_time -= delta;
+            if(player1_score_highlight_time <= 0.0f)
+                player1_score_text->SetVisible(true);
+            else
+                player1_score_text->SetVisible((get_time_ms()/200) % 2);
+        }
+
+        if(message_time > 0.0f)
+        {
+            message_time -= delta;
+            if(message_time <= 0.0f)
+            {
+                playtime_text->SetVisible(true);
+                ResetGame();
+            }
+            else
+            {
+                playtime_text->SetVisible((get_time_ms() / 500) % 2);
+            }
+            return true;
+        }
+
+        ball_speed = ball_speed.normalized() * (ball_speed.length() + BALL_SPEED_INCREASE_PER_SEC * delta);
 
         ball_position += ball_speed * delta;
 
@@ -125,39 +187,41 @@ class PongProgram : public Program
         {
             ResetBall();
             player1_score++;
+            player1_score_highlight_time = 1.0f;
+            player1_score_text->SetText(std::to_string(player1_score));
             if(player1_score == 10)
             {
                 WinCondition(1);
                 return true;
             }
-            else
-                player1_score_text->SetText(std::to_string(player1_score));
         }
         if(ball_position.x > play_area.z - BALL_RADIUS)
         {
             ResetBall();
             player0_score++;
+            player0_score_highlight_time = 1.0f;
+                player0_score_text->SetText(std::to_string(player0_score));
             if(player0_score == 10)
             {
                 WinCondition(0);
                 return true;
             }
-            else
-                player0_score_text->SetText(std::to_string(player0_score));
         }
-        if(ball_position.y <= play_area.y + BALL_RADIUS)
+        if(ball_position.y <= play_area.y + BALL_RADIUS + 2)
         {
-            ball_speed.y = -ball_speed.y;
+            ball_speed.y = abs(ball_speed.y);
+            ball_position.y += 2;
         }
-        if(ball_position.y >= play_area.w-BALL_RADIUS)
+        if(ball_position.y >= play_area.w-BALL_RADIUS - 2)
         {
-            ball_speed.y = -ball_speed.y;
+            ball_speed.y = -abs(ball_speed.y);
+            ball_position.y -= 2;
         }
 
         float p0ydist = ball_position.y-player0_position.y;
         if(ball_position.x < player0_position.x + player_rect_size.x/2 + BALL_RADIUS && abs(p0ydist) < player_rect_size.y/2)
         {
-            float d = p0ydist / player_rect_size.y/2;
+            float d = p0ydist / player_rect_size.y/2 * BOUNCE_FACTOR;
             vec2<float> direction = {cos(d), sin(d)};
             ball_speed = direction * ball_speed.length();
         }
@@ -165,7 +229,7 @@ class PongProgram : public Program
         float p1ydist = ball_position.y-player1_position.y;
         if(ball_position.x > player1_position.x - player_rect_size.x/2 - BALL_RADIUS && abs(p1ydist) < player_rect_size.y/2)
         {
-            float d = p1ydist / player_rect_size.y/2;
+            float d = p1ydist / player_rect_size.y/2 * BOUNCE_FACTOR;
             vec2<float> direction = {cos(d), -sin(d)};
             ball_speed = direction * -ball_speed.length();
         }

@@ -35,10 +35,10 @@ int main()
     uint64_t tmstart = get_time_us();
     while(true)
     {
+        gamepad_manager.ProcessInputs();
         uint64_t tmdif = get_time_us() - tmstart;
         float tm = float(tmdif)/1000.0f/1000.0f;
         tmstart = get_time_us();
-        gamepad_manager.ProcessInputs();
         bool ret = current_program->Tick(tm);
         if(!ret)
         {

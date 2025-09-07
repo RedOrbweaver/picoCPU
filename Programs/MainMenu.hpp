@@ -6,7 +6,7 @@ class MainMenuProgram : public Program
 {
     protected:
     public:
-    const static int PROG_LIST_LEN = 10;
+    const static int PROG_LIST_LEN = 12;
     const static int DESC_LINE_MAX_CHARS = 25;
     int caret_pos = 0;
     int scroll = 0;
@@ -118,7 +118,7 @@ class MainMenuProgram : public Program
         int h = 67;
         for(int i = 0; i < PROG_LIST_LEN; i++)
         {
-            prog_list[i] = std::make_shared<Text>(entity_manager, text_manager, " PROG " + std::to_string(i+1), 
+            prog_list[i] = std::make_shared<Text>(entity_manager, text_manager, " **********************", 
                 FONT::FIXED_7_14, TEXT_ALIGNMENT::LEFT, true, true, 0, int2{30, h});
             h += 17;
         }
