@@ -265,7 +265,8 @@ class PongProgram : public Program
         }
 
         float p0ydist = ball_position.y-player0_position.y;
-        if(ball_position.x < player0_position.x + player_rect_size.x/2 + BALL_RADIUS && abs(p0ydist) < player_rect_size.y/2)
+        if(ball_position.x < player0_position.x + player_rect_size.x/2 + BALL_RADIUS 
+            && abs(p0ydist) < player_rect_size.y/2 + BALL_RADIUS)
         {
             float d = p0ydist / player_rect_size.y/2 * BOUNCE_FACTOR;
             vec2<float> direction = {cos(d), sin(d)};
@@ -274,7 +275,8 @@ class PongProgram : public Program
         }
 
         float p1ydist = ball_position.y-player1_position.y;
-        if(ball_position.x > player1_position.x - player_rect_size.x/2 - BALL_RADIUS && abs(p1ydist) < player_rect_size.y/2)
+        if(ball_position.x > player1_position.x - player_rect_size.x/2 - BALL_RADIUS 
+            && abs(p1ydist) < player_rect_size.y/2 + BALL_RADIUS)
         {
             float d = p1ydist / player_rect_size.y/2 * BOUNCE_FACTOR;
             vec2<float> direction = {cos(d), -sin(d)};
