@@ -5,7 +5,7 @@
 	(uuid "c5b94243-0015-46aa-9508-ff5973f88339")
 	(paper "A4")
 	(lib_symbols
-		(symbol "Amplifier_Operational:NE5532"
+		(symbol "Amplifier_Operational:OPA1612AxD"
 			(pin_names
 				(offset 0.127)
 			)
@@ -21,7 +21,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "NE5532"
+			(property "Value" "OPA1612AxD"
 				(at 0 -5.08 0)
 				(effects
 					(font
@@ -39,7 +39,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ne5532.pdf"
+			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/opa1612.pdf"
 				(at 0 0 0)
 				(effects
 					(font
@@ -48,7 +48,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Dual Low-Noise Operational Amplifiers, DIP-8/SOIC-8"
+			(property "Description" "Dual SoundPlus High Performance, Bipolar-Input Audio Operational Amplifiers, SOIC-8"
 				(at 0 0 0)
 				(effects
 					(font
@@ -83,7 +83,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "NE5532_1_1"
+			(symbol "OPA1612AxD_1_1"
 				(polyline
 					(pts
 						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
@@ -151,7 +151,7 @@
 					)
 				)
 			)
-			(symbol "NE5532_2_1"
+			(symbol "OPA1612AxD_2_1"
 				(polyline
 					(pts
 						(xy -5.08 5.08) (xy 5.08 0) (xy -5.08 -5.08) (xy -5.08 5.08)
@@ -219,7 +219,7 @@
 					)
 				)
 			)
-			(symbol "NE5532_3_1"
+			(symbol "OPA1612AxD_3_1"
 				(pin power_in line
 					(at -2.54 -7.62 90)
 					(length 3.81)
@@ -249,6 +249,142 @@
 						)
 					)
 					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "Device:C"
+			(pin_numbers hide)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "C"
+				(at 0.635 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0.9652 -3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Unpolarized capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "C_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "C_0_1"
+				(polyline
+					(pts
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 0.762) (xy 2.032 0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 2.794)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2852,6 +2988,371 @@
 				)
 			)
 		)
+		(symbol "Regulator_Linear:L78L33_TO92"
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at -3.81 3.175 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "L78L33_TO92"
+				(at 0 3.175 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+				(at 0 5.715 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+						(italic yes)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.st.com/content/ccc/resource/technical/document/datasheet/15/55/e5/aa/23/5b/43/fd/CD00000446.pdf/files/CD00000446.pdf/jcr:content/translations/en.CD00000446.pdf"
+				(at 0 -1.27 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Positive 100mA 30V Linear Regulator, Fixed Output 3.3V, TO-92"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "Voltage Regulator 100mA Positive"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "TO?92*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "L78L33_TO92_0_1"
+				(rectangle
+					(start -5.08 -5.08)
+					(end 5.08 1.905)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "L78L33_TO92_1_1"
+				(pin power_out line
+					(at 7.62 0 180)
+					(length 2.54)
+					(name "VO"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -7.62 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -7.62 0 0)
+					(length 2.54)
+					(name "VI"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "Regulator_SwitchedCapacitor:ICL7660"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U"
+				(at -6.35 11.43 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "ICL7660"
+				(at 3.81 11.43 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 2.54 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://datasheets.maximintegrated.com/en/ds/ICL7660-MAX1044.pdf"
+				(at 2.54 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Switched-Capacitor Voltage Converter, 1.5V to 10.0V operating supply voltage, 10mA with a 0.5V output drop, SO-8/DIP-8/µMAX-8/TO-99"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "monolithic CMOS switched capacitor voltage converter invert double divide multiply"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "DIP*W7.62mm* SOIC*3.9x4.9mm* MSOP*3x3mm*P0.65mm* TO?99*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "ICL7660_0_1"
+				(rectangle
+					(start -7.62 10.16)
+					(end 7.62 -10.16)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "ICL7660_1_1"
+				(pin no_connect line
+					(at -7.62 5.08 0)
+					(length 2.54) hide
+					(name "NC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 10.16 2.54 180)
+					(length 2.54)
+					(name "CAP+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -12.7 90)
+					(length 2.54)
+					(name "GND"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at 10.16 -7.62 180)
+					(length 2.54)
+					(name "CAP-"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_out line
+					(at 10.16 7.62 180)
+					(length 2.54)
+					(name "VOUT"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "5"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 -5.08 0)
+					(length 2.54)
+					(name "LV"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "6"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin input line
+					(at -10.16 0 0)
+					(length 2.54)
+					(name "OSC"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "7"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at -10.16 7.62 0)
+					(length 2.54)
+					(name "V+"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "8"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Transistor_BJT:BD237"
 			(pin_names
 				(offset 0) hide)
@@ -3308,6 +3809,12 @@
 		(uuid "29867630-3877-4d8f-8943-e39c018f7896")
 	)
 	(junction
+		(at 119.38 134.62)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "317acb85-693d-4ecc-8db6-3493bd89cdde")
+	)
+	(junction
 		(at 110.49 44.45)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3324,6 +3831,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "64f1477e-9e90-4364-99d2-88b3aeeccf4b")
+	)
+	(junction
+		(at 55.88 134.62)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7774f3aa-0149-4bf4-8f24-bc51e27d51ad")
 	)
 	(junction
 		(at 60.96 54.61)
@@ -3392,6 +3905,12 @@
 		(uuid "c572a0b8-08a8-4db1-a968-7f1b4a61f756")
 	)
 	(junction
+		(at 29.21 134.62)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cc7cb73b-afb7-4ba7-8a48-96cba4c2189f")
+	)
+	(junction
 		(at 205.74 146.05)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3408,6 +3927,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d5c5e48b-e469-4af3-b4bf-fea3fa8ea68a")
+	)
+	(junction
+		(at 43.18 142.24)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e2b7dcca-91f2-4a3e-97d6-572cab1160b3")
 	)
 	(junction
 		(at 74.93 54.61)
@@ -3465,6 +3990,16 @@
 	)
 	(wire
 		(pts
+			(xy 22.86 134.62) (xy 29.21 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "047bad04-1f59-40ff-9561-22820c234fc5")
+	)
+	(wire
+		(pts
 			(xy 201.93 36.83) (xy 204.47 36.83)
 		)
 		(stroke
@@ -3472,6 +4007,26 @@
 			(type default)
 		)
 		(uuid "05547ef5-9642-406e-a7e2-3d40d680ac2e")
+	)
+	(wire
+		(pts
+			(xy 41.91 38.1) (xy 41.91 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "08ad1b65-e07b-4a75-89dd-e78cecf72e24")
+	)
+	(wire
+		(pts
+			(xy 55.88 134.62) (xy 50.8 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "093d29db-5b11-42de-89ee-1faf4eb21a26")
 	)
 	(wire
 		(pts
@@ -3505,6 +4060,16 @@
 	)
 	(wire
 		(pts
+			(xy 72.39 38.1) (xy 72.39 34.29)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f504553-51db-401d-a524-f0a54e586e74")
+	)
+	(wire
+		(pts
 			(xy 217.17 64.77) (xy 217.17 90.17)
 		)
 		(stroke
@@ -3525,7 +4090,17 @@
 	)
 	(wire
 		(pts
-			(xy 196.85 99.06) (xy 204.47 99.06)
+			(xy 124.46 134.62) (xy 119.38 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "17dbfc53-3c40-4182-9df0-0d0d662d2a07")
+	)
+	(wire
+		(pts
+			(xy 196.85 99.06) (xy 218.44 99.06)
 		)
 		(stroke
 			(width 0)
@@ -3565,6 +4140,16 @@
 	)
 	(wire
 		(pts
+			(xy 29.21 134.62) (xy 35.56 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "268fe368-ac2e-40aa-8652-4ed68a83f4d1")
+	)
+	(wire
+		(pts
 			(xy 261.62 146.05) (xy 242.57 146.05)
 		)
 		(stroke
@@ -3592,6 +4177,16 @@
 			(type default)
 		)
 		(uuid "2d203f41-86e5-47c6-8ce7-6ee5ffc57979")
+	)
+	(wire
+		(pts
+			(xy 72.39 22.86) (xy 72.39 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2eaadda0-f35f-4278-b8fd-7333e0cfa7e8")
 	)
 	(wire
 		(pts
@@ -3655,6 +4250,16 @@
 	)
 	(wire
 		(pts
+			(xy 110.49 139.7) (xy 110.49 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "420a1bb5-7775-4a30-806f-5064bceac480")
+	)
+	(wire
+		(pts
 			(xy 213.36 57.15) (xy 213.36 67.31)
 		)
 		(stroke
@@ -3695,6 +4300,16 @@
 	)
 	(wire
 		(pts
+			(xy 81.28 38.1) (xy 72.39 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "546734ce-cee8-40fe-9007-d6e181006f8a")
+	)
+	(wire
+		(pts
 			(xy 204.47 121.92) (xy 214.63 121.92)
 		)
 		(stroke
@@ -3725,6 +4340,26 @@
 	)
 	(wire
 		(pts
+			(xy 110.49 134.62) (xy 119.38 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "599a8435-9536-4c9d-8336-8f466440f8a7")
+	)
+	(wire
+		(pts
+			(xy 55.88 134.62) (xy 63.5 134.62)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65a4cdcb-cb73-4956-b1ed-3321eb3941ad")
+	)
+	(wire
+		(pts
 			(xy 130.81 54.61) (xy 124.46 54.61)
 		)
 		(stroke
@@ -3752,6 +4387,16 @@
 			(type default)
 		)
 		(uuid "6f0d9db7-ead6-4e71-a1b4-9bcc3fce2d3f")
+	)
+	(wire
+		(pts
+			(xy 81.28 22.86) (xy 72.39 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "701f2937-59e1-44e2-8388-509b56c3e282")
 	)
 	(wire
 		(pts
@@ -3882,6 +4527,16 @@
 			(type default)
 		)
 		(uuid "96e90919-dcaa-4559-904e-0e69a3a4c795")
+	)
+	(wire
+		(pts
+			(xy 110.49 148.59) (xy 110.49 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "98cd9b00-fe9a-494d-aabb-ae6013b4d706")
 	)
 	(wire
 		(pts
@@ -4095,6 +4750,16 @@
 	)
 	(wire
 		(pts
+			(xy 29.21 142.24) (xy 43.18 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b784ed09-1c2a-410c-aa09-87279ccdfe92")
+	)
+	(wire
+		(pts
 			(xy 222.25 62.23) (xy 215.9 62.23)
 		)
 		(stroke
@@ -4132,16 +4797,6 @@
 			(type default)
 		)
 		(uuid "bb756abb-6049-40eb-8491-20aba05dc6b2")
-	)
-	(wire
-		(pts
-			(xy 218.44 99.06) (xy 212.09 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bb8353d7-3c09-41e5-81d0-583aff5e20f5")
 	)
 	(wire
 		(pts
@@ -4225,6 +4880,36 @@
 	)
 	(wire
 		(pts
+			(xy 43.18 142.24) (xy 55.88 142.24)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d5ddb400-6e9a-449e-b70c-5e93e2b7fcf8")
+	)
+	(wire
+		(pts
+			(xy 50.8 38.1) (xy 41.91 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d852bfea-7952-4074-9faf-d1eded1a0d08")
+	)
+	(wire
+		(pts
+			(xy 50.8 22.86) (xy 41.91 22.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d9aaf3f7-0c4d-4e0e-876a-b80f63a66f31")
+	)
+	(wire
+		(pts
 			(xy 105.41 82.55) (xy 110.49 82.55)
 		)
 		(stroke
@@ -4265,6 +4950,16 @@
 	)
 	(wire
 		(pts
+			(xy 119.38 134.62) (xy 119.38 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ed145e8f-a0d3-4098-85c3-0c71a944eaa4")
+	)
+	(wire
+		(pts
 			(xy 242.57 146.05) (xy 242.57 140.97)
 		)
 		(stroke
@@ -4292,6 +4987,16 @@
 			(type default)
 		)
 		(uuid "f5c52024-3675-4e68-ab2d-b562da507e67")
+	)
+	(wire
+		(pts
+			(xy 41.91 22.86) (xy 41.91 26.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f840b16b-d5df-476b-8b49-9ca7b91bc3d9")
 	)
 	(wire
 		(pts
@@ -4345,9 +5050,31 @@
 			)
 		)
 	)
-	(global_label "5v"
+	(global_label "SDA"
+		(shape bidirectional)
+		(at 267.97 46.99 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "058d2233-2219-4174-9630-b598a19d05d7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 275.6346 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "+3.3V"
 		(shape input)
-		(at 86.36 24.13 90)
+		(at 81.28 22.86 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4357,7 +5084,29 @@
 		)
 		(uuid "3643124b-b262-4492-bbae-ff0790abf168")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 86.36 18.9677 90)
+			(at 81.28 14.19 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SCL"
+		(shape input)
+		(at 267.97 49.53 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "49d04571-76b9-43f2-91f4-136c106d672d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 274.4628 49.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4389,9 +5138,9 @@
 			)
 		)
 	)
-	(global_label "5v"
+	(global_label "+3.3V"
 		(shape input)
-		(at 73.66 24.13 90)
+		(at 50.8 22.86 90)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4401,7 +5150,29 @@
 		)
 		(uuid "63797ecf-875e-427a-87f6-8fe1546c8e72")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 73.66 18.9677 90)
+			(at 50.8 14.19 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SDA"
+		(shape bidirectional)
+		(at 176.53 46.99 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6ee41b83-be51-44f8-b878-4f3790dea26f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 184.1946 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4433,9 +5204,9 @@
 			)
 		)
 	)
-	(global_label "-2V"
+	(global_label "-3.3V"
 		(shape input)
-		(at 73.66 39.37 270)
+		(at 50.8 38.1 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4445,34 +5216,12 @@
 		)
 		(uuid "846b5d2b-f556-452b-bddf-b2178062bf77")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 73.66 46.2257 90)
+			(at 50.8 46.77 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "-2V"
-		(shape output)
-		(at 46.99 24.13 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "90353e20-d9a2-4e08-b896-281d4e2255c6")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 53.8457 24.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 				(hide yes)
 			)
 		)
@@ -4543,6 +5292,28 @@
 			)
 		)
 	)
+	(global_label "-3.3V"
+		(shape output)
+		(at 124.46 134.62 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "bae5f730-5635-494a-be13-6e017e94f295")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 133.13 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "VIDEO_OUT"
 		(shape output)
 		(at 266.7 138.43 0)
@@ -4565,9 +5336,75 @@
 			)
 		)
 	)
-	(global_label "-2V"
+	(global_label "+3.3V"
 		(shape input)
-		(at 86.36 39.37 270)
+		(at 90.17 134.62 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "dd32989f-b80c-42b9-be52-c4c4754cded3")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 81.5 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "+3.3V"
+		(shape output)
+		(at 63.5 134.62 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ddd9d682-04d4-4eaf-9841-2a52ad565957")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 72.17 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "SCL"
+		(shape output)
+		(at 176.53 49.53 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dddbb070-7558-45b3-8a06-51416c34d389")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 183.0228 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "-3.3V"
+		(shape input)
+		(at 81.28 38.1 270)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -4577,7 +5414,29 @@
 		)
 		(uuid "e6bf679a-06c0-4e0f-9823-a3e48dac8489")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 86.36 46.2257 90)
+			(at 81.28 46.77 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "5v"
+		(shape input)
+		(at 22.86 134.62 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ec878e62-d4d0-4075-a794-77bd38875007")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 17.6977 134.62 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5138,75 +5997,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:R")
-		(at 208.28 99.06 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "195c2100-0722-44be-95c5-12d7123f2cb3")
-		(property "Reference" "R12"
-			(at 208.28 93.8995 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "10kR"
-			(at 208.28 96.3238 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 208.28 100.838 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 208.28 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 208.28 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "0fbb03a0-83ef-47c5-ae42-428ac53f807a")
-		)
-		(pin "1"
-			(uuid "e96ee150-affe-4993-81fa-14aaf0c2e07d")
-		)
-		(instances
-			(project "picoSYS"
-				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(reference "R12")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Amplifier_Operational:NE5532")
+		(lib_id "Amplifier_Operational:OPA1612AxD")
 		(at 250.19 138.43 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -5223,7 +6014,7 @@
 				)
 			)
 		)
-		(property "Value" "NE5532"
+		(property "Value" "OPA1612AxD"
 			(at 250.19 131.6298 0)
 			(effects
 				(font
@@ -5240,7 +6031,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ne5532.pdf"
+		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/opa1612.pdf"
 			(at 250.19 138.43 0)
 			(effects
 				(font
@@ -5249,7 +6040,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Dual Low-Noise Operational Amplifiers, DIP-8/SOIC-8"
+		(property "Description" "Dual SoundPlus High Performance, Bipolar-Input Audio Operational Amplifiers, SOIC-8"
 			(at 250.19 138.43 0)
 			(effects
 				(font
@@ -5498,6 +6289,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:GND")
+		(at 100.33 154.94 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2dfea7c7-e36d-426e-beea-8a455eead200")
+		(property "Reference" "#PWR021"
+			(at 100.33 161.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 100.33 159.0731 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 100.33 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 100.33 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 100.33 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9cfd6f4f-6462-49e9-9dd8-662cbb693ff8")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "#PWR021")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 208.28 82.55 90)
 		(unit 1)
@@ -5566,8 +6423,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Amplifier_Operational:NE5532")
-		(at 88.9 31.75 0)
+		(lib_id "Amplifier_Operational:OPA1612AxD")
+		(at 83.82 30.48 0)
 		(unit 3)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5576,7 +6433,7 @@
 		(fields_autoplaced yes)
 		(uuid "3952526d-9e31-49f3-ae5e-67cd7159ee86")
 		(property "Reference" "U2"
-			(at 86.995 30.5378 0)
+			(at 81.915 29.2678 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5584,8 +6441,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "NE5532"
-			(at 86.995 32.9621 0)
+		(property "Value" "OPA1612AxD"
+			(at 81.915 31.6921 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5594,7 +6451,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 88.9 31.75 0)
+			(at 83.82 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5602,8 +6459,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ne5532.pdf"
-			(at 88.9 31.75 0)
+		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/opa1612.pdf"
+			(at 83.82 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5611,8 +6468,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Dual Low-Noise Operational Amplifiers, DIP-8/SOIC-8"
-			(at 88.9 31.75 0)
+		(property "Description" "Dual SoundPlus High Performance, Bipolar-Input Audio Operational Amplifiers, SOIC-8"
+			(at 83.82 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5790,8 +6647,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Amplifier_Operational:NE5532")
-		(at 76.2 31.75 0)
+		(lib_id "Amplifier_Operational:OPA1612AxD")
+		(at 53.34 30.48 0)
 		(unit 3)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5800,7 +6657,7 @@
 		(fields_autoplaced yes)
 		(uuid "41694fc5-bf5d-4600-ab18-cfd0df967de2")
 		(property "Reference" "U3"
-			(at 74.295 30.5378 0)
+			(at 51.435 29.2678 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5808,8 +6665,8 @@
 				(justify left)
 			)
 		)
-		(property "Value" "NE5532"
-			(at 74.295 32.9621 0)
+		(property "Value" "OPA1612AxD"
+			(at 51.435 31.6921 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5818,7 +6675,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 76.2 31.75 0)
+			(at 53.34 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5826,8 +6683,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ne5532.pdf"
-			(at 76.2 31.75 0)
+		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/opa1612.pdf"
+			(at 53.34 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5835,8 +6692,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Dual Low-Noise Operational Amplifiers, DIP-8/SOIC-8"
-			(at 76.2 31.75 0)
+		(property "Description" "Dual SoundPlus High Performance, Bipolar-Input Audio Operational Amplifiers, SOIC-8"
+			(at 53.34 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5873,6 +6730,76 @@
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "U3")
 					(unit 3)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 29.21 138.43 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "44171fe1-1151-4f5e-a5b9-ac9f2e5cea79")
+		(property "Reference" "C10"
+			(at 32.131 137.2178 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 32.131 139.6421 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 30.1752 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 29.21 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 29.21 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "b3ef5350-62d3-464b-bc30-83e571d45619")
+		)
+		(pin "1"
+			(uuid "e94afe00-fb79-4397-a5ba-450fd44f61b5")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "C10")
+					(unit 1)
 				)
 			)
 		)
@@ -6014,7 +6941,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Amplifier_Operational:NE5532")
+		(lib_id "Amplifier_Operational:OPA1612AxD")
 		(at 223.52 148.59 0)
 		(unit 2)
 		(exclude_from_sim no)
@@ -6031,7 +6958,7 @@
 				)
 			)
 		)
-		(property "Value" "NE5532"
+		(property "Value" "OPA1612AxD"
 			(at 223.52 141.7898 0)
 			(effects
 				(font
@@ -6048,7 +6975,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ne5532.pdf"
+		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/opa1612.pdf"
 			(at 223.52 148.59 0)
 			(effects
 				(font
@@ -6057,7 +6984,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Dual Low-Noise Operational Amplifiers, DIP-8/SOIC-8"
+		(property "Description" "Dual SoundPlus High Performance, Bipolar-Input Audio Operational Amplifiers, SOIC-8"
 			(at 223.52 148.59 0)
 			(effects
 				(font
@@ -6095,6 +7022,92 @@
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "U2")
 					(unit 2)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Regulator_SwitchedCapacitor:ICL7660")
+		(at 100.33 142.24 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4df2c724-5dfb-4e97-8ef4-64b9d340b162")
+		(property "Reference" "U4"
+			(at 100.33 127.9355 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "ICL7660"
+			(at 100.33 130.3598 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 102.87 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://datasheets.maximintegrated.com/en/ds/ICL7660-MAX1044.pdf"
+			(at 102.87 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Switched-Capacitor Voltage Converter, 1.5V to 10.0V operating supply voltage, 10mA with a 0.5V output drop, SO-8/DIP-8/µMAX-8/TO-99"
+			(at 100.33 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "6"
+			(uuid "3504276a-4674-4806-84ef-37f6a4fbfb5d")
+		)
+		(pin "5"
+			(uuid "fceb06f4-edc9-4ee6-b644-744b2a003768")
+		)
+		(pin "4"
+			(uuid "894fabb6-e950-4638-b2db-a1c3551595e3")
+		)
+		(pin "7"
+			(uuid "a0620eda-f10f-4676-a427-6cd28bc30a96")
+		)
+		(pin "3"
+			(uuid "98d4500d-9790-4972-8304-ed35d0c84a47")
+		)
+		(pin "1"
+			(uuid "c7fe282d-4f54-45c1-af3c-f58ddae8f6a7")
+		)
+		(pin "2"
+			(uuid "4a0fc8ee-0759-47e4-aac5-0a685d8c3d17")
+		)
+		(pin "8"
+			(uuid "87e9de6c-a339-413a-842f-a14b0dabda75")
+		)
+		(instances
+			(project ""
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "U4")
+					(unit 1)
 				)
 			)
 		)
@@ -6170,7 +7183,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Amplifier_Operational:NE5532")
+		(lib_id "Amplifier_Operational:OPA1612AxD")
 		(at 74.93 85.09 0)
 		(mirror y)
 		(unit 2)
@@ -6180,19 +7193,21 @@
 		(dnp no)
 		(uuid "50c27c1f-9d8d-4738-95a0-36679e2ee7a2")
 		(property "Reference" "U3"
-			(at 74.93 94.3145 0)
+			(at 74.93 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Value" "NE5532"
-			(at 74.93 91.8902 0)
+		(property "Value" "OPA1612AxD"
+			(at 74.93 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
@@ -6204,7 +7219,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ne5532.pdf"
+		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/opa1612.pdf"
 			(at 74.93 85.09 0)
 			(effects
 				(font
@@ -6213,7 +7228,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Dual Low-Noise Operational Amplifiers, DIP-8/SOIC-8"
+		(property "Description" "Dual SoundPlus High Performance, Bipolar-Input Audio Operational Amplifiers, SOIC-8"
 			(at 74.93 85.09 0)
 			(effects
 				(font
@@ -6251,6 +7266,76 @@
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "U3")
 					(unit 2)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 41.91 30.48 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "51095369-b4ee-4073-b734-a50245441aea")
+		(property "Reference" "C3"
+			(at 44.831 29.2678 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 44.831 31.6921 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 42.8752 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 41.91 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 41.91 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7de04725-8ddd-471d-ab8e-f0a5bf37980b")
+		)
+		(pin "1"
+			(uuid "b9ddc09f-1c1e-49fc-9f6a-0632755d4a1c")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "C3")
+					(unit 1)
 				)
 			)
 		)
@@ -6343,7 +7428,7 @@
 				)
 			)
 		)
-		(property "Value" "100kR"
+		(property "Value" "10kR"
 			(at 200.66 119.1838 90)
 			(effects
 				(font
@@ -6858,6 +7943,76 @@
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "R31")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 110.49 144.78 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "726e422f-851e-4755-973c-05aa01912244")
+		(property "Reference" "C1"
+			(at 113.411 143.5678 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 113.411 145.9921 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 111.4552 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 110.49 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 110.49 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "85d33e16-d8b2-4b7a-b3b9-ea49bec2c591")
+		)
+		(pin "2"
+			(uuid "b19e9e8f-f534-47c4-b321-cd24e4ab3f2c")
+		)
+		(instances
+			(project ""
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -7735,6 +8890,78 @@
 		)
 	)
 	(symbol
+		(lib_id "Regulator_Linear:L78L33_TO92")
+		(at 43.18 134.62 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "8f1151d5-30b9-4c62-8a2c-22a2660d9abb")
+		(property "Reference" "U5"
+			(at 43.18 128.5705 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "L78L33_TO92"
+			(at 43.18 130.9948 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
+			(at 43.18 128.905 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.st.com/content/ccc/resource/technical/document/datasheet/15/55/e5/aa/23/5b/43/fd/CD00000446.pdf/files/CD00000446.pdf/jcr:content/translations/en.CD00000446.pdf"
+			(at 43.18 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Positive 100mA 30V Linear Regulator, Fixed Output 3.3V, TO-92"
+			(at 43.18 134.62 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "ac86eb73-c6f7-4de8-8dc4-e7f07741ad8c")
+		)
+		(pin "3"
+			(uuid "fa218448-ec48-444f-82e5-86d3a97fa2e1")
+		)
+		(pin "1"
+			(uuid "644f271a-a099-4b25-9b73-b9ef0fa8fe1a")
+		)
+		(instances
+			(project ""
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "U5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R")
 		(at 116.84 29.21 90)
 		(unit 1)
@@ -7821,7 +9048,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "27kR"
+		(property "Value" "2.7kR"
 			(at 206.248 126.9421 0)
 			(effects
 				(font
@@ -7935,6 +9162,76 @@
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "R26")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Polarized")
+		(at 119.38 140.97 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "97d855a4-29df-4646-acfd-aacdb9175717")
+		(property "Reference" "C2"
+			(at 122.301 141.2932 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "6x 330uF 6.3V"
+			(at 122.301 138.8689 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" ""
+			(at 118.4148 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 119.38 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Polarized capacitor"
+			(at 119.38 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "16fe449a-6eda-414a-9e51-36c2dd6be13c")
+		)
+		(pin "1"
+			(uuid "ce973b92-778e-4958-a817-06e28b89b8ff")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -8071,6 +9368,72 @@
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "R44")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 119.38 144.78 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a863d016-af7a-4f65-84e6-e82e3b4bd6dd")
+		(property "Reference" "#PWR01"
+			(at 119.38 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 119.38 148.9131 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 119.38 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 119.38 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 119.38 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "bf14f367-8a4a-4be4-b553-68db0b683963")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -8569,7 +9932,77 @@
 		)
 	)
 	(symbol
-		(lib_id "Amplifier_Operational:NE5532")
+		(lib_id "Device:C")
+		(at 55.88 138.43 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d442888b-7f59-42ea-b0a6-099525c6c312")
+		(property "Reference" "C9"
+			(at 58.801 137.2178 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 58.801 139.6421 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 56.8452 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 55.88 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 55.88 138.43 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "c623990e-f890-4c98-911e-838c307162f8")
+		)
+		(pin "1"
+			(uuid "9d55bdb1-c673-4efc-9735-f1b5eaaa8b7a")
+		)
+		(instances
+			(project ""
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "C9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Amplifier_Operational:OPA1612AxD")
 		(at 222.25 124.46 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -8586,7 +10019,7 @@
 				)
 			)
 		)
-		(property "Value" "NE5532"
+		(property "Value" "OPA1612AxD"
 			(at 222.25 117.6598 0)
 			(effects
 				(font
@@ -8603,7 +10036,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/ne5532.pdf"
+		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/opa1612.pdf"
 			(at 222.25 124.46 0)
 			(effects
 				(font
@@ -8612,7 +10045,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Dual Low-Noise Operational Amplifiers, DIP-8/SOIC-8"
+		(property "Description" "Dual SoundPlus High Performance, Bipolar-Input Audio Operational Amplifiers, SOIC-8"
 			(at 222.25 124.46 0)
 			(effects
 				(font
@@ -8782,6 +10215,76 @@
 			(project ""
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
 					(reference "#PWR09")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 72.39 30.48 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "df525689-dcfd-40fa-8999-0b1b851994cb")
+		(property "Reference" "C4"
+			(at 75.311 29.2678 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 75.311 31.6921 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 73.3552 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 72.39 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 72.39 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "1b784544-ec58-47b1-8a5c-dd624db2078e")
+		)
+		(pin "1"
+			(uuid "d48b798c-738a-47bb-b3e5-35d7b73e3cd5")
+		)
+		(instances
+			(project "picoSYS"
+				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
+					(reference "C4")
 					(unit 1)
 				)
 			)
@@ -9591,50 +11094,68 @@
 			)
 		)
 	)
-	(sheet
-		(at 21.59 21.59)
-		(size 25.4 24.13)
+	(symbol
+		(lib_id "power:GND")
+		(at 43.18 142.24 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "d2b00318-2e60-4c8a-9afb-1b2401ad5490")
-		(property "Sheetname" "inverting_supply"
-			(at 21.59 20.8784 0)
+		(uuid "f7771ffe-e381-4d27-a6d5-dc7f26cc85da")
+		(property "Reference" "#PWR020"
+			(at 43.18 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
+				(hide yes)
 			)
 		)
-		(property "Sheetfile" "inverting_supply.kicad_sch"
-			(at 21.59 46.3046 0)
+		(property "Value" "GND"
+			(at 43.18 146.3731 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left top)
 			)
 		)
-		(pin "-2V" output
-			(at 46.99 24.13 0)
+		(property "Footprint" ""
+			(at 43.18 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(hide yes)
 			)
-			(uuid "00879734-d763-4371-8650-c743ed8c6975")
+		)
+		(property "Datasheet" ""
+			(at 43.18 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 43.18 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "256134cc-a7c5-4555-b829-fb013813f52a")
 		)
 		(instances
 			(project "picoSYS"
 				(path "/c5b94243-0015-46aa-9508-ff5973f88339"
-					(page "2")
+					(reference "#PWR020")
+					(unit 1)
 				)
 			)
 		)

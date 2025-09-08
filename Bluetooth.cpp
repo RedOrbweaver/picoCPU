@@ -164,7 +164,7 @@ static void handle_gatt_client_event(uint8_t packet_type, uint16_t channel, uint
                 {
                     uint16_t value_length = gatt_event_notification_get_value_length(packet);
                     const uint8_t *value = gatt_event_notification_get_value(packet);
-                    DEBUG_LOG("Indication value len %d\n", value_length);
+                    //DEBUG_LOG("Indication value len %d\n", value_length);
                     if (value_length == 2)
                     {   
                         uint16_t v = little_endian_read_16(value, 0);
