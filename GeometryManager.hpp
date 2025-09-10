@@ -11,6 +11,17 @@ class GeometryManager : protected MemoryManager
         vector<vec2<int>> points;
         shared_ptr<Segment> segment;
         vector<Geometric*> attached = {};
+        void SetPoints(vector<vec2<int>> points)
+        {
+            if(this->points.size() != points.size())
+            {
+                manager->DeAllocateSegment(segment);
+                segment = manager->AllocateSegment(points.size());
+                segment->data = this;
+            }
+            manager->WriteToSegment(segment, &points[0], 0, points.size());
+            this->points = points;
+        }
         ~Geometry()
         {
             manager->DeAllocateSegment(segment);
@@ -27,7 +38,7 @@ class GeometryManager : protected MemoryManager
     public:
     
     virtual void MoveSegment(shared_ptr<Segment> segment, int newpos, int oldpos) override;
-    virtual void WriteToSegment(shared_ptr<Segment> segment, uint8_t* data, int pos, int len) override
+    virtual void WriteToSegment(shared_ptr<Segment> segment, void* data, int pos, int len) override
     {
         assert(pos+len <= segment->GetLength());
         SendData((vec2<int>*)data, segment->GetPosition() + pos, len);

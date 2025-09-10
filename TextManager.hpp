@@ -21,7 +21,7 @@ class TextManager : public MemoryManager
         OnMoveSegmentFunction* func = (OnMoveSegmentFunction*)segment->data;
         (*func)(newpos);
     }
-    virtual void WriteToSegment(shared_ptr<Segment> segment, uint8_t* data, int pos, int len) override
+    virtual void WriteToSegment(shared_ptr<Segment> segment, void* data, int pos, int len) override
     {
         assert(pos == 0);
         SendData((const char*)data, segment->GetPosition(), len);

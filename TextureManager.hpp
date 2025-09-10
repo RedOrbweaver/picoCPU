@@ -38,7 +38,7 @@ class TextureManager : protected MemoryManager
         }
     }
     virtual void MoveSegment(shared_ptr<Segment> segment, int newpos, int oldpos) override;
-    virtual void WriteToSegment(shared_ptr<Segment> segment, uint8_t* data, int pos, int len) override;
+    virtual void WriteToSegment(shared_ptr<Segment> segment, void* data, int pos, int len) override;
     void AddTexture(shared_ptr<Texture> texture);
     public:
     shared_ptr<Texture> CreateTexture(vec2<int> size, uint8_t* data)

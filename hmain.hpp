@@ -76,6 +76,7 @@ using std::optional;
 #include "Objects/MultiPoint.hpp"
 #include "Objects/Bezier.hpp"
 #include "Objects/Sprite.hpp"
+#include "Objects/MultiSprite.hpp"
 
 #include "Bluetooth.hpp"
 #include "Gamepad.hpp"
@@ -84,6 +85,7 @@ using std::optional;
 #include "Programs/Program.hpp"
 #include "Programs/BasicTest.hpp"
 #include "Programs/Pong.hpp"
+#include "Programs/Tetris.hpp"
 #include "Programs/Programs.hpp"
 #include "Programs/MainMenu.hpp"
 

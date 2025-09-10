@@ -6,7 +6,7 @@ void TextureManager::MoveSegment(shared_ptr<Segment> segment, int newpos, int ol
     assert(tex->GetSize().area() == segment->GetLength());
     SendData(tex->data, newpos, segment->GetLength());
 }
-void TextureManager::WriteToSegment(shared_ptr<Segment> segment, uint8_t* data, int pos, int len)
+void TextureManager::WriteToSegment(shared_ptr<Segment> segment, void* data, int pos, int len)
 {
     Texture* tex = (Texture*)segment->data;
     SendData(tex->data, pos, len);

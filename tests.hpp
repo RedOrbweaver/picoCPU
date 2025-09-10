@@ -16,7 +16,7 @@ inline void TestMemoryManager()
             memcpy(data + newpos, segmap[segment], segment->GetLength());
         }
         public:
-        virtual void WriteToSegment(shared_ptr<Segment> segment, uint8_t* ndata, int pos, int len) override
+        virtual void WriteToSegment(shared_ptr<Segment> segment, void* ndata, int pos, int len) override
         {
             uint8_t* buf = new uint8_t[len];
             if(segmap.find(segment) != segmap.end())

@@ -19,9 +19,9 @@ class Geometric
         assert(pos >= 0 && pos < geometry->points.size());
         return geometry->points[pos];
     }
-    vector<vec2<int>> GetGeometry()
+    shared_ptr<GeometryManager::Geometry> GetGeometry()
     {
-        return geometry->points;
+        return geometry;
     }
     void OnMoveFunc()
     {

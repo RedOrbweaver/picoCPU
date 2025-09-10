@@ -207,7 +207,7 @@ class MemoryManager
     }
     protected:
     virtual void MoveSegment(shared_ptr<Segment> segment, int newpos, int oldpos)=0;
-    virtual void WriteToSegment(shared_ptr<Segment> segment, uint8_t* data, int pos, int len)=0;
+    virtual void WriteToSegment(shared_ptr<Segment> segment, void* data, int pos, int len)=0;
     
     public:
     int GetFreeElements()

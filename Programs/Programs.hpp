@@ -21,8 +21,13 @@ inline ProgramDescription programs[] =
         CreateProgram<BasicTestProgram>
     },
     {
-        "PONG",
-        "A game of PONG",
+        "Pong",
+        "A game of Pong",
         CreateProgram<PongProgram>
     },
+    {
+        "Tetris",
+        "A game of Tetris",
+        CreateProgram<TetrisProgram>
+    }
 };
