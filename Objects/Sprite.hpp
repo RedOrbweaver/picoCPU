@@ -51,7 +51,7 @@ class Sprite : public Object
     }
     Sprite(EntityManager* manager, shared_ptr<Texture> texture, bool center, bool usetransparency, 
         uint8_t transparency_value, vec2<int> pos, bool visible, uint8_t layer, ENTITY_TYPE real_type = ENTITY_TYPE::SPRITE)
-        : Object(manager, ENTITY_TYPE::SPRITE, visible, layer, 0, pos, texture->GetSize())
+        : Object(manager, real_type, visible, layer, 0, pos, texture->GetSize())
     {
         SetTexture(texture);
         SetCentered(center);

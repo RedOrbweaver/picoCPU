@@ -11,17 +11,7 @@ class GeometryManager : protected MemoryManager
         vector<vec2<int>> points;
         shared_ptr<Segment> segment;
         vector<Geometric*> attached = {};
-        void SetPoints(vector<vec2<int>> points)
-        {
-            if(this->points.size() != points.size())
-            {
-                manager->DeAllocateSegment(segment);
-                segment = manager->AllocateSegment(points.size());
-                segment->data = this;
-            }
-            manager->WriteToSegment(segment, &points[0], 0, points.size());
-            this->points = points;
-        }
+        void SetPoints(vector<vec2<int>> points);
         ~Geometry()
         {
             manager->DeAllocateSegment(segment);

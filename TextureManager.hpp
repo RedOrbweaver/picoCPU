@@ -31,7 +31,7 @@ class TextureManager : protected MemoryManager
         while(i < pos+len)
         {
             auto source = (i > UINT16_MAX) ? SOURCE::TEXTURE1 : SOURCE::TEXTURE0;
-            int towrite = std::min(len-i, 255);
+            int towrite = std::min(len-tpos, 255);
             gpu->I2CWrite(source, (source == SOURCE::TEXTURE1) ? i - UINT16_MAX : i, towrite, data + tpos);
             tpos += towrite;
             i += towrite;

@@ -7,9 +7,9 @@ class MultiSprite : public Sprite, public Geometric
     {
         uint16_t s = start;
         uint16_t e = end;
-        memcpy(data+1, &s, 2);
-        memcpy(data+3, &e, 2);
-        manager->WriteEntityData(index, data+1, 1, 4);
+        memcpy(data+11, &s, 2);
+        memcpy(data+13, &e, 2);
+        manager->WriteEntityData(index, data+11, 11, 4);
     }
     MultiSprite(EntityManager* manager, GeometryManager* geometry_manager, shared_ptr<Texture> texture, shared_ptr<GeometryManager::Geometry> geometry, bool center, bool usetransparency, 
         uint8_t transparency_value, vec2<int> pos, bool visible, uint8_t layer)

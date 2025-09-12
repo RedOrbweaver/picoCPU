@@ -30,3 +30,18 @@ void GeometryManager::MoveSegment(shared_ptr<Segment> segment, int newpos, int o
         geometry->attached[i]->OnMoveFunc();
     }
 }
+void GeometryManager::Geometry::SetPoints(vector<vec2<int>> points)
+{
+    if(this->points.size() != points.size())
+    {
+        manager->DeAllocateSegment(segment);
+        segment = manager->AllocateSegment(points.size());
+        segment->data = this;
+    }
+    manager->WriteToSegment(segment, &points[0], 0, points.size());
+    this->points = points;
+    for(auto it : attached)
+    {
+        it->OnMoveFunc();
+    }
+}
