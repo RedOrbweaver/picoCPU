@@ -6,12 +6,12 @@ class TetrisProgram : public Program
 
     static inline constexpr int BOARD_X = 10;
     static inline constexpr int BOARD_Y = 20;
-    static inline constexpr float PIECE_STEP_TIME = 0.4f;
-    static inline constexpr float EXPLOSION_STEP_TIME = 0.25f;
-    static inline constexpr float REMOVE_LINE_STEP_TIME = 0.5f;
+    static inline constexpr float PIECE_STEP_TIME = 0.3f;
+    static inline constexpr float EXPLOSION_STEP_TIME = 0.05f;
+    static inline constexpr float REMOVE_LINE_STEP_TIME = 0.1f;
     static inline constexpr float NEW_PIECE_DELAY = 0.5f;
     static inline constexpr float FALL_STEP_TIME = 0.25f;
-    static inline constexpr int TETROMINO_TYPES = 2;
+    static inline constexpr int TETROMINO_TYPES = 5;
     static inline constexpr int BLOCK_TYPES = TETROMINO_TYPES+1; // 5 tetromino + explosion
     static inline constexpr int BLOCK_SIZE_X = 12;
     static inline constexpr int BLOCK_SIZE_Y = 12;
@@ -90,14 +90,110 @@ class TetrisProgram : public Program
             },
             1,
             block{false, false, 2}
-        }
+        },
+        {
+            // T
+            std::vector<std::vector<vec2<int>>>
+            {
+                {   
+                    vec2<int>{0, 0},
+                    vec2<int>{-1, 0},
+                    vec2<int>{1, 0},
+                    vec2<int>{0, 1}
+                },
+                {
+                    vec2<int>{0, 0},
+                    vec2<int>{0, -1},
+                    vec2<int>{0, 1},
+                    vec2<int>{1, 0}
+                },
+                {
+                    vec2<int>{0, 0},
+                    vec2<int>{0, -1},
+                    vec2<int>{0, 1},
+                    vec2<int>{-1, 0}                    
+                },
+                {
+                    vec2<int>{0, 0},
+                    vec2<int>{-1, 0},
+                    vec2<int>{1, 0},
+                    vec2<int>{0, -1}                    
+                } 
+            },
+            4,
+            block{false, false, 3}
+        },
+        {
+            // L
+            std::vector<std::vector<vec2<int>>>
+            {
+                {   
+                    vec2<int>{0, 0},
+                    vec2<int>{1, 0},
+                    vec2<int>{0, -1},
+                    vec2<int>{0, -2}
+                },
+                {
+                    vec2<int>{0, 0},
+                    vec2<int>{0, -1},
+                    vec2<int>{1, 0},
+                    vec2<int>{2, 0}                    
+                },
+                {
+                    vec2<int>{0, 0},
+                    vec2<int>{0, 1},
+                    vec2<int>{0, 2},
+                    vec2<int>{-1, 0}                    
+                },
+                {
+                    vec2<int>{0, 0},
+                    vec2<int>{0, -1},
+                    vec2<int>{-1, 0},
+                    vec2<int>{-2, 0}                    
+                }
+            },
+            4,
+            block{false, false, 4}
+        },
+        {
+            // Skew
+            std::vector<std::vector<vec2<int>>>
+            {
+                {   
+                    vec2<int>{0, 0},
+                    vec2<int>{-1, 0},
+                    vec2<int>{0, -1},
+                    vec2<int>{1, -1}
+                },
+                {   
+                    vec2<int>{0, 0},
+                    vec2<int>{0, -1},
+                    vec2<int>{1, 0},
+                    vec2<int>{1, 1}
+                },                
+                {   
+                    vec2<int>{0, 0},
+                    vec2<int>{1, 0},
+                    vec2<int>{0, -1},
+                    vec2<int>{-1, -1}
+                },
+                {   
+                    vec2<int>{0, 0},
+                    vec2<int>{0, -1},
+                    vec2<int>{-1, 0},
+                    vec2<int>{-1, 1}
+                },                                
+            },
+            4,
+            block{false, false, 5}
+        },
     };
     
     block board[BOARD_Y][BOARD_X] = {0};
     int line_fills[BOARD_Y] = {0};
 
-    uint8_t* texture_datas[BLOCK_TYPES] = {__block0_tga, __block1_tga, __explosion_tga};
-    uint32_t texture_lens[BLOCK_TYPES] = {__block0_tga_len, __block1_tga_len, __explosion_tga_len};
+    uint8_t* texture_datas[BLOCK_TYPES] = {__block0_tga, __block1_tga, __block2_tga, __block3_tga, __block4_tga, __explosion_tga};
+    uint32_t texture_lens[BLOCK_TYPES] = {__block0_tga_len, __block1_tga_len, __block2_tga_len, __block3_tga_len, __block4_tga_len, __explosion_tga_len};
     shared_ptr<Texture> block_textures[BLOCK_TYPES];
     shared_ptr<GeometryManager::Geometry> block_positions[BLOCK_TYPES];
     shared_ptr<MultiSprite> block_sprites[BLOCK_TYPES];
@@ -275,6 +371,7 @@ class TetrisProgram : public Program
         }
         if(exploded == to_explode)
         {
+            to_explode = 0;
             state = STATE::REMOVING_LINES;
             return;
         }
