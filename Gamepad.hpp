@@ -98,14 +98,14 @@ class Gamepad
     }
     void ProcessButtonUpdates()
     {
-        //critical_section_enter_blocking(&cs);
+        critical_section_enter_blocking(&cs);
         int i = 0;
         int sz = update_queue.size();
         while(update_queue.size() > 0)
         {
             copy_queue[i++] = update_queue.pop();
         }
-        //critical_section_exit(&cs);
+        critical_section_exit(&cs);
         for(i = 0; i < sz; i++)
             HandleButtonUpdate(copy_queue[i]);
     }
@@ -120,9 +120,9 @@ class Gamepad
         GeneralHandler = nullptr;
         for(int i = 0; i < N_BUTTONS; i++)
             ButtonStates[i] = false;
-        //critical_section_enter_blocking(&cs);
+        critical_section_enter_blocking(&cs);
         update_queue.popall();
-        //critical_section_exit(&cs);
+        critical_section_exit(&cs);
     }
     Gamepad(std::string id)
     {

@@ -44,6 +44,15 @@ class GamepadManager
         assert(gamepads.find(id) != gamepads.end());
         return gamepads[id];
     }
+    shared_ptr<Gamepad> GetGamepad(const char* id)
+    {
+        for(auto& it : gamepads)
+        {
+            if(!strcmp(it.first.c_str(), id))
+                return it.second;
+        }
+        assert(false);
+    }
     void DeleteGamepad(std::string id)
     {
         assert(gamepads.find(id) != gamepads.end());
@@ -57,6 +66,15 @@ class GamepadManager
     bool HasGamepad(std::string id)
     {
         return gamepads.find(id) != gamepads.end();
+    }
+    bool HasGamepad(const char* id)
+    {
+        for(auto& it : gamepads)
+        {
+            if(!strcmp(it.first.c_str(), id))
+                return true;
+        }
+        return false;
     }
     void ProcessInputs()
     {

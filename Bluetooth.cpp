@@ -170,9 +170,8 @@ static void handle_gatt_client_event(uint8_t packet_type, uint16_t channel, uint
                         uint16_t v = little_endian_read_16(value, 0);
                         uint8_t state = v >> 8;
                         uint8_t btn = v & 0x00FF;
-                        std::string gamepadid = bd_addr_to_str(server_addr);
-                        assert(gamepad_manager.HasGamepad(gamepadid));
-                        auto gamepad = gamepad_manager.GetGamepad(gamepadid);
+                        char* addr = bd_addr_to_str(server_addr);
+                        auto gamepad = gamepad_manager.GetGamepad(addr);
                         gamepad->QueueButtonUpdate(v);
                     } 
                     else
@@ -304,6 +303,7 @@ int bt_init()
     btstack_run_loop_set_timer(&heartbeat, LED_SLOW_FLASH_DELAY_MS);
     btstack_run_loop_add_timer(&heartbeat);
 
+    
     // turn on!
     hci_power_control(HCI_POWER_ON);
 

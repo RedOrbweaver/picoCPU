@@ -6,18 +6,18 @@ class TetrisProgram : public Program
 
     static inline constexpr int BOARD_X = 10;
     static inline constexpr int BOARD_Y = 20;
-    static inline constexpr float PIECE_STEP_TIME = 1.0f;
+    static inline constexpr float PIECE_STEP_TIME = 0.4f;
     static inline constexpr float EXPLOSION_STEP_TIME = 0.25f;
     static inline constexpr float REMOVE_LINE_STEP_TIME = 0.5f;
     static inline constexpr float NEW_PIECE_DELAY = 0.5f;
     static inline constexpr float FALL_STEP_TIME = 0.25f;
     static inline constexpr int TETROMINO_TYPES = 2;
     static inline constexpr int BLOCK_TYPES = TETROMINO_TYPES+1; // 5 tetromino + explosion
-    static inline constexpr int BLOCK_SIZE_X = 15;
-    static inline constexpr int BLOCK_SIZE_Y = 15;
+    static inline constexpr int BLOCK_SIZE_X = 12;
+    static inline constexpr int BLOCK_SIZE_Y = 12;
     static inline constexpr vec2<int> BOARD_TOP_LEFT = {35, 35};
-    static inline constexpr int NORMAL_BLOCK_LAYER = 2;
-    static inline constexpr int EXPLOSION_BLOCK_LAYER = 3;
+    static inline constexpr int NORMAL_BLOCK_LAYER = 4;
+    static inline constexpr int EXPLOSION_BLOCK_LAYER = 1;
 
     struct block
     {
@@ -161,8 +161,8 @@ class TetrisProgram : public Program
             {
                 return false;
             }
-            auto below = pos - vec2<int>{0, 1};
-            if(IsInsideBoard(below.x, below.y) && !GetBoard(below.x, below.y).IsEmpty())
+            auto below = pos + vec2<int>{0, 1};
+            if(!IsInsideBoard(below.x, below.y) || !GetBoard(below.x, below.y).IsEmpty())
                 stuck = true;
         }
         rotation = nrot;
@@ -179,7 +179,7 @@ class TetrisProgram : public Program
         bool stuck = false;
         for(int i = 0; i < positions.size(); i++)
         {
-            auto pos = positions[i] + position;
+            auto pos = positions[i] + npos;
             if(!IsInsideBoard(pos.x, pos.y) || !GetBoard(pos.x, pos.y).IsEmpty())
             {
                 return false;
@@ -222,20 +222,26 @@ class TetrisProgram : public Program
             if(!IsInsideBoard(below.x, below.y) || !GetBoard(below.x, below.y).IsEmpty())
             {
                 block_placed = true;
-                line_fills[pos.y]++;
-                if(line_fills[pos.y] == BOARD_X)
-                {
-                    GetBoard(pos.x, pos.y).toexplode = true;
-                    any_line_filled = true;
-                }
-                else
-                    SetBoard(pos.x, pos.y, piece.type);
             }
-            else
+            if(!IsInsideBoard(pos.x, pos.y))
                 any_outside_board = true;
         }
         if(block_placed)
         {
+            for(int i = 0; i < positions.size(); i++)
+            {
+                auto pos = position + positions[i];
+                if(IsInsideBoard(pos.x, pos.y))
+                {
+                    line_fills[pos.y]++;
+                    SetBoard(pos.x, pos.y, piece.type);
+                    if(line_fills[pos.y] == BOARD_X)
+                    {
+                        GetBoard(pos.x, pos.y).toexplode = true;
+                        any_line_filled = true;
+                    }
+                }
+            }
             if(any_outside_board)
             {
                 state = STATE::GAME_OVER;
@@ -246,6 +252,7 @@ class TetrisProgram : public Program
                 state = STATE::EXPLODING;
                 return;
             }
+            state = STATE::NEW_PIECE_DELAY;
         }
         else
         {
@@ -278,28 +285,20 @@ class TetrisProgram : public Program
                 int ii = 0;
                 for(ii = 0; ii < BOARD_X; ii++)
                 {
-                    auto b = GetBoard(ii, i);
-                    if(b.toexplode)
-                    {
-                        b.toexplode = false;
-                        b.exploding = false;
-                        exploded++;
-                        if(ii > 0)
-                            GetBoard(ii-1, i).toexplode = true;
-                        break;
-                    }
-                }
-                for(; ii < BOARD_X; ii++)
-                {
-                    auto b = GetBoard(ii, i);
+                    auto& b = GetBoard(ii, i);
                     if(b.toexplode)
                     {
                         b.toexplode = false;
                         b.exploding = true;
                         exploded++;
-                        if(ii < BOARD_X-1)
+                        if(ii > 0 && !GetBoard(ii-1, i).exploding)
+                            GetBoard(ii-1, i).toexplode = true;
+                        if(ii < BOARD_X-1 && !GetBoard(ii+1, i).exploding)
+                        {
                             GetBoard(ii+1, i).toexplode = true;
-                        break;
+                            ii++;
+                        }
+                        
                     }
                 }
             }
@@ -381,7 +380,10 @@ class TetrisProgram : public Program
                     if(state != STATE::PIECE_STUCK)
                         board_changed = board_changed || RotatePiece();
                 }
-                if(timer >= PIECE_STEP_TIME)
+                float steptm = PIECE_STEP_TIME;
+                if(gamepad->IsButtonDown(Gamepad::LEFT_DOWN))
+                    steptm /= 10.0f;
+                if(timer >= steptm)
                 {
                     timer = 0.0f;
                     StepGame();
