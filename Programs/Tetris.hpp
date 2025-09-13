@@ -135,15 +135,15 @@ class TetrisProgram : public Program
                 },
                 {
                     vec2<int>{0, 0},
-                    vec2<int>{0, -1},
-                    vec2<int>{1, 0},
-                    vec2<int>{2, 0}                    
-                },
-                {
-                    vec2<int>{0, 0},
                     vec2<int>{0, 1},
                     vec2<int>{0, 2},
                     vec2<int>{-1, 0}                    
+                },
+                {
+                    vec2<int>{0, 0},
+                    vec2<int>{0, -1},
+                    vec2<int>{1, 0},
+                    vec2<int>{2, 0}                    
                 },
                 {
                     vec2<int>{0, 0},
