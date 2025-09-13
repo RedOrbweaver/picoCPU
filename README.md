@@ -38,9 +38,24 @@ The schematic can be found under picoCPU/picoSYS.
 
 ![IMG_20250913_120251703_BURST000_COVER](https://github.com/user-attachments/assets/287b34ce-dfaa-4c42-8f0e-ae981851b628)
 
-The controller has 11 buttons and communicates events over bluetooth.
+The controller has 11 buttons and communicates events over bluetooth. Typically the center button exits a given game.
 
-## Compilation
+## Features
+
+Currently, only PONG is fully implemented, while a tetris clone is partially completed.
+
+## TODO
+
+- Bluetooth communication is a hack, it should be completely redone
+- There's basic support for multiple controllers, but none of the programs really make use of it, given that I haven't made a second one.
+- Add more games
+- Create documentation, at least for the CPU
+- Make an enclosure for the main board, as well as for the gamepad
+- Color output should be possible, but would require a big rewrite.
+- Basic 3D rendering should already be possible, but offloading some of it to the GPU would be good
+- Rasterization algorithms on the GPU are rather primitive and could be made much more efficient
+
+## Build
 
 All projects use CMAKE and are configured to run in VSCODE using the Raspberry pi pico extension.
 
