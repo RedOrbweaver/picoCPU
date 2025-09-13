@@ -42,7 +42,7 @@ The controller has 11 buttons and communicates events over bluetooth. Typically 
 
 ## Features
 
-Currently, only PONG is fully implemented, while a tetris clone is partially completed.
+Currently, only Pong is fully implemented (with sound!), while a tetris clone is partially completed.
 
 ## TODO
 
