@@ -6,7 +6,7 @@ class TetrisProgram : public Program
 
     static inline constexpr int BOARD_X = 10;
     static inline constexpr int BOARD_Y = 20;
-    static inline constexpr float PIECE_STEP_TIME = 0.3f;
+    static inline constexpr float PIECE_STEP_TIME = 0.5f;
     static inline constexpr float EXPLOSION_STEP_TIME = 0.05f;
     static inline constexpr float REMOVE_LINE_STEP_TIME = 0.1f;
     static inline constexpr float NEW_PIECE_DELAY = 0.5f;
@@ -15,9 +15,19 @@ class TetrisProgram : public Program
     static inline constexpr int BLOCK_TYPES = TETROMINO_TYPES+1; // 5 tetromino + explosion
     static inline constexpr int BLOCK_SIZE_X = 12;
     static inline constexpr int BLOCK_SIZE_Y = 12;
-    static inline constexpr vec2<int> BOARD_TOP_LEFT = {35, 35};
+    static inline constexpr vec2<int> BOARD_TOP_LEFT = {35, 50};
     static inline constexpr int NORMAL_BLOCK_LAYER = 4;
     static inline constexpr int EXPLOSION_BLOCK_LAYER = 1;
+    static inline constexpr int TIME_CIRCLE_LAYER = 2;
+    static inline constexpr int TIME_TRIANGLE_LAYER = 1;
+    static inline constexpr int TIME_CIRCLE_FRAME_LAYER = 0;
+    static inline constexpr int NORMAL_UI_LAYER = 0;
+    static inline constexpr int TIME_CIRCLE_RADIUS = 15;
+
+    vec2<int> time_circle_center = {BLOCK_SIZE_X*BOARD_X + 75, 60};
+    bool time_circle_color_polarity = false;
+
+    vec2<int> next_piece_center = {BLOCK_SIZE_X*BOARD_X + 75, 60 + BLOCK_SIZE_Y + TIME_CIRCLE_RADIUS};
 
     struct block
     {
@@ -199,7 +209,13 @@ class TetrisProgram : public Program
     shared_ptr<MultiSprite> block_sprites[BLOCK_TYPES];
     
     shared_ptr<MultiLines> game_grid_lines;
+
     shared_ptr<Text> score_text;
+    shared_ptr<Text> time_text;
+
+    shared_ptr<Circle> time_circle;
+    shared_ptr<Triangle> time_triangles[4];
+    shared_ptr<EmptyCircle> time_frame_circle;
 
     tetromino piece;
     uint8_t rotation;
@@ -480,11 +496,36 @@ class TetrisProgram : public Program
                 float steptm = PIECE_STEP_TIME;
                 if(gamepad->IsButtonDown(Gamepad::LEFT_DOWN))
                     steptm /= 10.0f;
+
+                float ratio = timer/steptm;
+                if(ratio > 1.0f)
+                    ratio = 1.0f;
+                for(int i = 0; i < ArraySize(time_triangles); i++)
+                {
+                    float pratio = ratio - 0.25f*i;
+                    if(pratio < 0.0f)
+                    {
+                        //time_triangles[i]->SetVisible(false);
+                        continue;
+                    }
+                    //time_triangles[i]->SetVisible(true);
+                    pratio *= 4.0f;
+                    if(pratio > 1.0f)
+                        pratio = 1.0f;
+                    float dir = M_PI_2 * (i-1);
+                    auto p1  = (vec2<float>{cosf(dir + M_PI_2 * time_circle_color_polarity), sinf(dir + M_PI_2 * time_circle_color_polarity)}*sqrt(2)*TIME_CIRCLE_RADIUS);
+                    auto p2 = vec2<float>{cosf(pratio * M_PI_2 + dir), sinf(pratio * M_PI_2 + dir)} 
+                        * float(TIME_CIRCLE_RADIUS) * sqrt(2);
+                    time_triangles[i]->SetP1(p1.convert<int>());
+                    time_triangles[i]->SetP2(p2.convert<int>());
+                }
+
                 if(timer >= steptm)
                 {
                     timer = 0.0f;
                     StepGame();
                     board_changed = true;
+                    time_circle_color_polarity = !time_circle_color_polarity;
                 }
                 break;
             }
@@ -548,6 +589,14 @@ class TetrisProgram : public Program
                     positions[piece.type.GetBlockIndex()].push_back((blocks[i] + position) * vec2<int>{BLOCK_SIZE_X, BLOCK_SIZE_Y});
                 }
             }
+            if(state != STATE::GAME_OVER)
+            {
+                auto blocks = next_piece.block_positions[0];
+                for(int i = 0; i < blocks.size(); i++)
+                {
+                    positions[next_piece.type.GetBlockIndex()].push_back(next_piece_center + blocks[i] * vec2<int>{BLOCK_SIZE_X, BLOCK_SIZE_Y});
+                }
+            }
             for(int i = 0; i < BLOCK_TYPES; i++)
             {
                 if(positions[i].size() == 0)
@@ -565,6 +614,12 @@ class TetrisProgram : public Program
     }
     virtual void Initialize() override
     {
+        time_frame_circle = std::make_shared<EmptyCircle>(entity_manager, 255, EMPTY_CIRCLE_MODE::FULL, true, true, TIME_CIRCLE_FRAME_LAYER, time_circle_center, vec2<int>{TIME_CIRCLE_RADIUS, TIME_CIRCLE_RADIUS});
+        time_circle = std::make_shared<Circle>(entity_manager, 255, 255, true, true, TIME_CIRCLE_LAYER, 0, time_circle_center, vec2<int>{TIME_CIRCLE_RADIUS, TIME_CIRCLE_RADIUS});
+        for(int i = 0; i < ArraySize(time_triangles); i++)
+            time_triangles[i] = std::make_shared<Triangle>(entity_manager, 0, vec2<int>{0, 0}, vec2<int>{0, 0}, 
+                vec2<int>{0, 0}, false, true, TIME_TRIANGLE_LAYER, 0, time_circle_center, vec2<int>{1, 1});
+
         for(int i = 0; i < BLOCK_TYPES; i++)
         {
             block_textures[i] = texture_manager->CreateTextureFromTGA(texture_datas[i], texture_lens[i]);

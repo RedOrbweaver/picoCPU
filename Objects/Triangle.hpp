@@ -22,6 +22,7 @@ class Triangle : public Shape
     {
         auto ps16 = p.convert<int16_t>();
         memcpy(data + 2, &ps16, 4);
+        manager->WriteEntityData(index, data + 2, 2, 4);
     }
     vec2<int> GetP1()
     {
@@ -31,6 +32,7 @@ class Triangle : public Shape
     {
         auto ps16 = p.convert<int16_t>();
         memcpy(data + 6, &ps16, 4);
+        manager->WriteEntityData(index, data + 6, 6, 4);
     }
     vec2<int> GetP2()
     {
@@ -40,15 +42,16 @@ class Triangle : public Shape
     {
         auto ps16 = p.convert<int16_t>();
         memcpy(data + 10, &ps16, 4);
+        manager->WriteEntityData(index, data + 10, 10, 4);
     }
     bool GetCentered()
     {
-        return data[15];
+        return data[14];
     }
     void SetCentered(bool value)
     {
-        data[15] = value;
-        manager->WriteEntityData(index, data+15, 15, 1);
+        data[14] = value;
+        manager->WriteEntityData(index, data+14, 14, 1);
     }
     Triangle(EntityManager* manager, uint8_t fill, vec2<int> p0, vec2<int> p1, vec2<int> p2, bool center, bool visible = false, uint8_t layer = 0, 
         uint8_t rotation = 0, vec2<int> position = {0, 0}, vec2<int> size = {0, 0}) 
@@ -61,7 +64,7 @@ class Triangle : public Shape
         memcpy(data + 6, &p1s16, 4);
         auto p2s16 = p2.convert<int16_t>();
         memcpy(data + 10, &p2s16, 4);
-        this->data[15] = center;
-        manager->WriteEntityData(index, data+1, 1, 15);
+        this->data[14] = center;
+        manager->WriteEntityData(index, data+1, 1, 14);
     }
 };

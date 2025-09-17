@@ -1,4 +1,6 @@
 #include "hmain.hpp"
+#define PRINT_INFO 1
+#define PRINT_INFO_CLEAR_CONSOLE 1
 
 int main()
 {
@@ -35,11 +37,23 @@ int main()
     uint64_t tmstart = get_time_us();
     while(true)
     {
+        #if PRINT_INFO
+        uint64_t pitmstart = get_time_us();
+        #endif
         gamepad_manager.ProcessInputs();
+        #if PRINT_INFO
+        uint64_t pitmdif = get_time_us() - pitmstart;
+        #endif
         uint64_t tmdif = get_time_us() - tmstart;
         float tm = float(tmdif)/1000.0f/1000.0f;
         tmstart = get_time_us();
+        #if PRINT_INFO
+        uint64_t progtmstart = get_time_us();
+        #endif
         bool ret = current_program->Tick(tm);
+        #if PRINT_INFO
+        uint64_t progtmdif = get_time_us() - progtmstart;
+        #endif 
         if(!ret)
         {
             Program* next_program = current_program->NextProgram;
@@ -55,5 +69,18 @@ int main()
             current_program->Initialize();
             tmstart = get_time_us();
         }
+        #if PRINT_INFO
+        #if PRINT_INFO_CLEAR_CONSOLE
+        clear_console();
+        #endif
+        printf("Program time: %lluus\n", progtmdif);
+        printf("Input time: %lluus\n", pitmdif);
+        Info info = context->gpu->ReadInfo();
+        printf("Rendering time: %lluus\n", info.last_render_time_us);
+        printf("I2C time %u\n\n", context->gpu->i2ctime);
+        printf("GPU memory: %u/%u\n", info.free_memory, info.total_memory);
+        printf("CPU memory: %u/%u\n", GetFreeHeap(), GetTotalHeap());
+        #endif
+        context->gpu->i2ctime = 0;
     }
 }
