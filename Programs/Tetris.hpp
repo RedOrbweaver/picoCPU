@@ -16,18 +16,21 @@ class TetrisProgram : public Program
     static inline constexpr int BLOCK_SIZE_X = 12;
     static inline constexpr int BLOCK_SIZE_Y = 12;
     static inline constexpr vec2<int> BOARD_TOP_LEFT = {35, 50};
+
     static inline constexpr int NORMAL_BLOCK_LAYER = 4;
     static inline constexpr int EXPLOSION_BLOCK_LAYER = 1;
-    static inline constexpr int TIME_CIRCLE_LAYER = 2;
-    static inline constexpr int TIME_TRIANGLE_LAYER = 1;
-    static inline constexpr int TIME_CIRCLE_FRAME_LAYER = 0;
+    static inline constexpr int TIME_CIRCLE_LAYER = 6;
+    static inline constexpr int TIME_TRIANGLE_LAYER = 5;
+    static inline constexpr int TIME_CIRCLE_FRAME_LAYER = 4;
     static inline constexpr int NORMAL_UI_LAYER = 0;
+    static inline constexpr int INDICATOR_LAYER = 0;
+
     static inline constexpr int TIME_CIRCLE_RADIUS = 15;
 
-    vec2<int> time_circle_center = {BLOCK_SIZE_X*BOARD_X + 75, 60};
+    vec2<int> time_circle_center = {BLOCK_SIZE_X*BOARD_X + 65, 60};
     bool time_circle_color_polarity = false;
 
-    vec2<int> next_piece_center = {BLOCK_SIZE_X*BOARD_X + 75, 60 + BLOCK_SIZE_Y + TIME_CIRCLE_RADIUS};
+    vec2<int> next_piece_center = {BLOCK_SIZE_X*BOARD_X + 65, 60 + BLOCK_SIZE_Y + TIME_CIRCLE_RADIUS*2};
 
     struct block
     {
@@ -207,9 +210,12 @@ class TetrisProgram : public Program
     shared_ptr<Texture> block_textures[BLOCK_TYPES];
     shared_ptr<GeometryManager::Geometry> block_positions[BLOCK_TYPES];
     shared_ptr<MultiSprite> block_sprites[BLOCK_TYPES];
+    shared_ptr<EmptyRectangle> block_landing_indicators[4];
+
     
     shared_ptr<MultiLines> game_grid_lines;
 
+    shared_ptr<Text> score_title_text;
     shared_ptr<Text> score_text;
     shared_ptr<Text> time_text;
 
@@ -340,6 +346,8 @@ class TetrisProgram : public Program
         }
         if(block_placed)
         {
+            for(int i = 0; i < ArraySize(block_landing_indicators); i++)
+                block_landing_indicators[i]->SetVisible(false);
             for(int i = 0; i < positions.size(); i++)
             {
                 auto pos = position + positions[i];
@@ -369,6 +377,30 @@ class TetrisProgram : public Program
         else
         {
             position.y += 1;
+            int fpos = position.y;
+            for(; fpos < BOARD_Y; fpos++)
+            {
+                bool found = false;
+                for(int i = 0; i < 4; i++)
+                {
+                    auto block = piece.block_positions[rotation][i];
+                    auto pos = block + vec2<int>{position.x, fpos};
+                    if((pos.y >= 0) && (!IsInsideBoard(pos.x, pos.y) || !GetBoard(pos.x, pos.y).IsEmpty()))
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if(found)
+                    break;
+            }
+            auto tpos = vec2<int>{position.x, fpos-1};
+            for(int i = 0; i < ArraySize(block_landing_indicators); i++)
+            {
+                auto block = piece.block_positions[rotation][i];
+                block_landing_indicators[i]->SetPosition((tpos + block) * vec2<int>{BLOCK_SIZE_X, BLOCK_SIZE_Y} + BOARD_TOP_LEFT);
+                block_landing_indicators[i]->SetVisible(true);
+            }
         }
     }
 
@@ -505,10 +537,8 @@ class TetrisProgram : public Program
                     float pratio = ratio - 0.25f*i;
                     if(pratio < 0.0f)
                     {
-                        //time_triangles[i]->SetVisible(false);
-                        continue;
+                        pratio = 0.0f;
                     }
-                    //time_triangles[i]->SetVisible(true);
                     pratio *= 4.0f;
                     if(pratio > 1.0f)
                         pratio = 1.0f;
@@ -594,7 +624,7 @@ class TetrisProgram : public Program
                 auto blocks = next_piece.block_positions[0];
                 for(int i = 0; i < blocks.size(); i++)
                 {
-                    positions[next_piece.type.GetBlockIndex()].push_back(next_piece_center + blocks[i] * vec2<int>{BLOCK_SIZE_X, BLOCK_SIZE_Y});
+                    positions[next_piece.type.GetBlockIndex()].push_back(next_piece_center + blocks[i] * vec2<int>{BLOCK_SIZE_X, BLOCK_SIZE_Y} - BOARD_TOP_LEFT);
                 }
             }
             for(int i = 0; i < BLOCK_TYPES; i++)
@@ -644,6 +674,11 @@ class TetrisProgram : public Program
         game_grid_lines = std::make_shared<MultiLines>(entity_manager, geometry_manager, 
             128, geometry_manager->AllocateGeomentry(board_lines), true, 0, 0, BOARD_TOP_LEFT);
 
+        for(int i = 0; i < ArraySize(block_landing_indicators); i++)
+        {
+            block_landing_indicators[i] = std::make_shared<EmptyRectangle>(entity_manager, 255, false, false, INDICATOR_LAYER, 0, vec2<int>{0, 0}, vec2<int>{BLOCK_SIZE_X, BLOCK_SIZE_Y});
+        }
+
         auto gamepads = gamepad_manager.GetGamepads();
         if(gamepads.size() > 0)
         {
@@ -661,7 +696,7 @@ class TetrisProgram : public Program
                 auto gamepads = gamepad_manager.GetGamepads();
                 if(gamepads.size() > 0)
                 {
-                    gamepad = gamepads.begin()->second;
+                    SetGamepad(gamepads.begin()->second);
                 }
             }
         });
