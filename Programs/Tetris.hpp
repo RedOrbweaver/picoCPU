@@ -6,16 +6,23 @@ class TetrisProgram : public Program
 
     static inline constexpr int BOARD_X = 10;
     static inline constexpr int BOARD_Y = 20;
+    static inline constexpr vec2<int> BOARD_SIZE = {BOARD_X, BOARD_Y};
+
     static inline constexpr float PIECE_STEP_TIME = 0.5f;
     static inline constexpr float EXPLOSION_STEP_TIME = 0.05f;
     static inline constexpr float REMOVE_LINE_STEP_TIME = 0.1f;
     static inline constexpr float NEW_PIECE_DELAY = 0.5f;
     static inline constexpr float FALL_STEP_TIME = 0.25f;
+    static inline constexpr int TETRIS_STEPS = 10;
+    static inline constexpr float TETRIS_STEP_TIME = 0.1f;
+
     static inline constexpr int TETROMINO_TYPES = 5;
     static inline constexpr int BLOCK_TYPES = TETROMINO_TYPES+1; // 5 tetromino + explosion
     static inline constexpr int BLOCK_SIZE_X = 12;
     static inline constexpr int BLOCK_SIZE_Y = 12;
+    static inline constexpr vec2<int> BLOCK_SIZE = {BLOCK_SIZE_X, BLOCK_SIZE_Y};
     static inline constexpr vec2<int> BOARD_TOP_LEFT = {35, 50};
+    static inline constexpr vec2<int> BOARD_TOP_RIGHT = BOARD_TOP_LEFT + vec2<int>{BLOCK_SIZE_X, 0} * vec2<int>{BOARD_X, 0};
 
     static inline constexpr int NORMAL_BLOCK_LAYER = 4;
     static inline constexpr int EXPLOSION_BLOCK_LAYER = 1;
@@ -24,6 +31,16 @@ class TetrisProgram : public Program
     static inline constexpr int TIME_CIRCLE_FRAME_LAYER = 4;
     static inline constexpr int NORMAL_UI_LAYER = 0;
     static inline constexpr int INDICATOR_LAYER = 0;
+    static inline constexpr int TETRIS_LAYER = 0;
+    static inline constexpr int TETRIS_SQUARE_LAYER = 1;
+
+    static inline constexpr int SCORE_TEXT_LENGTH = 8;
+    static inline constexpr int SCORE_PIECE_PLACED = 10;
+    static inline constexpr int SCORE_BLOW_UP = 100;
+    static inline constexpr int SCORE_LINE_DESTROYED = 1000;
+    static inline constexpr int SCORE_TETRIS_STEP = 250;
+    static inline constexpr int SCORE_TETRIS = 10000;
+    static inline constexpr float SCORE_LAST_ADDED_VISIBLE_TIME = 0.5f;
 
     static inline constexpr int TIME_CIRCLE_RADIUS = 15;
 
@@ -31,6 +48,15 @@ class TetrisProgram : public Program
     bool time_circle_color_polarity = false;
 
     vec2<int> next_piece_center = {BLOCK_SIZE_X*BOARD_X + 65, 60 + BLOCK_SIZE_Y + TIME_CIRCLE_RADIUS*2};
+
+    vec2<int> score_title_text_center = BOARD_TOP_RIGHT + vec2<int>{120, 10};
+    vec2<int> score_text_center = BOARD_TOP_RIGHT + vec2<int>{120, 30};
+    vec2<int> score_added_text_center = BOARD_TOP_RIGHT + vec2<int>{120, 45};
+
+    int score = 0;
+    int last_score = 0;
+    int last_score_added = 0;
+    float last_score_added_time = 0.0f;
 
     struct block
     {
@@ -55,6 +81,7 @@ class TetrisProgram : public Program
         PIECE_STUCK,
         NEW_PIECE_DELAY,
         EXPLODING,
+        TETRIS,
         REMOVING_LINES,
         GAME_OVER,
     };
@@ -217,11 +244,17 @@ class TetrisProgram : public Program
 
     shared_ptr<Text> score_title_text;
     shared_ptr<Text> score_text;
+    shared_ptr<Text> score_last_added_text;
     shared_ptr<Text> time_text;
+
+    shared_ptr<Text> tetris_text;
+    shared_ptr<Rectangle> tetris_rectangle;
 
     shared_ptr<Circle> time_circle;
     shared_ptr<Triangle> time_triangles[4];
     shared_ptr<EmptyCircle> time_frame_circle;
+
+    
 
     tetromino piece;
     uint8_t rotation;
@@ -264,6 +297,42 @@ class TetrisProgram : public Program
         gamepad->SetOnButtonDownHandle(Gamepad::LEFT_UP, [&](){if(state == STATE::PLAYING) rotate_pressed=true;});
     }
 
+    void AddScore(int value)
+    {
+        score += value;
+        last_score_added = value;
+        last_score_added_time = 0.0f;
+    }
+
+    void SetLandingPoints()
+    {
+        assert(state == STATE::PLAYING || state == STATE::PIECE_STUCK);
+        int fpos = position.y;
+        for(; fpos < BOARD_Y; fpos++)
+        {
+            bool found = false;
+            for(int i = 0; i < 4; i++)
+            {
+                auto block = piece.block_positions[rotation][i];
+                auto pos = block + vec2<int>{position.x, fpos};
+                if((pos.y >= 0) && (!IsInsideBoard(pos.x, pos.y) || !GetBoard(pos.x, pos.y).IsEmpty()))
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if(found)
+                break;
+        }
+        auto tpos = vec2<int>{position.x, fpos-1};
+        for(int i = 0; i < ArraySize(block_landing_indicators); i++)
+        {
+            auto block = piece.block_positions[rotation][i];
+            block_landing_indicators[i]->SetPosition((tpos + block) * vec2<int>{BLOCK_SIZE_X, BLOCK_SIZE_Y} + BOARD_TOP_LEFT);
+            block_landing_indicators[i]->SetVisible(true);
+        }
+    }
+
     bool RotatePiece()
     {
         assert(state == STATE::PLAYING);
@@ -286,6 +355,7 @@ class TetrisProgram : public Program
         rotation = nrot;
         if(stuck)
             state = STATE::PIECE_STUCK;
+        SetLandingPoints();
         return true;
     }
 
@@ -309,6 +379,7 @@ class TetrisProgram : public Program
         position = npos;
         if(stuck)
             state = STATE::PIECE_STUCK;
+        SetLandingPoints();
         return true;
     }
 
@@ -323,6 +394,7 @@ class TetrisProgram : public Program
             piece = next_piece;
         state = STATE::PLAYING;
         next_piece = tetrominoes[(rand() % TETROMINO_TYPES)];
+        AddScore(SCORE_PIECE_PLACED);
     }
     void StepGame()
     {
@@ -377,30 +449,7 @@ class TetrisProgram : public Program
         else
         {
             position.y += 1;
-            int fpos = position.y;
-            for(; fpos < BOARD_Y; fpos++)
-            {
-                bool found = false;
-                for(int i = 0; i < 4; i++)
-                {
-                    auto block = piece.block_positions[rotation][i];
-                    auto pos = block + vec2<int>{position.x, fpos};
-                    if((pos.y >= 0) && (!IsInsideBoard(pos.x, pos.y) || !GetBoard(pos.x, pos.y).IsEmpty()))
-                    {
-                        found = true;
-                        break;
-                    }
-                }
-                if(found)
-                    break;
-            }
-            auto tpos = vec2<int>{position.x, fpos-1};
-            for(int i = 0; i < ArraySize(block_landing_indicators); i++)
-            {
-                auto block = piece.block_positions[rotation][i];
-                block_landing_indicators[i]->SetPosition((tpos + block) * vec2<int>{BLOCK_SIZE_X, BLOCK_SIZE_Y} + BOARD_TOP_LEFT);
-                block_landing_indicators[i]->SetVisible(true);
-            }
+            SetLandingPoints();
         }
     }
 
@@ -420,13 +469,18 @@ class TetrisProgram : public Program
         if(exploded == to_explode)
         {
             to_explode = 0;
-            state = STATE::REMOVING_LINES;
+            if(exploded == BOARD_X * 4)
+                state = STATE::TETRIS;
+            else
+                state = STATE::REMOVING_LINES;
             return;
         }
+        int blowingup = 0;
         for(int i = 0; i < BOARD_Y; i++)
         {
             if(line_fills[i] == BOARD_X)
             {
+                blowingup++;
                 int ii = 0;
                 for(ii = 0; ii < BOARD_X; ii++)
                 {
@@ -436,6 +490,7 @@ class TetrisProgram : public Program
                         b.toexplode = false;
                         b.exploding = true;
                         exploded++;
+                        AddScore(SCORE_BLOW_UP);
                         if(ii > 0 && !GetBoard(ii-1, i).exploding)
                             GetBoard(ii-1, i).toexplode = true;
                         if(ii < BOARD_X-1 && !GetBoard(ii+1, i).exploding)
@@ -449,8 +504,48 @@ class TetrisProgram : public Program
             }
         }
     }
+    void StepTestris()
+    {
+        assert(state == STATE::TETRIS);
+        static int top_line = -1;
+        static int steps = 0;
+
+        AddScore(SCORE_TETRIS_STEP);
+
+        if(steps == TETRIS_STEPS)
+        {
+            top_line = -1;
+            steps = 0;
+            state = STATE::REMOVING_LINES;
+            tetris_text->SetVisible(false);
+            tetris_rectangle->SetVisible(false);
+            AddScore(SCORE_TETRIS);
+            return;
+        }
+        
+        if(top_line == -1)
+        {
+            for(int i = 0; i < BOARD_Y; i++)
+            {
+                if(line_fills[i] == BOARD_X)
+                {
+                    top_line = i;
+                    break;
+                }
+            }
+            vec2<int> tetris_text_pos = vec2<int>{BOARD_X*BLOCK_SIZE_X/2, BLOCK_SIZE_Y * (top_line)} + BOARD_TOP_LEFT;
+            tetris_text->SetPosition(tetris_text_pos);
+            tetris_text->SetVisible(true);
+            tetris_rectangle->SetPosition(tetris_text_pos);
+            tetris_rectangle->SetVisible(true);
+        }
+        tetris_text->SetVisible(!tetris_text->GetVisible());
+        steps++;
+    }
     void StepRemoveLine()
     {
+        assert(state == STATE::REMOVING_LINES);
+
         bool removed_line = false;
         for(int i = 0 ; i < BOARD_Y; i++)
         {
@@ -477,6 +572,7 @@ class TetrisProgram : public Program
         if(!removed_line)
         {
             state = STATE::NEW_PIECE_DELAY;
+            AddScore(SCORE_LINE_DESTROYED);
         }
     }
 
@@ -490,9 +586,31 @@ class TetrisProgram : public Program
         }
         if(gamepad == nullptr)
         {
+            score_text->SetText("NO GAMEPAD");
             return true;
         }
+        if(last_score != score)
+        {
+            std::string scorestr = std::to_string(score);
+            while(scorestr.length() < SCORE_TEXT_LENGTH)
+            {
+                scorestr = "0" + scorestr;
+            }
+            score_text->SetText(scorestr);
+            last_score = score;
+        }
         timer += delta;
+        if(last_score_added_time <= SCORE_LAST_ADDED_VISIBLE_TIME)
+        {
+            last_score_added_time += delta;
+            std::string satext = "+" + std::to_string(last_score_added);
+            while(satext.length() < SCORE_TEXT_LENGTH)
+                satext = " " + satext;
+            score_last_added_text->SetText(satext);
+            score_last_added_text->SetVisible(true);
+        }
+        else
+            score_last_added_text->SetVisible(false);
         bool board_changed = false;
         switch(state)
         {
@@ -579,6 +697,15 @@ class TetrisProgram : public Program
                 }
                 break;
             }
+            case STATE::TETRIS:
+            {
+                if(timer >= TETRIS_STEP_TIME)
+                {
+                    timer = 0.0f;
+                    StepTestris();
+                    board_changed = true;
+                }
+            }
             case STATE::REMOVING_LINES:
             {
                 if(timer >= REMOVE_LINE_STEP_TIME)
@@ -587,6 +714,7 @@ class TetrisProgram : public Program
                     StepRemoveLine();
                     board_changed = true;
                 }
+                break;
             }
             case STATE::GAME_OVER:
             {
@@ -649,6 +777,13 @@ class TetrisProgram : public Program
         for(int i = 0; i < ArraySize(time_triangles); i++)
             time_triangles[i] = std::make_shared<Triangle>(entity_manager, 0, vec2<int>{0, 0}, vec2<int>{0, 0}, 
                 vec2<int>{0, 0}, false, true, TIME_TRIANGLE_LAYER, 0, time_circle_center, vec2<int>{1, 1});
+
+        score_title_text = std::make_shared<Text>(entity_manager, text_manager, "SCORE", FONT::FIXED_10_20, TEXT_ALIGNMENT::CENTER, true, true, NORMAL_UI_LAYER, score_title_text_center);
+        score_text = std::make_shared<Text>(entity_manager, text_manager, "0000000", FONT::FIXED_10_20, TEXT_ALIGNMENT::CENTER, true, true, NORMAL_UI_LAYER, score_text_center);
+        score_last_added_text = std::make_shared<Text>(entity_manager, text_manager, "+0", FONT::FIXED_10_20, TEXT_ALIGNMENT::CENTER, true, false, NORMAL_UI_LAYER, score_added_text_center);
+
+        tetris_text = std::make_shared<Text>(entity_manager, text_manager, "TETRIS", FONT::DEJAVUSERIF_F_16, TEXT_ALIGNMENT::CENTER, true, false, TETRIS_LAYER, vec2<int>{0, 0});
+        tetris_rectangle = std::make_shared<Rectangle>(entity_manager, 255, 0, true, false, TETRIS_SQUARE_LAYER, 0, vec2<int>{0, 0}, BLOCK_SIZE * vec2<int>{BOARD_SIZE.x/2, 3});
 
         for(int i = 0; i < BLOCK_TYPES; i++)
         {
