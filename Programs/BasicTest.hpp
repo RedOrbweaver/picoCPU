@@ -146,6 +146,10 @@ class BasicTestProgram : public Program
         sprite = shared_ptr<Sprite>(new Sprite(entity_manager, texture, true, true, 0, {0, 0}, true, 0));
 
 
+        auto ch0 = new StreamChannel((uint8_t*)__returnof_wav + 44, 11025, ArraySize(__returnof_wav) - 44, 1.0f, true);
+        ch0->SetEnabled(true);
+        AudioChannels[0] = shared_ptr<AudioChannel>(ch0);
+
         gamepad_manager.AddOnGamepadAddedHandler([&](shared_ptr<Gamepad> gamepad)
         {
             current_gamepad = gamepad;
